@@ -37,6 +37,10 @@ PRODUCT_PACKAGE_OVERLAYS += \
 PRODUCT_PACKAGE_OVERLAYS += vendor/mist/overlay/dictionaries
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/mist/overlay/dictionaries
 
+# Charger
+PRODUCT_PACKAGES += \
+    product_charger_res_images
+
 # Extra tools in Mist
 PRODUCT_PACKAGES += \
     7z \
