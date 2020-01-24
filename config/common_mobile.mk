@@ -25,11 +25,6 @@ endif
 PRODUCT_PACKAGES += \
     charger_res_images
 
-ifneq ($(WITH_MIST_CHARGER),false)
-PRODUCT_PACKAGES += \
-    mist_charger_animation
-endif
-
 # Customizations
 PRODUCT_PACKAGES += \
     NavigationBarMode2ButtonOverlay
