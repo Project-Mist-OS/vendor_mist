@@ -268,8 +268,13 @@ PRODUCT_PACKAGES += \
     UdfpsResources
 endif
 
-# GApps
+# Build
+ifeq ($(CHERISH_VANILLA), true)
+include vendor/cherish/config/basicapps.mk
+else
+# Gapps
 $(call inherit-product, vendor/gapps/config.mk)
+endif
 
 # Lawnicons
 $(call inherit-product, vendor/lawnicons/overlay.mk)
