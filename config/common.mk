@@ -57,6 +57,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.debug.wfd.enable=1 \
     persist.sys.wfd.virtual=0
 
+# Disable blur on app-launch
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
+    ro.launcher.blur.appLaunch=0
+
 # Backup Tool
 PRODUCT_COPY_FILES += \
     vendor/mist/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
