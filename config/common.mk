@@ -271,6 +271,10 @@ endif
 # GApps
 $(call inherit-product, vendor/gapps/config.mk)
 
+# Lawnicons
+$(call inherit-product, vendor/lawnicons/overlay.mk)
+endif
+
 # OTA
 $(call inherit-product, vendor/mist/config/ota.mk)
 
