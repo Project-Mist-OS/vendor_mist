@@ -272,6 +272,11 @@ $(call inherit-product, vendor/mist/config/bootanimation.mk)
 # Fonts
 $(call inherit-product, vendor/mist/config/fonts.mk)
 
+ifeq ($(EXTRA_UDFPS_ANIMATIONS),true)
+PRODUCT_PACKAGES += \
+    UdfpsResources
+endif
+
 # GApps
 $(call inherit-product, vendor/gapps/config.mk)
 
