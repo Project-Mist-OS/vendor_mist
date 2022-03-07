@@ -178,6 +178,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     NavigationBarModeGesturalOverlayFS 
 
+# Permissions
+PRODUCT_COPY_FILES += \
+    vendor/mist/config/permissions/privapp-permissions-mist-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-mist-SettingsIntelligencePrebuilt.xml
+
 # Gboard configuration
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.com.google.ime.theme_id=5 \
@@ -269,8 +273,8 @@ PRODUCT_PACKAGES += \
 endif
 
 # Build
-ifeq ($(CHERISH_VANILLA), true)
-include vendor/cherish/config/basicapps.mk
+ifeq ($(mist_VANILLA), true)
+include vendor/mist/config/basicapps.mk
 else
 # Gapps
 $(call inherit-product, vendor/gapps/config.mk)
