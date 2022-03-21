@@ -610,9 +610,8 @@ function mistrebase() {
     cd $pwd
 }
 
-function mka() {
-    m -j$(nproc --all) "$@"
-}
+alias mka=m
+
 function cmka() {
     if [ ! -z "$1" ]; then
         for i in "$@"; do
