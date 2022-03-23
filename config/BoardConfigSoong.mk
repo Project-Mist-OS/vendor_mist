@@ -40,7 +40,8 @@ SOONG_CONFIG_mistGlobalVars += \
     target_process_sdk_version_override \
     target_surfaceflinger_udfps_lib \
     target_uses_prebuilt_dynamic_partitions \
-    uses_camera_parameter_lib
+    uses_camera_parameter_lib \
+    uses_egl_display_array
 
 SOONG_CONFIG_NAMESPACES += mistNvidiaVars
 SOONG_CONFIG_mistNvidiaVars += \
@@ -64,6 +65,7 @@ SOONG_CONFIG_mistQcomVars += \
 endif
 
 # Soong bool variables
+<<<<<<< HEAD
 SOONG_CONFIG_mistGlobalVars_camera_needs_client_info := $(TARGET_CAMERA_NEEDS_CLIENT_INFO)
 SOONG_CONFIG_mistGlobalVars_disable_postrender_cleanup := $(TARGET_DISABLE_POSTRENDER_CLEANUP)
 SOONG_CONFIG_mistGlobalVars_has_legacy_camera_hal1 := $(TARGET_HAS_LEGACY_CAMERA_HAL1)
@@ -78,6 +80,7 @@ SOONG_CONFIG_mistQcomVars_should_wait_for_qsee := $(TARGET_KEYMASTER_WAIT_FOR_QS
 SOONG_CONFIG_mistQcomVars_supports_extended_compress_format := $(AUDIO_FEATURE_ENABLED_EXTENDED_COMPRESS_FORMAT)
 SOONG_CONFIG_mistQcomVars_supports_hw_fde := $(TARGET_HW_DISK_ENCRYPTION)
 SOONG_CONFIG_mistQcomVars_supports_hw_fde_perf := $(TARGET_HW_DISK_ENCRYPTION_PERF)
+SOONG_CONFIG_mistGlobalVars_uses_egl_display_array := $(TARGET_USES_EGL_DISPLAY_ARRAY)
 SOONG_CONFIG_mistQcomVars_uses_pre_uplink_features_netmgrd := $(TARGET_USES_PRE_UPLINK_FEATURES_NETMGRD)
 SOONG_CONFIG_mistQcomVars_uses_qcom_bsp_legacy := $(TARGET_USES_QCOM_BSP_LEGACY)
 SOONG_CONFIG_mistQcomVars_uses_qti_camera_device := $(TARGET_USES_QTI_CAMERA_DEVICE)
