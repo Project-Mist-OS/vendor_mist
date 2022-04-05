@@ -273,12 +273,23 @@ PRODUCT_PACKAGES += \
 endif
 
 # Build
+<<<<<<< HEAD
 ifeq ($(mist_VANILLA), true)
 include vendor/mist/config/basicapps.mk
+
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
+    vendor/mist/overlay-aosp
+
+PRODUCT_PACKAGE_OVERLAYS += \
+    vendor/mist/overlay-aosp/common
+
 else
 # Gapps
 $(call inherit-product, vendor/gapps/config.mk)
 endif
+
+# RRO Overlays
+$(call inherit-product, vendor/mist/config/rro_overlays.mk)
 
 # Lawnicons
 $(call inherit-product, vendor/lawnicons/overlay.mk)
@@ -286,9 +297,6 @@ endif
 
 # OTA
 $(call inherit-product, vendor/mist/config/ota.mk)
-
-# RRO Overlays
-$(call inherit-product, vendor/mist/config/rro_overlays.mk)
 
 # Themes
 $(call inherit-product, vendor/mist/config/themes.mk)
