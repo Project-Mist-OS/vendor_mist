@@ -283,9 +283,6 @@ endif
 # RRO Overlays
 $(call inherit-product, vendor/mist/config/rro_overlays.mk)
 
-# Lawnicons
-$(call inherit-product, vendor/lawnicons/overlay.mk)
-
 # Themed icons
 $(call inherit-product, packages/overlays/ThemeIcons/config.mk)
 endif
