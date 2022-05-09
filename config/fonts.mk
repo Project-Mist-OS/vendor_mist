@@ -93,7 +93,8 @@ PRODUCT_PACKAGES += \
     FontStoropiaSourceOverlay \
     FontSurferSourceOverlay \
     FontUbuntuSourceOverlay \
-	 FontOppoSansOverlay
+	 FontOppoSansOverlay \
+    FontNothiingDotOverlay
 
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,vendor/mist/fonts/prebuilt,$(TARGET_COPY_OUT_PRODUCT)/fonts) \
