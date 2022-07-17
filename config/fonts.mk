@@ -95,6 +95,7 @@ PRODUCT_PACKAGES += \
     FontUbuntuSourceOverlay \
 	 FontOppoSansOverlay \
     FontNothiingDotOverlay\
+    FontNothingDotHeadlineOverlay \
     FontProductSansVHOverlay 
 
 PRODUCT_COPY_FILES += \
