@@ -1162,4 +1162,3 @@
     <icon drawable="@drawable/themed_icon_zepp_life" name="Zepp Life(MiFit)" package="com.xiaomi.hm.health"/>
     <icon drawable="@drawable/themed_icon_zomato" name="Zomato" package="com.application.zomato"/>
     <icon drawable="@drawable/themed_icon_zoom" name="Zoom" package="us.zoom.videomeetings"/>
-</icons>
