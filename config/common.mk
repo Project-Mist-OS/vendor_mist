@@ -177,7 +177,7 @@ PRODUCT_PACKAGES += \
 
 # Hide nav Overlays
 PRODUCT_PACKAGES += \
-    NavigationBarModeGesturalOverlayFS 
+    ImmersiveNavigationOverlay  
 
 # Permissions
 PRODUCT_COPY_FILES += \
