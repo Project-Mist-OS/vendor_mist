@@ -134,10 +134,9 @@ PRODUCT_PACKAGES += \
     mkfs.ntfs \
     mount.ntfs
 
-# Config
-#PRODUCT_PACKAGES += \
-#    SimpleDeviceConfig \
-#    RepainterServicePriv
+# # Config
+# PRODUCT_PACKAGES += \
+#     RepainterServicePriv
 
 # Storage manager
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
