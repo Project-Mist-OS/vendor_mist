@@ -269,13 +269,13 @@ $(call inherit-product, vendor/mist/config/bootanimation.mk)
 # Fonts
 $(call inherit-product, vendor/mist/config/fonts.mk)
 
-#ifeq ($(EXTRA_UDFPS_ANIMATIONS),true)
-#PRODUCT_PACKAGES += \
-#    UdfpsResources
-#endif
+ifeq ($(EXTRA_UDFPS_ANIMATIONS),true)
+PRODUCT_PACKAGES += \
+    UdfpsResources
+endif
 
 # Build
-ifeq ($(mist_VANILLA), true)
+ifeq ($(MIST_VANILLA), true)
 include vendor/mist/config/basicapps.mk
 
 else
