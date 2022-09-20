@@ -66,3 +66,9 @@ PRODUCT_PACKAGES += \
     AndroidBlackThemeOverlay \
     AndroidClearThemeOverlay \
     AndroidVividThemeOverlay
+	
+# QS Panel
+PRODUCT_PACKAGES += \
+    QSRoundedRectangle \
+    QSOutline \
+    QSTwoToneAccent
