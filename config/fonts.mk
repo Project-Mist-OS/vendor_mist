@@ -101,6 +101,22 @@ PRODUCT_PACKAGES += \
     FontNothiingDotOverlay\
     FontNothingDotHeadlineOverlay \
     FontProductSansVHOverlay 
+	
+# Lockscreen clock fonts 
+PRODUCT_PACKAGES += \
+    ClockFontAdventProOverlay \
+    ClockFontBigNoodleTiltingOverlay \
+    ClockFontCherrySwashOverlay \
+    ClockFontHeadlineOverlay \
+    ClockFontRoadRageOverlay \
+    ClockFontSnowstormOverlay \
+    ClockFontViburOverlay \
+    ClockFontAlienLeagueOverlay \
+    ClockFontBikoOverlay \
+    ClockFontGinoraSansOverlay \
+    ClockFontRivieraOverlay \
+    ClockFontSedgwickAveOverlay \
+    ClockFontUnionOverlay
 
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,vendor/mist/fonts/prebuilt,$(TARGET_COPY_OUT_PRODUCT)/fonts) \
