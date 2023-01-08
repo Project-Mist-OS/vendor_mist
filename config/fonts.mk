@@ -134,7 +134,13 @@ PRODUCT_PACKAGES += \
         ClockFontRubikGlitchOverlay \
         ClockFontTourneyMediumOverlay \
         ClockFontVG5000Overlay \
-        ClockFontOdibeeSansOverlay
+        ClockFontArcadeInterlacedOverlay \
+        ClockFontDotComOverlay \
+        ClockFontKarmaticArcadeOverlay \
+        ClockFontLiquidCrystalOverlay \
+        ClockFontV5PRFOverlay \
+        ClockFontZeroFourOverlay
+
 PRODUCT_COPY_FILES += \
     $(call find-copy-subdir-files,*,vendor/mist/fonts/prebuilt,$(TARGET_COPY_OUT_PRODUCT)/fonts) \
     vendor/mist/fonts/fonts_customization.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/fonts_customization.xml
