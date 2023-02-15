@@ -282,7 +282,11 @@ endif
 # Enable one-handed mode
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.support_one_handed_mode=true
-	
+
+# NexusLauncher resources
+PRODUCT_PACKAGES += \
+    NexusLauncherResOverlay
+
 # Audio
 $(call inherit-product, vendor/mist/config/audio.mk)
 
