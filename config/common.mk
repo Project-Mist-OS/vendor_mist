@@ -223,6 +223,7 @@ PRODUCT_PACKAGE_OVERLAYS += \
 
 PRODUCT_PACKAGES += \
     MistLauncherOverlay \
+    DocumentsUIOverlay \
     NetworkStackOverlay
 
 -include vendor/mist/config/branding.mk
