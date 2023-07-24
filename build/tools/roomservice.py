@@ -44,9 +44,9 @@ DEBUG = False
 
 custom_local_manifest = ".repo/local_manifests/pixel.xml"
 custom_default_revision =  os.getenv('ROOMSERVICE_DEFAULT_BRANCH', 'twelve')
-custom_dependencies = "aosp.dependencies"
-org_manifest = "pixel-devices"  # leave empty if org is provided in manifest
-org_display = "PixelExperience-Devices"  # needed for displaying
+custom_dependencies = "mist.dependencies"
+org_manifest = "mist-devices"  # leave empty if org is provided in manifest
+org_display = "MistOS-Devices"  # needed for displaying
 
 github_auth = None
 
