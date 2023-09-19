@@ -177,8 +177,8 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 #    OPWidget
 
 # Hide nav Overlays
-#PRODUCT_PACKAGES += \
-#    NavigationBarModeGesturalOverlayFS 
+PRODUCT_PACKAGES += \
+    NavigationBarModeGesturalOverlayFS 
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -299,6 +299,6 @@ endif
 #$(call inherit-product, vendor/mist/config/ota.mk)
 
 # Themes
-#$(call inherit-product, vendor/mist/config/themes.mk)
+$(call inherit-product, vendor/mist/config/themes.mk)
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
