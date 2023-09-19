@@ -166,8 +166,7 @@ PRODUCT_PACKAGES += \
 
 # Dex preopt
 PRODUCT_DEXPREOPT_SPEED_APPS += \
-    SystemUI \
-    NexusLauncherRelease
+    SystemUI
 
 # SystemUI plugins
 PRODUCT_PACKAGES += \
@@ -273,15 +272,8 @@ PRODUCT_PACKAGES += \
 endif
 
 # Build
-<<<<<<< HEAD
 ifeq ($(mist_VANILLA), true)
 include vendor/mist/config/basicapps.mk
-
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
-    vendor/mist/overlay-aosp
-
-PRODUCT_PACKAGE_OVERLAYS += \
-    vendor/mist/overlay-aosp/common
 
 else
 # Gapps
