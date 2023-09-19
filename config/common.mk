@@ -63,8 +63,8 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
     ro.surface_flinger.supports_background_blur=1
 
 # Disable blur on app-launch
-PRODUCT_SYSTEM_EXT_PROPERTIES += \
-    ro.launcher.blur.appLaunch=0
+#PRODUCT_SYSTEM_EXT_PROPERTIES += \
+#    ro.launcher.blur.appLaunch=0
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
@@ -135,9 +135,9 @@ PRODUCT_PACKAGES += \
     mount.ntfs
 
 # Config
-PRODUCT_PACKAGES += \
-    SimpleDeviceConfig \
-    RepainterServicePriv
+#PRODUCT_PACKAGES += \
+#    SimpleDeviceConfig \
+#    RepainterServicePriv
 
 # Storage manager
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
@@ -155,8 +155,8 @@ PRODUCT_PACKAGE_OVERLAYS += \
     vendor/mist/overlay/common
 
 # TouchGestures
-PRODUCT_PACKAGES += \
-    TouchGestures
+#PRODUCT_PACKAGES += \
+#    TouchGestures
 
 # One Handed mode
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -171,14 +171,14 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
     SystemUI
 
 # SystemUI plugins
-PRODUCT_PACKAGES += \
-    QuickAccessWallet \
-    GameSpace \
-    OPWidget
+#PRODUCT_PACKAGES += \
+#    QuickAccessWallet \
+#    GameSpace \
+#    OPWidget
 
 # Hide nav Overlays
-PRODUCT_PACKAGES += \
-    NavigationBarModeGesturalOverlayFS 
+#PRODUCT_PACKAGES += \
+#    NavigationBarModeGesturalOverlayFS 
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -247,15 +247,15 @@ TARGET_SUPPORTS_QUICK_TAP ?= false
 TARGET_USES_MINI_GAPPS ?= false
 
 # Face Unlock
-TARGET_FACE_UNLOCK_SUPPORTED ?= true
-ifeq ($(TARGET_FACE_UNLOCK_SUPPORTED),true)
-PRODUCT_PACKAGES += \
-    FaceUnlockService
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.face_unlock_service.enabled=$(TARGET_FACE_UNLOCK_SUPPORTED)
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.biometrics.face.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.hardware.biometrics.face.xml
-endif
+#TARGET_FACE_UNLOCK_SUPPORTED ?= true
+#ifeq ($(TARGET_FACE_UNLOCK_SUPPORTED),true)
+#PRODUCT_PACKAGES += \
+#    FaceUnlockService
+#PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
+#    ro.face_unlock_service.enabled=$(TARGET_FACE_UNLOCK_SUPPORTED)
+#PRODUCT_COPY_FILES += \
+#    frameworks/native/data/etc/android.hardware.biometrics.face.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.hardware.biometrics.face.xml
+#endif
 
 # Enable one-handed mode
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -270,10 +270,10 @@ $(call inherit-product, vendor/mist/config/bootanimation.mk)
 # Fonts
 $(call inherit-product, vendor/mist/config/fonts.mk)
 
-ifeq ($(EXTRA_UDFPS_ANIMATIONS),true)
-PRODUCT_PACKAGES += \
-    UdfpsResources
-endif
+#ifeq ($(EXTRA_UDFPS_ANIMATIONS),true)
+#PRODUCT_PACKAGES += \
+#    UdfpsResources
+#endif
 
 # Build
 ifeq ($(mist_VANILLA), true)
@@ -296,9 +296,9 @@ $(call inherit-product, packages/overlays/ThemeIcons/config.mk)
 endif
 
 # OTA
-$(call inherit-product, vendor/mist/config/ota.mk)
+#$(call inherit-product, vendor/mist/config/ota.mk)
 
 # Themes
-$(call inherit-product, vendor/mist/config/themes.mk)
+#$(call inherit-product, vendor/mist/config/themes.mk)
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
