@@ -175,7 +175,7 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 # SystemUI plugins
 PRODUCT_PACKAGES += \
     QuickAccessWallet \
-    GamingMode
+    GameSpace
 
 # Hide nav Overlays
 PRODUCT_PACKAGES += \
