@@ -89,8 +89,10 @@ PRODUCT_COPY_FILES += \
     vendor/mist/config/permissions/mist-sysconfig.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/mist-sysconfig.xml
 
 # Copy all custom init rc files
-$(foreach f,$(wildcard vendor/mist/prebuilt/common/etc/init/*.rc),\
-    $(eval PRODUCT_COPY_FILES += $(f):system/etc/init/$(notdir $f)))
+PRODUCT_COPY_FILES += \
+    vendor/mist/prebuilt/common/etc/init/mist-system.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/mist-system.rc \
+    vendor/mist/prebuilt/common/etc/init/mist-updater.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/mist-updater.rc \
+    vendor/mist/prebuilt/common/etc/init/mist-ssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/mist-ssh.rc
 
 # Enable Android Beam on all targets
 PRODUCT_COPY_FILES += \

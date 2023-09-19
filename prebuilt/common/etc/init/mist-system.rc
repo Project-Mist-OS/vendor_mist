@@ -1,9 +1,7 @@
 # Xtended core functionality
 on init
-    export TERMINFO /system/etc/terminfo
+    export TERMINFO /system_ext/etc/terminfo
 
-on post-fs-data
-    mkdir /cache/recovery 0770 system cache
 
 # bugreport is triggered by holding down volume down, volume up and power
 service bugreport /system/bin/dumpstate -d -p -z
