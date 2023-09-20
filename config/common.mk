@@ -308,7 +308,7 @@ endif
 #$(call inherit-product, vendor/mist/config/ota.mk)
 
 # Themes
-$(call inherit-product, vendor/mist/config/themes.mk)
+$(call inherit-product, vendor/themes/themes.mk)
 
 # Pixel Framework
 $(call inherit-product, vendor/pixel-framework/config.mk)
