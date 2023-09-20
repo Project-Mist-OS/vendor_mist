@@ -27,6 +27,7 @@ SOONG_CONFIG_NAMESPACES += mistGlobalVars
 SOONG_CONFIG_mistGlobalVars += \
     additional_gralloc_10_usage_bits \
     bootloader_message_offset \
+    gralloc_handle_has_reserved_size \
     camera_needs_client_info \
     disable_postrender_cleanup \
     has_legacy_camera_hal1 \
@@ -70,11 +71,13 @@ SOONG_CONFIG_mistNvidiaVars_uses_nvidia_enhancements := $(NV_ANDROID_FRAMEWORK_E
 SOONG_CONFIG_mistQcomVars_legacy_hw_disk_encryption := $(TARGET_LEGACY_HW_DISK_ENCRYPTION)
 SOONG_CONFIG_mistQcomVars_supports_extended_compress_format := $(AUDIO_FEATURE_ENABLED_EXTENDED_COMPRESS_FORMAT)
 SOONG_CONFIG_mistGlobalVars_uses_egl_display_array := $(TARGET_USES_EGL_DISPLAY_ARRAY)
+SOONG_CONFIG_mistGlobalVars_gralloc_handle_has_reserved_size := $(TARGET_GRALLOC_HANDLE_HAS_RESERVED_SIZE)
 SOONG_CONFIG_mistQcomVars_uses_pre_uplink_features_netmgrd := $(TARGET_USES_PRE_UPLINK_FEATURES_NETMGRD)
 
 # Set default values
 BOOTLOADER_MESSAGE_OFFSET ?= 0
 TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS ?= 0
+TARGET_GRALLOC_HANDLE_HAS_RESERVED_SIZE ?= false
 TARGET_INIT_VENDOR_LIB ?= vendor_init
 TARGET_INPUTDISPATCHER_SKIP_EVENT_KEY ?= 0
 TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY ?= libcamera_parameters
