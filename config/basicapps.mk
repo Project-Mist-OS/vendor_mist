@@ -5,6 +5,8 @@ PRODUCT_PACKAGES += \
     Contacts \
     Dialer \
     LatinIME \
+    ThemePicker \
+    WallpaperPicker2 \
     SettingsIntelligenceGoogle \
     SoundPickerGoogleRelease \
     Launcher3QuickStep
