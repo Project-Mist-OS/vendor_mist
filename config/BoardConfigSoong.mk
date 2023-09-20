@@ -25,6 +25,7 @@ $(foreach v,$(EXPORT_TO_SOONG),$(eval $(call addVar,$(v))))
 
 SOONG_CONFIG_NAMESPACES += mistGlobalVars
 SOONG_CONFIG_mistGlobalVars += \
+    aapt_version_code \
     additional_gralloc_10_usage_bits \
     disable_bluetooth_le_read_buffer_size_v2 \
     disable_bluetooth_le_set_host_feature \
@@ -63,6 +64,7 @@ SOONG_CONFIG_mistQcomVars += \
 endif
 
 # Soong bool variables
+SOONG_CONFIG_mistGlobalVars_aapt_version_code := $(shell date -u +%Y%m%d)
 SOONG_CONFIG_mistGlobalVars_camera_needs_client_info := $(TARGET_CAMERA_NEEDS_CLIENT_INFO)
 SOONG_CONFIG_mistGlobalVars_camera_needs_client_info_lib := $(TARGET_CAMERA_NEEDS_CLIENT_INFO_LIB)
 SOONG_CONFIG_mistGlobalVars_uses_oplus_camera := $(TARGET_USES_OPLUS_CAMERA)
