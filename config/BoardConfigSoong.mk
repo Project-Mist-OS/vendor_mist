@@ -18,7 +18,7 @@ SOONG_CONFIG_mistVarsPlugin :=
 
 define addVar
   SOONG_CONFIG_mistVarsPlugin += $(1)
-  SOONG_CONFIG_mistVarsPlugin_$(1) := $$(subst ",\",$$($1))
+  SOONG_CONFIG_derpVarsPlugin_$(1) := $($1)
 endef
 
 $(foreach v,$(EXPORT_TO_SOONG),$(eval $(call addVar,$(v))))
