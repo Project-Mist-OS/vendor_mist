@@ -106,10 +106,6 @@ PRODUCT_COPY_FILES += \
     vendor/mist/prebuilt/common/etc/init/mist-updater.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/mist-updater.rc \
     vendor/mist/prebuilt/common/etc/init/mist-ssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/mist-ssh.rc
 
-# Enable Android Beam on all targets
-PRODUCT_COPY_FILES += \
-    vendor/mist/config/permissions/android.software.nfc.beam.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.software.nfc.beam.xml
-
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml
