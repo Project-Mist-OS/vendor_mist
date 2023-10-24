@@ -4,6 +4,3 @@ endef
 
 # Include board/platform macros
 include vendor/mist/build/core/utils.mk
-
-# Include vendor platform definitions
-include vendor/mist/build/core/vendor/*.mk
