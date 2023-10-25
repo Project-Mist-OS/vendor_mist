@@ -189,7 +189,8 @@ PRODUCT_PACKAGES += \
 
 # Dex preopt
 PRODUCT_DEXPREOPT_SPEED_APPS += \
-    SystemUIGoogle \
+    SystemUI \
+    SysyemUI \
     NexusLauncherRelease
 
 ifeq ($(TARGET_SUPPORTS_64_BIT_APPS), true)
