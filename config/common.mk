@@ -277,13 +277,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
 
-# Pixel customization
-TARGET_SUPPORTS_GOOGLE_RECORDER ?= true
-TARGET_INCLUDE_STOCK_ARCORE ?= false
-TARGET_INCLUDE_LIVE_WALLPAPERS ?= false
-TARGET_SUPPORTS_QUICK_TAP ?= false
-TARGET_USES_MINI_GAPPS ?= false
-
 # Face Unlock
 TARGET_FACE_UNLOCK_SUPPORTED ?= true
 ifeq ($(TARGET_FACE_UNLOCK_SUPPORTED),true)
