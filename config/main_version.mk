@@ -1,7 +1,7 @@
 # Versioning System
 MIST_BUILD_VARIANT ?= Gapps
 MIST_BUILD_TYPE ?= UNOFFICIAL
-MIST_CODENAME := Cloud
+MIST_CODENAME := Alpha
 
 # MistOS Release
 ifeq ($(MIST_BUILD_TYPE), OFFICIAL)
