@@ -108,6 +108,9 @@
          auto-brightness. If unset, then it just gets the default sensor of type TYPE_LIGHT. -->
     <string name="config_displayLightSensorType" translatable="false">android.sensor.light</string>
 
+    <!-- Default value for performant auth feature. -->
+    <bool name="config_performantAuthDefault">true</bool>
+
     <!-- List of system apps that are allowed to be locked with app lock.
         Use with extreme caution. -->
     <string-array name="config_appLockAllowedSystemApps" translatable="false">
