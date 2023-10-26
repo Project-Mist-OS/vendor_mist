@@ -132,10 +132,6 @@ PRODUCT_PACKAGES += \
     product_charger_res_images
 endif
 
-# Config
-PRODUCT_PACKAGES += \
-    SimpleDeviceConfig
-
 # Disable RescueParty due to high risk of data loss
 PRODUCT_PRODUCT_PROPERTIES += \
     persist.sys.disable_rescue=true
