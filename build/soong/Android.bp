@@ -1,8 +1,8 @@
-// tequilaOS soong configs
+// mistOS soong configs
 
 bootstrap_go_package {
-    name: "soong-tequila-generator",
-    pkgPath: "tequila/soong/generator",
+    name: "soong-mist-generator",
+    pkgPath: "mist/soong/generator",
     deps: [
         "blueprint",
         "blueprint-pathtools",
@@ -17,7 +17,7 @@ bootstrap_go_package {
     pluginFor: ["soong_build"],
 }
 
-tequila_generator {
+mist_generator {
     name: "generated_kernel_includes",
 
     // The headers make command
@@ -53,7 +53,7 @@ cc_library_headers {
 soong_config_module_type {
     name: "camera_needs_client_info_lib",
     module_type: "cc_defaults",
-    config_namespace: "tequilaGlobalVars",
+    config_namespace: "mistGlobalVars",
     bool_variables: ["camera_needs_client_info_lib"],
     properties: [
         "cppflags",
@@ -94,7 +94,7 @@ aapt_version_code {
 soong_config_module_type {
     name: "camera_needs_client_info",
     module_type: "cc_defaults",
-    config_namespace: "tequilaGlobalVars",
+    config_namespace: "mistGlobalVars",
     bool_variables: ["camera_needs_client_info"],
     properties: [
         "cppflags",
@@ -115,7 +115,7 @@ camera_needs_client_info {
 soong_config_module_type {
     name: "gralloc_10_usage_bits",
     module_type: "cc_defaults",
-    config_namespace: "tequilaGlobalVars",
+    config_namespace: "mistGlobalVars",
     value_variables: ["additional_gralloc_10_usage_bits"],
     properties: ["cppflags"],
 }
@@ -149,7 +149,7 @@ gralloc_handle_custom_content_md_reserved_size {
 soong_config_module_type {
     name: "gralloc_handle_reserved_size",
     module_type: "cc_defaults",
-    config_namespace: "tequilaGlobalVars",
+    config_namespace: "mistGlobalVars",
     bool_variables: ["gralloc_handle_has_reserved_size"],
     properties: ["export_cflags"],
 }
@@ -183,7 +183,7 @@ gralloc_handle_ubwcp_format {
 soong_config_module_type {
     name: "target_shim_libs",
     module_type: "cc_defaults",
-    config_namespace: "tequilaGlobalVars",
+    config_namespace: "mistGlobalVars",
     value_variables: ["target_ld_shim_libs"],
     properties: ["cppflags"],
 }
@@ -200,7 +200,7 @@ target_shim_libs {
 soong_config_module_type {
     name: "vendor_init",
     module_type: "cc_defaults",
-    config_namespace: "tequilaGlobalVars",
+    config_namespace: "mistGlobalVars",
     value_variables: ["target_init_vendor_lib"],
     properties: ["whole_static_libs"],
 }
@@ -217,7 +217,7 @@ vendor_init {
 soong_config_module_type {
     name: "surfaceflinger_udfps_lib",
     module_type: "cc_defaults",
-    config_namespace: "tequilaGlobalVars",
+    config_namespace: "mistGlobalVars",
     value_variables: ["target_surfaceflinger_udfps_lib"],
     properties: [
         "cppflags",
@@ -238,7 +238,7 @@ surfaceflinger_udfps_lib {
 soong_config_module_type {
     name: "trust_usb_control",
     module_type: "cc_defaults",
-    config_namespace: "tequilaGlobalVars",
+    config_namespace: "mistGlobalVars",
     value_variables: [
         "target_trust_usb_control_path",
         "target_trust_usb_control_enable",
@@ -265,7 +265,7 @@ trust_usb_control {
 soong_config_module_type {
     name: "bootloader_message_offset",
     module_type: "cc_defaults",
-    config_namespace: "tequilaGlobalVars",
+    config_namespace: "mistGlobalVars",
     value_variables: ["bootloader_message_offset"],
     properties: [
         "cflags",
@@ -286,7 +286,7 @@ bootloader_message_offset {
 soong_config_module_type {
     name: "needs_camera_boottime",
     module_type: "cc_defaults",
-    config_namespace: "tequilaGlobalVars",
+    config_namespace: "mistGlobalVars",
     bool_variables: ["needs_camera_boottime"],
     properties: ["cppflags"],
 }
@@ -304,7 +304,7 @@ needs_camera_boottime {
 soong_config_module_type {
     name: "librmnetctl_pre_uplink",
     module_type: "cc_defaults",
-    config_namespace: "tequilaQcomVars",
+    config_namespace: "mistQcomVars",
     bool_variables: ["uses_pre_uplink_features_netmgrd"],
     properties: ["cflags"],
 }
@@ -321,7 +321,7 @@ librmnetctl_pre_uplink {
 soong_config_module_type {
     name: "extended_compress_format",
     module_type: "cc_defaults",
-    config_namespace: "tequilaQcomVars",
+    config_namespace: "mistQcomVars",
     bool_variables: ["supports_extended_compress_format"],
     properties: ["cflags"],
 }
@@ -338,7 +338,7 @@ extended_compress_format {
 soong_config_module_type {
     name: "surfaceflinger_qcom_extensions",
     module_type: "cc_defaults",
-    config_namespace: "tequilaQcomVars",
+    config_namespace: "mistQcomVars",
     value_variables: ["qcom_display_headers_namespace"],
     properties: [
         "cppflags",

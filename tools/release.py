@@ -30,7 +30,7 @@ def getProp(prop):
 
 
 def main():
-    parser = argparse.ArgumentParser(prog="tequilaOS releaser")
+    parser = argparse.ArgumentParser(prog="mistOS releaser")
     parser.add_argument("zip")
     parser.add_argument("-s", "--submit", action="store_true")
 
@@ -54,7 +54,7 @@ def main():
         zipName = zip.split("/")[-1]
 
         if (
-            "tequila" not in zipName
+            "mist" not in zipName
             and ("-OFFICIAL" not in zipName or "-EXPERIMENTAL" not in zipName)
             and ".zip" not in zipName
         ):
@@ -76,7 +76,7 @@ def main():
     print(f"I: Releasing {date} build for {codename}")
 
     repo = None
-    repos = g.get_organization("tequilaOS").get_repos()
+    repos = g.get_organization("mistOS").get_repos()
     for r in repos:
         if codename in r.name and "platform_device_" in r.name:
             repo = r
@@ -93,7 +93,7 @@ def main():
     additional_files = ["recovery", "boot", "dtbo", "vendor_boot"]
 
     additional_files_path = (
-        f"{OUT}/obj/PACKAGING/target_files_intermediates/tequila_{codename}*/IMAGES/"
+        f"{OUT}/obj/PACKAGING/target_files_intermediates/mist_{codename}*/IMAGES/"
     )
 
     try:
@@ -116,14 +116,14 @@ def main():
         sys.exit(1)
 
     print(f"Released {title}!")
-    print(f"https://github.com/tequilaOS/{repo.name}/releases/tag/{tag}")
+    print(f"https://github.com/mistOS/{repo.name}/releases/tag/{tag}")
 
     if isExperimental:
         print("W: Release is experimental, skipping OTA config generation!")
         sys.exit(0)
 
     datetime = int(getProp("ro.build.date.utc"))
-    url = f"https://github.com/tequilaOS/{repo.name}/releases/download/{tag}/{zipName}"
+    url = f"https://github.com/mistOS/{repo.name}/releases/download/{tag}/{zipName}"
     with open(f"{zip}.sha256sum", "r") as f:
         checksum = f.read().split(" ")[0]
     filesize = os.path.getsize(zip)
@@ -143,18 +143,18 @@ def main():
     }
 
     with open(
-        f"{ANDROID_BUILD_TOP}/tequila_ota/devices/{codename}.json", "w"
+        f"{ANDROID_BUILD_TOP}/mist_ota/devices/{codename}.json", "w"
     ) as jsonFile:
         jsonFile.write(json.dumps(template, indent=2))
 
-    ota_repo = Repo(f"{ANDROID_BUILD_TOP}/tequila_ota")
+    ota_repo = Repo(f"{ANDROID_BUILD_TOP}/mist_ota")
     ota_repo.git.add(f"devices/{codename}.json")
     sha = ota_repo.index.commit(f"ota: {codename}-{date}\n")
 
     if args.submit:
-        cmd = (f"ssh://{GERRIT_USERNAME}@review.tequilaos.org:29418/tequilaOS/tequila_ota", f"{sha}:refs/for/main%submit")
+        cmd = (f"ssh://{GERRIT_USERNAME}@review.mistos.org:29418/mistOS/mist_ota", f"{sha}:refs/for/main%submit")
     else:
-        cmd = (f"ssh://{GERRIT_USERNAME}@review.tequilaos.org:29418/tequilaOS/tequila_ota", "{sha}:refs/for/main")
+        cmd = (f"ssh://{GERRIT_USERNAME}@review.mistos.org:29418/mistOS/mist_ota", "{sha}:refs/for/main")
 
     ota_repo.git.push(cmd)
 

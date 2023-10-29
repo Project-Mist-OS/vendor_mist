@@ -39,8 +39,8 @@ except ImportError:
 
 from xml.etree import ElementTree
 
-default_remote = "tequila"
-tequila_snippet = ".repo/manifests/tequila.xml"
+default_remote = "mist"
+mist_snippet = ".repo/manifests/mist.xml"
 
 product = sys.argv[1]
 
@@ -55,7 +55,7 @@ except:
     device = product
 
 if not depsonly:
-    print("Device %s not found. Attempting to retrieve device repository from tequilaOS Github (http://github.com/tequilaOS)." % device)
+    print("Device %s not found. Attempting to retrieve device repository from mistOS Github (http://github.com/mistOS)." % device)
 
 repositories = []
 
@@ -75,7 +75,7 @@ def add_auth(githubreq):
         githubreq.add_header("Authorization","Basic %s" % githubauth)
 
 if not depsonly:
-    githubreq = urllib.request.Request("https://api.github.com/search/repositories?q=%s+user:tequilaOS+in:name+fork:true" % device)
+    githubreq = urllib.request.Request("https://api.github.com/search/repositories?q=%s+user:mistOS+in:name+fork:true" % device)
     add_auth(githubreq)
     try:
         result = json.loads(urllib.request.urlopen(githubreq).read().decode())
@@ -171,9 +171,9 @@ def is_in_manifest(projectpath):
         if localpath.get("path") == projectpath:
             return True
 
-    # ... and don't forget the tequila snippet
+    # ... and don't forget the mist snippet
     try:
-        lm = ElementTree.parse(tequila_snippet)
+        lm = ElementTree.parse(mist_snippet)
         lm = lm.getroot()
     except:
         lm = ElementTree.Element("manifest")
@@ -231,7 +231,7 @@ def add_to_manifest(repositories, fallback_branch = None):
 
 def fetch_dependencies(repo_path, fallback_branch = None):
     print('Looking for dependencies in %s' % repo_path)
-    dependencies_path = repo_path + '/tequila.dependencies'
+    dependencies_path = repo_path + '/mist.dependencies'
     syncable_repos = []
     verify_repos = []
 
@@ -324,4 +324,4 @@ else:
             print("Done")
             sys.exit()
 
-print("Repository for %s not found in the tequilaOS Github repository list. If this is in error, you may need to manually add it to your local_manifests/roomservice.xml." % device)
+print("Repository for %s not found in the mistOS Github repository list. If this is in error, you may need to manually add it to your local_manifests/roomservice.xml." % device)

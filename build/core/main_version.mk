@@ -4,10 +4,10 @@ ADDITIONAL_SYSTEM_PROPERTIES += \
     ro.build.fingerprint=$(BUILD_FINGERPRINT)
 endif
 
-# tequilaOS System Version
+# MistOS System Version
 ADDITIONAL_SYSTEM_PROPERTIES += \
-    ro.tequila.version=$(TEQUILA_VERSION) \
-    ro.tequila.display.version=$(TEQUILA_DISPLAY_VERSION) \
-    ro.tequila.releasetype=$(TEQUILA_BUILDTYPE) \
-    ro.tequila.build.version=$(TEQUILA_PLATFORM_VERSION) \
-    ro.modversion=$(TEQUILA_VERSION) \
+    ro.mist.version=$(MIST_VERSION) \
+    ro.mist.display.version=$(MIST_DISPLAY_VERSION) \
+    ro.mist.releasetype=$(MIST_BUILDTYPE) \
+    ro.mist.build.version=$(MIST_PLATFORM_VERSION) \
+    ro.modversion=$(MIST_VERSION) \

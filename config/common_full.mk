@@ -1,5 +1,5 @@
-# Inherit common tequila stuff
-$(call inherit-product, vendor/tequila/config/common_mobile.mk)
+# Inherit common mist stuff
+$(call inherit-product, vendor/mist/config/common_mobile.mk)
 
 PRODUCT_SIZE := full
 

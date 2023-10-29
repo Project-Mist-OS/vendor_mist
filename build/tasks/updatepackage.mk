@@ -14,21 +14,13 @@
 # limitations under the License.
 
 # -----------------------------------------------------------------
-# tequila fastboot update package
+# MistOS fastboot update package
 
-TEQUILA_TARGET_UPDATEPACKAGE := $(PRODUCT_OUT)/tequila-$(TEQUILA_VERSION)-fastboot.zip
+MIST_TARGET_UPDATEPACKAGE := $(PRODUCT_OUT)/mist-$(MIST_VERSION)-fastboot.zip
 
 .PHONY: updatepackage
 updatepackage: $(INTERNAL_UPDATE_PACKAGE_TARGET)
-	$(hide) ln -f $(INTERNAL_UPDATE_PACKAGE_TARGET) $(TEQUILA_TARGET_UPDATEPACKAGE)
-#	$(hide) $(SHA256) $(TEQUILA_TARGET_UPDATEPACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(TEQUILA_TARGET_UPDATEPACKAGE).sha256sum
-	@echo -e "                                                     "
-	@echo -e "       __                   ____      ____  _____    "
-	@echo -e "      / /____  ________  __/_/ /_____/ __ \/ ___/    "
-	@echo -e "     / __/ _ \/ __  / / / / / / __  / / / /\__ \     "
-	@echo -e "    / /_/  __/ /_/ / /_/ / / / /_/ / /_/ /___/ /     "
-	@echo -e "    \__/\___/\__  /\____/_/_/\____/\____//____/      "
-	@echo -e "               /_/                                   "
-	@echo -e "                                                     "
-	@echo -e "Package: $(TEQUILA_TARGET_UPDATEPACKAGE)" >&2
-	@echo -e "Checksum: `cat $(TEQUILA_TARGET_UPDATEPACKAGE).sha256sum | awk '{ print $$1 }'`"
+	$(hide) ln -f $(INTERNAL_UPDATE_PACKAGE_TARGET) $(MIST_TARGET_UPDATEPACKAGE)
+#	$(hide) $(SHA256) $(MIST_TARGET_UPDATEPACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(MIST_TARGET_UPDATEPACKAGE).sha256sum
+	@echo -e "Package: $(MIST_TARGET_UPDATEPACKAGE)" >&2
+	@echo -e "Checksum: `cat $(MIST_TARGET_UPDATEPACKAGE).sha256sum | awk '{ print $$1 }'`"

@@ -15,13 +15,13 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/tequila_gsi_arm.mk \
-    $(LOCAL_DIR)/tequila_gsi_arm64.mk \
-    $(LOCAL_DIR)/tequila_gsi_x86.mk \
-    $(LOCAL_DIR)/tequila_gsi_x86_64.mk \
+    $(LOCAL_DIR)/mist_gsi_arm.mk \
+    $(LOCAL_DIR)/mist_gsi_arm64.mk \
+    $(LOCAL_DIR)/mist_gsi_x86.mk \
+    $(LOCAL_DIR)/mist_gsi_x86_64.mk \
 
 COMMON_LUNCH_CHOICES := \
-    tequila_gsi_arm-userdebug \
-    tequila_gsi_arm64-userdebug \
-    tequila_gsi_x86-userdebug \
-    tequila_gsi_x86_64-userdebug \
+    mist_gsi_arm-userdebug \
+    mist_gsi_arm64-userdebug \
+    mist_gsi_x86-userdebug \
+    mist_gsi_x86_64-userdebug \

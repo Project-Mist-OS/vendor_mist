@@ -1,2 +1,2 @@
-# Include tequilaOS versions
-include $(TOPDIR)vendor/tequila/build/core/main_version.mk
+# Include MistOS versions
+include $(TOPDIR)vendor/mist/build/core/main_version.mk

@@ -153,12 +153,12 @@ def fetch_query(remote_url, query):
 
 
 if __name__ == '__main__':
-    # Default to tequilaOS Gerrit
-    default_gerrit = 'https://review.tequilaos.org'
+    # Default to mistOS Gerrit
+    default_gerrit = 'https://review.mistos.org'
 
     parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter, description=textwrap.dedent('''\
         repopick.py is a utility to simplify the process of cherry picking
-        patches from tequilaOS's Gerrit instance (or any gerrit instance of your choosing)
+        patches from mistOS's Gerrit instance (or any gerrit instance of your choosing)
 
         Given a list of change numbers, repopick will cd into the project path
         and cherry pick the latest patch available.
@@ -372,8 +372,8 @@ if __name__ == '__main__':
         #   - check that the project path exists
         project_path = None
 
-        # Remove tequilaOS prefix from project name
-        item['project'] = item['project'].replace("tequilaOS/", "")
+        # Remove mistOS prefix from project name
+        item['project'] = item['project'].replace("mistOS/", "")
 
         if item['project'] in project_name_to_data and item['branch'] in project_name_to_data[item['project']]:
             project_path = project_name_to_data[item['project']][item['branch']]
@@ -435,15 +435,15 @@ if __name__ == '__main__':
         else:
             method = 'ssh'
 
-        # Try fetching from tequilaOS first if using default gerrit
+        # Try fetching from mistOS first if using default gerrit
         if args.gerrit == default_gerrit:
             if args.verbose:
-                print('Trying to fetch the change from tequilaOS')
+                print('Trying to fetch the change from mistOS')
 
             if args.pull:
-                cmd = ['git pull --no-edit tequilagerrit', item['fetch'][method]['ref']]
+                cmd = ['git pull --no-edit mistgerrit', item['fetch'][method]['ref']]
             else:
-                cmd = ['git fetch tequilagerrit', item['fetch'][method]['ref']]
+                cmd = ['git fetch mistgerrit', item['fetch'][method]['ref']]
             if args.quiet:
                 cmd.append('--quiet')
             else:
@@ -455,10 +455,10 @@ if __name__ == '__main__':
                 sys.exit(result)
         # Check if it worked
         if args.gerrit != default_gerrit or os.stat(FETCH_HEAD).st_size == 0:
-            # If not using the default gerrit or tequilagerrit failed, fetch from gerrit.
+            # If not using the default gerrit or mistgerrit failed, fetch from gerrit.
             if args.verbose:
                 if args.gerrit == default_gerrit:
-                    print('Fetching from tequilaOS didn\'t work, trying to fetch the change from Gerrit')
+                    print('Fetching from mistOS didn\'t work, trying to fetch the change from Gerrit')
                 else:
                     print('Fetching from {0}'.format(args.gerrit))
 

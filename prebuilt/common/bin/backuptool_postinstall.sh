@@ -1,6 +1,6 @@
 #!/system/bin/sh
 #
-# tequilaOS A/B OTA Postinstall Script
+# MistOS A/B OTA Postinstall Script
 #
 
 /postinstall/system/bin/backuptool_ab.sh backup

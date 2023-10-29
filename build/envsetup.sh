@@ -1,16 +1,16 @@
-function __print_tequila_functions_help() {
+function __print_mist_functions_help() {
 cat <<EOF
-Additional tequilaOS functions:
+Additional MistOS functions:
 - cout:            Changes directory to out.
 - mmp:             Builds all of the modules in the current directory and pushes them to the device.
 - mmap:            Builds all of the modules in the current directory and its dependencies, then pushes the package to the device.
 - mmmp:            Builds all of the modules in the supplied directories and pushes them to the device.
-- tequilagerrit:   A Git wrapper that fetches/pushes patch from/to tequilaOS Gerrit Review.
-- tequilarebase:   Rebase a Gerrit change and push it again.
-- tequilaremote:   Add git remote for tequilaOS Gerrit Review.
+- mistgerrit:   A Git wrapper that fetches/pushes patch from/to mistOS Gerrit Review.
+- mistrebase:   Rebase a Gerrit change and push it again.
+- mistremote:   Add git remote for mistOS Gerrit Review.
 - aospremote:      Add git remote for matching AOSP repository.
 - cloremote:       Add git remote for matching CodeLinaro repository.
-- githubremote:    Add git remote for tequilaOS Github.
+- githubremote:    Add git remote for mistOS Github.
 - mka:             Builds using SCHED_BATCH on all processors.
 - mkap:            Builds the module(s) using mka and pushes them to the device.
 - cmka:            Cleans and builds using mka.
@@ -78,12 +78,12 @@ function breakfast()
             # A buildtype was specified, assume a full device name
             lunch $target
         else
-            # This is probably just the tequila model name
+            # This is probably just the mist model name
             if [ -z "$variant" ]; then
                 variant="userdebug"
             fi
 
-            lunch tequila_$target-$variant
+            lunch mist_$target-$variant
         fi
     fi
     return $?
@@ -94,7 +94,7 @@ alias bib=breakfast
 function eat()
 {
     if [ "$OUT" ] ; then
-        ZIPPATH=`ls -tr "$OUT"/tequila-*.zip | head -1`
+        ZIPPATH=`ls -tr "$OUT"/mist-*.zip | head -1`
         if [ ! -f $ZIPPATH ] ; then
             echo "Nothing to eat"
             return 1
@@ -102,13 +102,13 @@ function eat()
         echo "Waiting for device..."
         adb wait-for-device-recovery
         echo "Found device"
-        if (adb shell getprop ro.tequila.device | grep -q "$TEQUILA_BUILD"); then
+        if (adb shell getprop ro.mist.device | grep -q "$MIST_BUILD"); then
             echo "Rebooting to sideload for install"
             adb reboot sideload-auto-reboot
             adb wait-for-sideload
             adb sideload $ZIPPATH
         else
-            echo "The connected device does not appear to be $TEQUILA_BUILD, run away!"
+            echo "The connected device does not appear to be $MIST_BUILD, run away!"
         fi
         return $?
     else
@@ -232,7 +232,7 @@ function dddclient()
    fi
 }
 
-function tequilagerrit() {
+function mistgerrit() {
     if [ "$(basename $SHELL)" = "zsh" ]; then
         # zsh does not define FUNCNAME, derive from funcstack
         local FUNCNAME=$funcstack[1]
@@ -242,9 +242,9 @@ function tequilagerrit() {
         $FUNCNAME help
         return 1
     fi
-    local user=`git config --get review.review.tequilaos.org.username`
-    local review=`git config --get remote.tequila.review`
-    local project=`git config --get remote.tequila.projectname`
+    local user=`git config --get review.review.mistos.org.username`
+    local review=`git config --get remote.mist.review`
+    local project=`git config --get remote.mist.projectname`
     local command=$1
     shift
     case $command in
@@ -274,7 +274,7 @@ EOF
             case $1 in
                 __cmg_*) echo "For internal use only." ;;
                 changes|for)
-                    if [ "$FUNCNAME" = "tequilagerrit" ]; then
+                    if [ "$FUNCNAME" = "mistgerrit" ]; then
                         echo "'$FUNCNAME $1' is deprecated."
                     fi
                     ;;
@@ -362,7 +362,7 @@ EOF
                 ${local_branch}:refs/for/$remote_branch || return 1
             ;;
         changes|for)
-            if [ "$FUNCNAME" = "tequilagerrit" ]; then
+            if [ "$FUNCNAME" = "mistgerrit" ]; then
                 echo >&2 "'$FUNCNAME $command' is deprecated."
             fi
             ;;
@@ -461,15 +461,15 @@ EOF
     esac
 }
 
-function tequilarebase() {
+function mistrebase() {
     local repo=$1
     local refs=$2
     local pwd="$(pwd)"
     local dir="$(gettop)/$repo"
 
     if [ -z $repo ] || [ -z $refs ]; then
-        echo "tequilaOS Gerrit Rebase Usage: "
-        echo "      tequilarebase <path to project> <patch IDs on Gerrit>"
+        echo "mistOS Gerrit Rebase Usage: "
+        echo "      mistrebase <path to project> <patch IDs on Gerrit>"
         echo "      The patch IDs appear on the Gerrit commands that are offered."
         echo "      They consist on a series of numbers and slashes, after the text"
         echo "      refs/changes. For example, the ID in the following command is 26/8126/2"
@@ -490,7 +490,7 @@ function tequilarebase() {
     echo "Bringing it up to date..."
     repo sync .
     echo "Fetching change..."
-    git fetch "http://review.tequilaos.org/p/$repo" "refs/changes/$refs" && git cherry-pick FETCH_HEAD
+    git fetch "http://review.mistos.org/p/$repo" "refs/changes/$refs" && git cherry-pick FETCH_HEAD
     if [ "$?" != "0" ]; then
         echo "Error cherry-picking. Not uploading!"
         return
@@ -502,43 +502,43 @@ function tequilarebase() {
     cd $pwd
 }
 
-function tequilaremote()
+function mistremote()
 {
     if ! git rev-parse --git-dir &> /dev/null
     then
         echo ".git directory not found. Please run this from the root directory of the Android repository you wish to set up."
         return 1
     fi
-    git remote rm tequilagerrit 2> /dev/null
-    local REMOTE=$(git config --get remote.tequila.projectname)
-    local TEQUILA="true"
+    git remote rm mistgerrit 2> /dev/null
+    local REMOTE=$(git config --get remote.mist.projectname)
+    local MIST="true"
     if [ -z "$REMOTE" ]
     then
         REMOTE=$(git config --get remote.aosp.projectname)
-        TEQUILA="false"
+        MIST="false"
     fi
     if [ -z "$REMOTE" ]
     then
         REMOTE=$(git config --get remote.clo.projectname)
-        TEQUILA="false"
+        MIST="false"
     fi
 
-    if [ $TEQUILA = "false" ]
+    if [ $MIST = "false" ]
     then
         local PROJECT=$(echo $REMOTE | sed -e "s#/#_#g")
     else
         local PROJECT=$REMOTE
-        local PFX="tequilaOS/"
+        local PFX="mistOS/"
     fi
 
-    local TEQUILA_USER=$(git config --get review.review.tequilaos.org.username)
-    if [ -z "$TEQUILA_USER" ]
+    local MIST_USER=$(git config --get review.review.mistos.org.username)
+    if [ -z "$MIST_USER" ]
     then
-        git remote add tequilagerrit ssh://review.tequilaos.org:29418/$PFX$PROJECT
+        git remote add mistgerrit ssh://review.mistos.org:29418/$PFX$PROJECT
     else
-        git remote add tequilagerrit ssh://$TEQUILA_USER@review.tequilaos.org:29418/$PFX$PROJECT
+        git remote add mistgerrit ssh://$MIST_USER@review.mistos.org:29418/$PFX$PROJECT
     fi
-    echo "Remote 'tequilagerrit' created"
+    echo "Remote 'mistgerrit' created"
 }
 
 function aospremote()
@@ -612,7 +612,7 @@ function githubremote()
 
     local PROJECT=$(echo $REMOTE | sed -e "s#/#_#g")
 
-    git remote add github https://github.com/tequilaOS/$PROJECT
+    git remote add github https://github.com/mistOS/$PROJECT
     echo "Remote 'github' created"
 }
 
@@ -643,14 +643,14 @@ function installboot()
     adb wait-for-device-recovery
     adb root
     adb wait-for-device-recovery
-    if (adb shell getprop ro.tequila.device | grep -q "$TEQUILA_BUILD");
+    if (adb shell getprop ro.mist.device | grep -q "$MIST_BUILD");
     then
         adb push $OUT/boot.img /cache/
         adb shell dd if=/cache/boot.img of=$PARTITION
         adb shell rm -rf /cache/boot.img
         echo "Installation complete."
     else
-        echo "The connected device does not appear to be $TEQUILA_BUILD, run away!"
+        echo "The connected device does not appear to be $MIST_BUILD, run away!"
     fi
 }
 
@@ -681,14 +681,14 @@ function installrecovery()
     adb wait-for-device-recovery
     adb root
     adb wait-for-device-recovery
-    if (adb shell getprop ro.tequila.device | grep -q "$TEQUILA_BUILD");
+    if (adb shell getprop ro.mist.device | grep -q "$MIST_BUILD");
     then
         adb push $OUT/recovery.img /cache/
         adb shell dd if=/cache/recovery.img of=$PARTITION
         adb shell rm -rf /cache/recovery.img
         echo "Installation complete."
     else
-        echo "The connected device does not appear to be $TEQUILA_BUILD, run away!"
+        echo "The connected device does not appear to be $MIST_BUILD, run away!"
     fi
 }
 
@@ -764,7 +764,7 @@ function dopush()
         echo "Device Found."
     fi
 
-    if (adb shell getprop ro.tequila.device | grep -q "$TEQUILA_BUILD") || [ "$FORCE_PUSH" = "true" ];
+    if (adb shell getprop ro.mist.device | grep -q "$MIST_BUILD") || [ "$FORCE_PUSH" = "true" ];
     then
     # retrieve IP and PORT info if we're using a TCP connection
     TCPIPPORT=$(adb devices \
@@ -883,7 +883,7 @@ EOF
     rm -f $OUT/.log
     return 0
     else
-        echo "The connected device does not appear to be $TEQUILA_BUILD, run away!"
+        echo "The connected device does not appear to be $MIST_BUILD, run away!"
     fi
 }
 
@@ -896,7 +896,7 @@ alias cmkap='dopush cmka'
 
 function repopick() {
     T=$(gettop)
-    $T/vendor/tequila/build/tools/repopick.py $@
+    $T/vendor/mist/build/tools/repopick.py $@
 }
 
 function sort-blobs-list() {
@@ -908,7 +908,7 @@ function fixup_common_out_dir() {
     common_out_dir=$(get_build_var OUT_DIR)/target/common
     target_device=$(get_build_var TARGET_DEVICE)
     common_target_out=common-${target_device}
-    if [ ! -z $TEQUILA_FIXUP_COMMON_OUT ]; then
+    if [ ! -z $MIST_FIXUP_COMMON_OUT ]; then
         if [ -d ${common_out_dir} ] && [ ! -L ${common_out_dir} ]; then
             mv ${common_out_dir} ${common_out_dir}-${target_device}
             ln -s ${common_target_out} ${common_out_dir}
@@ -924,5 +924,5 @@ function fixup_common_out_dir() {
 }
 
 function release() {
-    $ANDROID_BUILD_TOP/vendor/tequila/tools/release.py $@
+    $ANDROID_BUILD_TOP/vendor/mist/tools/release.py $@
 }

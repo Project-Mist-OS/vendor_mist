@@ -1,13 +1,13 @@
 # Allow vendor/extra to override any property by setting it first
 $(call inherit-product-if-exists, vendor/extra/product.mk)
 
-PRODUCT_BRAND ?= tequilaOS
+PRODUCT_BRAND ?= MistOS
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 # Bootanimation
 PRODUCT_COPY_FILES += \
-    vendor/tequila/bootanimation/bootanimation.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation.zip
+    vendor/mist/bootanimation/bootanimation.zip:$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation.zip
 
 ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
@@ -32,18 +32,18 @@ endif
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/tequila/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/tequila/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/tequila/prebuilt/common/bin/50-tequila.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-tequila.sh
+    vendor/mist/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/mist/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    vendor/mist/prebuilt/common/bin/50-mist.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-mist.sh
 
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
-    system/addon.d/50-tequila.sh
+    system/addon.d/50-mist.sh
 
 ifneq ($(strip $(AB_OTA_PARTITIONS) $(AB_OTA_POSTINSTALL_CONFIG)),)
 PRODUCT_COPY_FILES += \
-    vendor/tequila/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
-    vendor/tequila/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
-    vendor/tequila/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
+    vendor/mist/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
+    vendor/mist/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
+    vendor/mist/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
 
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/bin/backuptool_ab.sh \
@@ -60,13 +60,13 @@ endif
 PRODUCT_PACKAGES += \
     BtHelper
 
-# tequila-specific init rc file
+# mist-specific init rc file
 PRODUCT_COPY_FILES += \
-    vendor/tequila/prebuilt/common/etc/init/init.tequila-system_ext.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.tequila-system_ext.rc
+    vendor/mist/prebuilt/common/etc/init/init.mist-system_ext.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.mist-system_ext.rc
 
 # Enable Android Beam on all targets
 PRODUCT_COPY_FILES += \
-    vendor/tequila/config/permissions/android.software.nfc.beam.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.software.nfc.beam.xml
+    vendor/mist/config/permissions/android.software.nfc.beam.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.software.nfc.beam.xml
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -96,7 +96,7 @@ PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
 PRODUCT_COPY_FILES += \
-    vendor/tequila/prebuilt/common/etc/init/init.tequila-updater.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.tequila-updater.rc
+    vendor/mist/prebuilt/common/etc/init/init.mist-updater.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.mist-updater.rc
 
 # Enable whole-program R8 Java optimizations for SystemUI and system_server,
 # but also allow explicit overriding for testing and development.
@@ -111,7 +111,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     persist.sys.disable_rescue=true
 
-# Extra tools in tequila
+# Extra tools in mist
 PRODUCT_PACKAGES += \
     7z \
     bash \
@@ -142,7 +142,7 @@ PRODUCT_PACKAGES += \
     start-ssh
 
 PRODUCT_COPY_FILES += \
-    vendor/tequila/prebuilt/common/etc/init/init.openssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/init.openssh.rc
+    vendor/mist/prebuilt/common/etc/init/init.openssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/init.openssh.rc
 
 # rsync
 PRODUCT_PACKAGES += \
@@ -172,10 +172,10 @@ PRODUCT_DEXPREOPT_SPEED_APPS += \
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     dalvik.vm.systemuicompilerfilter=speed
 
-PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/tequila/overlay/no-rro
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/mist/overlay/no-rro
 PRODUCT_PACKAGE_OVERLAYS += \
-    vendor/tequila/overlay/common \
-    vendor/tequila/overlay/no-rro
+    vendor/mist/overlay/common \
+    vendor/mist/overlay/no-rro
 
 # TextClassifier
 PRODUCT_PACKAGES += \
@@ -191,12 +191,12 @@ PRODUCT_PACKAGES += \
     Launcher3Overlay
 
 # Updater
-ifneq ($(filter OFFICIAL EXPERIMENTAL,$(TEQUILA_BUILDTYPE)),)
+ifneq ($(filter OFFICIAL EXPERIMENTAL,$(MIST_BUILDTYPE)),)
 PRODUCT_PACKAGES += \
     Updater
 endif
 
-$(call inherit-product, vendor/tequila/config/version.mk)
+$(call inherit-product, vendor/mist/config/version.mk)
 $(call inherit-product, vendor/google/gms/config.mk)
 $(call inherit-product, vendor/google/pixel/config.mk)
 
