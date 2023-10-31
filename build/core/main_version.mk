@@ -1,13 +1,13 @@
 # Build fingerprint
 ifeq ($(BUILD_FINGERPRINT),)
-BUILD_NUMBER_CUSTOM := $(shell date -u +%H%M)
-CUSTOM_DEVICE ?= $(TARGET_DEVICE)
-ifneq ($(filter OFFICIAL,$(CUSTOM_BUILD_TYPE)),)
+BUILD_NUMBER_MIST := $(shell date -u +%H%M)
+MIST_DEVICE ?= $(TARGET_DEVICE)
+ifneq ($(filter OFFICIAL,$(MIST_BUILD_TYPE)),)
 BUILD_SIGNATURE_KEYS := release-keys
 else
 BUILD_SIGNATURE_KEYS := test-keys
 endif
-BUILD_FINGERPRINT := $(PRODUCT_BRAND)/$(CUSTOM_DEVICE)/$(CUSTOM_DEVICE):$(PLATFORM_VERSION)/$(BUILD_ID)/$(BUILD_NUMBER_CUSTOM):$(TARGET_BUILD_VARIANT)/$(BUILD_SIGNATURE_KEYS)
+BUILD_FINGERPRINT := $(PRODUCT_BRAND)/$(MIST_DEVICE)/$(MIST_DEVICE):$(PLATFORM_VERSION)/$(BUILD_ID)/$(BUILD_NUMBER_MIST):$(TARGET_BUILD_VARIANT)/$(BUILD_SIGNATURE_KEYS)
 endif
 ADDITIONAL_SYSTEM_PROPERTIES  += \
     ro.build.fingerprint=$(BUILD_FINGERPRINT)
@@ -20,10 +20,10 @@ endif
 
 # Versioning props
 ADDITIONAL_SYSTEM_PROPERTIES  += \
-    org.elixir.version=$(Elixir_BASE_VERSION) \
-    org.elixir.version.display=$(CUSTOM_VERSION) \
-    org.elixir.build_date=$(CUSTOM_BUILD_DATE) \
-    org.elixir.build_date_utc=$(CUSTOM_BUILD_DATE_UTC) \
-    org.elixir.build_type=$(CUSTOM_BUILD_TYPE) \
-    org.elixir.codename=$(Elixir_CODENAME) \
-    ro.elixir.maintainer=$(Elixir_MAINTAINER)
+    org.mist.version=$(MIST_BASE_VERSION) \
+    org.mist.version.display=$(MIST_VERSION) \
+    org.mist.build_date=$(MIST_BUILD_DATE) \
+    org.mist.build_date_utc=$(MIST_BUILD_DATE_UTC) \
+    org.mist.build_type=$(MIST_BUILD_TYPE) \
+    org.mist.codename=$(MIST_CODENAME) \
+    ro.mist.maintainer=$(MIST_MAINTAINER)

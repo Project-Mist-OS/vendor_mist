@@ -44,9 +44,9 @@ DEBUG = False
 
 custom_local_manifest = ".repo/local_manifests/pixel.xml"
 custom_default_revision =  os.getenv('ROOMSERVICE_DEFAULT_BRANCH', 'twelve')
-custom_dependencies = "aosp.dependencies"
-org_manifest = "Elixir-Devices"  # leave empty if org is provided in manifest
-org_display = "Project-Elixir"  # needed for displaying
+custom_dependencies = "mist.dependencies"
+org_manifest = "Mist-Devices"  # leave empty if org is provided in manifest
+org_display = "Project-Mist"  # needed for displaying
 
 github_auth = None
 
