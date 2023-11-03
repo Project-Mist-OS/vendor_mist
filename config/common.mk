@@ -272,6 +272,12 @@ PRODUCT_PACKAGES += \
 	libtextclassifier_actions_suggestions_universal_model \
 	libtextclassifier_lang_id_model
 
+# Protobuf - Workaround for prebuilt Qualcomm HAL
+PRODUCT_PACKAGES += \
+    libprotobuf-cpp-full-3.9.1-vendorcompat \
+    libprotobuf-cpp-lite-3.9.1-vendorcompat
+
+
 # Use gestures by default
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural
