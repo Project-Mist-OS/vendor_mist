@@ -1,12 +1,13 @@
 function __print_mist_functions_help() {
 cat <<EOF
-Additional functions:
+Additional MistOS functions:
 - cout:            Changes directory to out.
 - mmp:             Builds all of the modules in the current directory and pushes them to the device.
 - mmap:            Builds all of the modules in the current directory and its dependencies, then pushes the package to the device.
 - mmmp:            Builds all of the modules in the supplied directories and pushes them to the device.
-- mistgerrit:     A Git wrapper that fetches/pushes patch from/to MistOS Gerrit Review.
-- mistrebase:     Rebase a Gerrit change and push it again.
+- mistgerrit:   A Git wrapper that fetches/pushes patch from/to MistOS Gerrit Review.
+- mistrebase:   Rebase a Gerrit change and push it again.
+- mistremote:   Add git remote for MistS Gerrit Review.
 - aospremote:      Add git remote for matching AOSP repository.
 - cafremote:       Add git remote for matching CodeAurora repository.
 - githubremote:    Add git remote for MistOS Github.
@@ -16,9 +17,7 @@ Additional functions:
 - repodiff:        Diff 2 different branches or tags within the same repo
 - repolastsync:    Prints date and time of last repo sync.
 - reposync:        Parallel repo sync using ionice and SCHED_BATCH.
-- repopick:        Utility to fetch changes from MistOS Gerrit.
-- installboot:     Installs a boot.img to the connected device.
-- installrecovery: Installs a recovery.img to the connected device.
+- repopick:        Utility to fetch changes from Gerrit.
 EOF
 }
 
@@ -76,7 +75,7 @@ function breakfast()
             # A buildtype was specified, assume a full device name
             lunch $target
         else
-            # This is probably just the MistOS model name
+            # This is probably just the Mist model name
             if [ -z "$variant" ]; then
                 variant="userdebug"
             fi
@@ -88,7 +87,6 @@ function breakfast()
 }
 
 alias bib=breakfast
-
 
 function omnom()
 {
@@ -214,7 +212,7 @@ function mistremote()
     fi
     git remote rm mist 2> /dev/null
     local REMOTE=$(git config --get remote.github.projectname)
-	local MIST="true"
+    local MIST="true"
     if [ -z "$REMOTE" ]
     then
         REMOTE=$(git config --get remote.aosp.projectname)
@@ -223,26 +221,25 @@ function mistremote()
     if [ -z "$REMOTE" ]
     then
         REMOTE=$(git config --get remote.caf.projectname)
-		MIST="false"
+        MIST="false"
     fi
-    
-	if [ $MIST = "false" ]
-	then
-	    local PROJECT=$(echo $REMOTE | sed -e "s#platform/#android/#g; s#/#_#g")
-		local PFX="MistOS/"
+
+    if [ $MIST = "false" ]
+    then
+        local PROJECT=$(echo $REMOTE | sed -e "s#platform/#android/#g; s#/#_#g")
+        local PFX="MistOS/"
     else
-	    local PROJECT=$REMOTE
-	fi
-	
-	local MIST_USER=$(git config --get review.review.mistos.com.username)
-	if [ -z "MIST_USER" ]
-	then 
-	    git remote add mist ssh://review.review.mistos.com:29148/$PFX$PROJECT
-	else
+        local PROJECT=$REMOTE
+    fi
+
+    local MIST_USER=$(git config --get review.review.mistos.com.username)
+    if [ -z "$MIST_USER" ]
+    then
+        git remote add mist ssh://review.mistos.com:29418/$PFX$PROJECT
+    else
         git remote add mist ssh://$MIST_USER@review.mistos.com:29418/$PFX$PROJECT
     fi
     echo "Remote 'mist' created"
-		
 }
 
 function aospremote()
@@ -263,7 +260,7 @@ function aospremote()
     then
         local PFX="platform/"
     fi
-    git remote add aosp https://android.googlesource.com/quic/la/$PFX$PROJECT
+    git remote add aosp https://android.googlesource.com/$PFX$PROJECT
     echo "Remote 'aosp' created"
 }
 
@@ -278,19 +275,19 @@ function githubremote()
     local REMOTE=$(git config --get remote.aosp.projectname)
 
     if [ -z "$REMOTE" ]
-	then
-	    REMOTE=$(git config --get remote.caf.projectname)
-	fi
-	
+    then
+        REMOTE=$(git config --get remote.caf.projectname)
+    fi
+
     local PROJECT=$(echo $REMOTE | sed -e "s#platform/#android/#g; s#/#_#g")
 
-    git remote add github https://github.com/Project-Mist-OS/$PROJECT
+    git remote add github https://github.com/MistOS/$PROJECT
     echo "Remote 'github' created"
 }
 
 function cafremote()
 {
-    if ! git rev-parse --git-dit &> /dev/null
+    if ! git rev-parse --git-dir &> /dev/null
     then
         echo ".git directory not found. Please run this from the root directory of the Android repository you wish to set up."
         return 1
@@ -302,17 +299,18 @@ function cafremote()
     then
         PROJECT="build"
     fi
-    if [[$PROJECT =~ "qcom/opensource" ]];
+    if [[ $PROJECT =~ "qcom/opensource" ]];
     then
-        PROJECT=$(echo $PROJECT | sed -e "s#qom\/opensource#qcom-opensource#')
+        PROJECT=$(echo $PROJECT | sed -e "s#qcom\/opensource#qcom-opensource#")
     fi
     if (echo $PROJECT | grep -qv "^device")
     then
-        local PFX="platform/
+        local PFX="platform/"
     fi
-	git remote add caf https://source.codeaurora.org/quic/la/$PFX$PROJECT
+    git remote add caf https://source.codeaurora.org/quic/la/$PFX$PROJECT
     echo "Remote 'caf' created"
 }
+
 function makerecipe() {
     if [ -z "$1" ]
     then
@@ -326,13 +324,12 @@ function makerecipe() {
 
     repo forall -c '
     if [ "$REPO_REMOTE" = "github" ]
- 
     then
         pwd
-		mistremote
-		git push mist HEAD:refs/heads/'$1'
+        mistremote
+        git push mist HEAD:refs/heads/'$1'
     fi
-	'
+    '
 }
 
 function mistgerrit() {
@@ -356,18 +353,14 @@ function mistgerrit() {
                 cat <<EOF
 Usage:
     $FUNCNAME COMMAND [OPTIONS] [CHANGE-ID[/PATCH-SET]][{@|^|~|:}ARG] [-- ARGS]
-
 Commands:
     fetch   Just fetch the change as FETCH_HEAD
     help    Show this help, or for a specific command
     pull    Pull a change into current branch
-	push    Push HEAD or a local branch to Gerrit for a specific branch
-
+    push    Push HEAD or a local branch to Gerrit for a specific branch
 Any other Git commands that support refname would work as:
     git fetch URL CHANGE && git COMMAND OPTIONS FETCH_HEAD{@|^|~|:}ARG -- ARGS
-
 See '$FUNCNAME help COMMAND' for more information on a specific command.
-
 Example:
     $FUNCNAME checkout -b topic 1234/5
 works as:
@@ -404,14 +397,13 @@ works as:
 Example:
     $FUNCNAME push fix6789:gingerbread
 will push local branch 'fix6789' to Gerrit for branch 'gingerbread'.
-HEAD will be pushed from local if omitted
+HEAD will be pushed from local if omitted.
 EOF
                     ;;
                 *)
                     $FUNCNAME __cmg_err_not_supported $1 && return
                     cat <<EOF
 usage: $FUNCNAME $1 [OPTIONS] CHANGE-ID[/PATCH-SET][{@|^|~|:}ARG] [-- ARGS]
-
 works as:
     git fetch http://DOMAIN/p/PROJECT \\
       refs/changes/HASH/CHANGE-ID/{PATCH-SET|1} \\
@@ -448,7 +440,7 @@ EOF
                 $($FUNCNAME __cmg_get_ref $change) || return 1
             ;;
         push)
-		    $FUNCNAME __cmg_err_no_arg $command $# help && return 1
+            $FUNCNAME __cmg_err_no_arg $command $# help && return 1
             $FUNCNAME __cmg_err_not_repo && return 1
             if [ -z "$user" ]; then
                 echo >&2 "Gerrit username not found."
@@ -633,18 +625,15 @@ function cmka() {
         mka
     fi
 }
-
 function repolastsync() {
     RLSPATH="$ANDROID_BUILD_TOP/.repo/.repo_fetchtimes.json"
     RLSLOCAL=$(date -d "$(stat -c %z $RLSPATH)" +"%e %b %Y, %T %Z")
     RLSUTC=$(date -d "$(stat -c %z $RLSPATH)" -u +"%e %b %Y, %T %Z")
     echo "Last repo sync: $RLSLOCAL / $RLSUTC"
 }
-
 function reposync() {
     repo sync -j 4 "$@"
 }
-
 function repodiff() {
     if [ -z "$*" ]; then
         echo "Usage: repodiff <ref-from> [[ref-to] [--numstat]]"
@@ -653,19 +642,16 @@ function repodiff() {
     diffopts=$* repo forall -c \
       'echo "$REPO_PATH ($REPO_REMOTE)"; git diff ${diffopts} 2>/dev/null ;'
 }
-
 alias mmp='dopush mm'
 alias mmmp='dopush mmm'
 alias mmap='dopush mma'
 alias mmmap='dopush mmma'
 alias mkap='dopush mka'
 alias cmkap='dopush cmka'
-
 function repopick() {
     T=$(gettop)
     $T/vendor/mist/build/tools/repopick.py $@
 }
-
 function fixup_common_out_dir() {
     common_out_dir=$(get_build_var OUT_DIR)/target/common
     target_device=$(get_build_var TARGET_DEVICE)

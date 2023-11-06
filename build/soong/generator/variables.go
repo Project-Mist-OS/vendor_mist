@@ -7,7 +7,7 @@ import (
 )
 
 func mistExpandVariables(ctx android.ModuleContext, in string) string {
-	mistVars := ctx.Config().VendorConfig("customVarsPlugin")
+	mistVars := ctx.Config().VendorConfig("mistVarsPlugin")
 
 	out, err := android.Expand(in, func(name string) (string, error) {
 		if mistVars.IsSet(name) {

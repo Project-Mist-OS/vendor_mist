@@ -1,4 +1,4 @@
-// Mist soong configs
+// mist soong configs
 
 bootstrap_go_package {
     name: "soong-mist-generator",
@@ -301,6 +301,8 @@ needs_camera_boottime {
     },
 }
 
+// Target platform agnostic config modules
+
 soong_config_module_type {
     name: "camera_needs_client_info_lib",
     module_type: "cc_defaults",
@@ -444,7 +446,6 @@ bootloader_message_offset {
     },
 }
 
-
 soong_config_module_type {
     name: "egl_display_array",
     module_type: "cc_defaults",
@@ -587,7 +588,7 @@ inputdispatcher_skip_event_key {
     },
 }
 
-oong_config_module_type {
+soong_config_module_type {
     name: "uses_oplus_camera",
     module_type: "cc_defaults",
     config_namespace: "mistGlobalVars",

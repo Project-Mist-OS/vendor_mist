@@ -124,7 +124,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 
 # Power whitelist
 PRODUCT_COPY_FILES += \
-    vendor/mist/config/permissions/privapp-permission-mist-system_ext.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-mist-system_ext.xml \
+    vendor/mist/config/permissions/privapp-permissions-mist-system_ext.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-mist-system_ext.xml \
 
 # Do not include art debug targets
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
@@ -325,9 +325,6 @@ $(call inherit-product, vendor/gms/products/gms.mk)
 
 # RRO Overlays
 $(call inherit-product, vendor/mist/config/rro_overlays.mk)
-
-# Themed icons
-$(call inherit-product, packages/overlays/ThemeIcons/config.mk)
 endif
 
 # OTA
@@ -344,7 +341,7 @@ SKIP_ABI_CHECKS := true
 endif
 
 # Clocks
-$(call inherit-product, vendor/cherish/config/clocks.mk)
+$(call inherit-product, vendor/mist/config/clocks.mk)
 
 # Pixel Framework
 $(call inherit-product-if-exists, vendor/pixel-framework/config.mk)
