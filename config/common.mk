@@ -172,8 +172,12 @@ PRODUCT_PACKAGE_OVERLAYS += \
     vendor/mist/overlay/common
 
 # TouchGestures
-#PRODUCT_PACKAGES += \
-#    TouchGestures
+TARGET_SUPPORTS_TOUCHGESTURES ?= false
+ifeq ($(TARGET_SUPPORTS_TOUCHGESTURES),true)
+PRODUCT_PACKAGES += \
+    TouchGestures \
+    TouchGesturesSettingsOverlay
+endif
 
 # One Handed mode
 PRODUCT_PRODUCT_PROPERTIES += \
