@@ -148,4 +148,7 @@ include vendor/mist/config/packages.mk
 # Include Mist_props
 $(call inherit-product, vendor/mist/config/mist_props.mk)
 
+#pixel fw
+$(call inherit-product-if-exists, vendor/pixel-framework/config.mk)
+
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
