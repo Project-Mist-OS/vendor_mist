@@ -15,6 +15,7 @@ endif
 # Extra packages
 PRODUCT_PACKAGES += \
     GameSpace \
+    OmniJaws \
     OmniStyle
 
 # Cloned app exemption
