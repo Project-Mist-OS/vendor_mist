@@ -44,5 +44,9 @@ MIST_SYSTEM_DEFAULT_PROPERTIES += \
     ro.mist.codename=$(MIST_CODENAME) \
     ro.mist.version.prop=$(MIST_VERSION_PROP) \
     ro.mist.build_date_utc=$(MIST_BUILD_DATE_UTC) \
-    ro.mist.build_type=$(MIST_BUILD_TYPE)
+    ro.mist.build_type=$(MIST_BUILD_TYPE) \
+    ro.mist.battery?=$(MIST_BATTERY) \
+    ro.mist.chipset?=$(MIST_CHIPSET) \
+    ro.mist.maintainer=$(MIST_MAINTAINER) \
+    ro.mist.display_resolution?=$(MIST_DISPLAY) \
 
