@@ -43,7 +43,7 @@ except ImportError:
 DEBUG = False
 
 custom_local_manifest = ".repo/local_manifests/pixel.xml"
-custom_default_revision =  os.getenv('ROOMSERVICE_DEFAULT_BRANCH', 'tiramisu')
+custom_default_revision =  os.getenv('ROOMSERVICE_DEFAULT_BRANCH', '14')
 custom_dependencies = "mist.dependencies"
 org_manifest = "mist-devices"  # leave empty if org is provided in manifest
 org_display = "MistOS-Devices"  # needed for displaying
