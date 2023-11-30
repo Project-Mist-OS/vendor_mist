@@ -16,6 +16,7 @@
 PRODUCT_PACKAGES += \
     Aperture \
     DocumentsUI \
+    Etar \
     GameSpace \
     LatinIME \
     Launcher3QuickStep \
