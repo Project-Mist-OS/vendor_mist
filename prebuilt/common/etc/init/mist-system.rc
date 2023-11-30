@@ -1,4 +1,4 @@
-# CherishOS core functionality
+# MistOS core functionality
 on init
     export TERMINFO /system_ext/etc/terminfo
 

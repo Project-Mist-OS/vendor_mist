@@ -16,7 +16,7 @@
 
 # RRO Overlays
 PRODUCT_PACKAGES += \
-    CherishConfigOverlay \
+    MistConfigOverlay \
     NetworkStackOverlay \
     PixelLauncherIconsOverlay \
     PixelSetupWizardOverlay

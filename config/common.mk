@@ -1,7 +1,7 @@
 # Main version
-$(call inherit-product, vendor/cherish/config/main_version.mk)
+$(call inherit-product, vendor/mist/config/main_version.mk)
 
-PRODUCT_BRAND ?= CherishOS
+PRODUCT_BRAND ?= MistOS
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
@@ -81,15 +81,15 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/cherish/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/cherish/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/cherish/prebuilt/common/bin/50-cherish.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-cherish.sh
+    vendor/mist/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/mist/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    vendor/mist/prebuilt/common/bin/50-mist.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-mist.sh
 
 ifneq ($(strip $(AB_OTA_PARTITIONS) $(AB_OTA_POSTINSTALL_CONFIG)),)
 PRODUCT_COPY_FILES += \
-    vendor/cherish/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
-    vendor/cherish/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
-    vendor/cherish/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
+    vendor/mist/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
+    vendor/mist/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
+    vendor/mist/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
 ifneq ($(TARGET_BUILD_VARIANT),user)
 PRODUCT_SYSTEM_PROPERTIES += \
     ro.ota.allow_downgrade=true
@@ -98,14 +98,14 @@ endif
 
 # Some permissions
 PRODUCT_COPY_FILES += \
-    vendor/cherish/config/permissions/backup.xml:system/etc/sysconfig/backup.xml \
-    vendor/cherish/config/permissions/cherish-sysconfig.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/cherish-sysconfig.xml
+    vendor/mist/config/permissions/backup.xml:system/etc/sysconfig/backup.xml \
+    vendor/mist/config/permissions/mist-sysconfig.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysconfig/mist-sysconfig.xml
 
 # Copy all custom init rc files
 PRODUCT_COPY_FILES += \
-    vendor/cherish/prebuilt/common/etc/init/cherish-system.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/cherish-system.rc \
-    vendor/cherish/prebuilt/common/etc/init/cherish-updater.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/cherish-updater.rc \
-    vendor/cherish/prebuilt/common/etc/init/cherish-ssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/cherish-ssh.rc
+    vendor/mist/prebuilt/common/etc/init/mist-system.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/mist-system.rc \
+    vendor/mist/prebuilt/common/etc/init/mist-updater.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/mist-updater.rc \
+    vendor/mist/prebuilt/common/etc/init/mist-ssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/mist-ssh.rc
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -117,7 +117,7 @@ PRODUCT_COPY_FILES += \
 
 # Enable Google LILY_EXPERIENCE feature
 PRODUCT_COPY_FILES += \
-    vendor/cherish/target/config/permissions/lily_experience.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/lily_experience.xml
+    vendor/mist/target/config/permissions/lily_experience.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/lily_experience.xml
 
 # Enforce privapp-permissions whitelist
 PRODUCT_SYSTEM_PROPERTIES += \
@@ -125,7 +125,7 @@ PRODUCT_SYSTEM_PROPERTIES += \
 
 # Power whitelist
 PRODUCT_COPY_FILES += \
-    vendor/cherish/config/permissions/privapp-permissions-cherish-system_ext.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-cherish-system_ext.xml \
+    vendor/mist/config/permissions/privapp-permissions-mist-system_ext.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-mist-system_ext.xml \
 
 # Do not include art debug targets
 PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
@@ -167,10 +167,10 @@ PRODUCT_SYSTEM_PROPERTIES += \
 
 # Overlays
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
-    vendor/cherish/overlay
+    vendor/mist/overlay
 
 PRODUCT_PACKAGE_OVERLAYS += \
-    vendor/cherish/overlay/common
+    vendor/mist/overlay/common
 
 # TouchGestures
 TARGET_SUPPORTS_TOUCHGESTURES ?= false
@@ -216,7 +216,7 @@ PRODUCT_PACKAGES += \
 
 # Permissions
 PRODUCT_COPY_FILES += \
-    vendor/cherish/config/permissions/privapp-permissions-cherish-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-cherish-SettingsIntelligencePrebuilt.xml
+    vendor/mist/config/permissions/privapp-permissions-mist-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-mist-SettingsIntelligencePrebuilt.xml
 
 # Gboard configuration
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -307,13 +307,13 @@ PRODUCT_PACKAGES += \
     NexusLauncherResOverlay
 
 # Audio
-$(call inherit-product, vendor/cherish/config/audio.mk)
+$(call inherit-product, vendor/mist/config/audio.mk)
 
 # Bootanimation
-$(call inherit-product, vendor/cherish/config/bootanimation.mk)
+$(call inherit-product, vendor/mist/config/bootanimation.mk)
 
 # Fonts
-$(call inherit-product, vendor/cherish/config/fonts.mk)
+$(call inherit-product, vendor/mist/config/fonts.mk)
 
 ifeq ($(EXTRA_UDFPS_ANIMATIONS),true)
 PRODUCT_PACKAGES += \
@@ -321,8 +321,8 @@ PRODUCT_PACKAGES += \
 endif
 
 # Build
-ifeq ($(CHERISH_VANILLA), true)
-include vendor/cherish/config/basicapps.mk
+ifeq ($(MIST_VANILLA), true)
+include vendor/mist/config/basicapps.mk
 
 else
 
@@ -336,11 +336,11 @@ $(call inherit-product, vendor/gms/gms_full.mk)
 endif
 
 # RRO Overlays
-$(call inherit-product, vendor/cherish/config/rro_overlays.mk)
+$(call inherit-product, vendor/mist/config/rro_overlays.mk)
 endif
 
 # OTA
-$(call inherit-product, vendor/cherish/config/ota.mk)
+$(call inherit-product, vendor/mist/config/ota.mk)
 
 # Themes
 $(call inherit-product, vendor/themes/themes.mk)
@@ -353,7 +353,7 @@ SKIP_ABI_CHECKS := true
 endif
 
 # Clocks
-$(call inherit-product, vendor/cherish/config/clocks.mk)
+$(call inherit-product, vendor/mist/config/clocks.mk)
 
 # Pixel Framework
 $(call inherit-product-if-exists, vendor/pixel-framework/config.mk)

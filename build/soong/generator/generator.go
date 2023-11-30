@@ -28,7 +28,7 @@ import (
 )
 
 func init() {
-	android.RegisterModuleType("cherish_generator", GeneratorFactory)
+	android.RegisterModuleType("mist_generator", GeneratorFactory)
 
 	pctx.HostBinToolVariable("sboxCmd", "sbox")
 }
@@ -210,12 +210,12 @@ func (g *Module) GenerateAndroidBuildActions(ctx android.ModuleContext) {
 	if depRoot == "" {
 		depRoot = ctx.ModuleDir()
 	} else {
-		depRoot = cherishExpandVariables(ctx, depRoot)
+		depRoot = mistExpandVariables(ctx, depRoot)
 	}
 
 	// Glob dep_files property
 	for _, dep_file := range g.properties.Dep_files {
-		dep_file = cherishExpandVariables(ctx, dep_file)
+		dep_file = mistExpandVariables(ctx, dep_file)
 		globPath := filepath.Join(depRoot, dep_file)
 		paths, err := ctx.GlobWithDeps(globPath, nil)
 		if err != nil {
@@ -227,7 +227,7 @@ func (g *Module) GenerateAndroidBuildActions(ctx android.ModuleContext) {
 		}
 	}
 
-	exCmd := cherishExpandVariables(ctx, String(g.properties.Cmd))
+	exCmd := mistExpandVariables(ctx, String(g.properties.Cmd))
 
 	// Dummy output dep
 	dummyDep := android.PathForModuleGen(ctx, ".dummy_dep")
@@ -235,7 +235,7 @@ func (g *Module) GenerateAndroidBuildActions(ctx android.ModuleContext) {
 	genDir := android.PathForModuleGen(ctx)
 
 	// Pick a unique rule name and the user-visible description.
-	manifestName := "cherish.sbox.textproto"
+	manifestName := "mist.sbox.textproto"
 	desc := "generate"
 	name := "generator"
 	manifestPath := android.PathForModuleOut(ctx, manifestName)

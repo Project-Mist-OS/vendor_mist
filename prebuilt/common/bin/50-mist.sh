@@ -2,8 +2,8 @@
 #
 # ADDOND_VERSION=2
 #
-# /system/addon.d/50-cherish.sh
-# During a Cherish upgrade, this script backs up /system/etc/hosts,
+# /system/addon.d/50-mist.sh
+# During a mist upgrade, this script backs up /system/etc/hosts,
 # /system is formatted and reinstalled, then the file is restored.
 #
 

@@ -14,22 +14,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-CHERISH_TARGET_PACKAGE := $(PRODUCT_OUT)/$(CHERISH_VERSION).zip
+MIST_TARGET_PACKAGE := $(PRODUCT_OUT)/$(MIST_VERSION).zip
 
 SHA256 := prebuilts/build-tools/path/$(HOST_PREBUILT_TAG)/sha256sum
 MD5 := prebuilts/build-tools/path/$(HOST_PREBUILT_TAG)/md5sum
 
 .PHONY: bacon
 bacon: $(INTERNAL_OTA_PACKAGE_TARGET)
-	$(hide) mv $(INTERNAL_OTA_PACKAGE_TARGET) $(CHERISH_TARGET_PACKAGE)
-	$(hide) $(MD5) $(CHERISH_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(CHERISH_TARGET_PACKAGE).sha256sum
-	$(hide) $(MD5) $(CHERISH_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(CHERISH_TARGET_PACKAGE).md5sum
-	$(hide) ./vendor/cherish/build/tasks/createjson.sh $(TARGET_DEVICE) $(PRODUCT_OUT) $(CHERISH_VERSION).zip $(CHERISHVERSION)
+	$(hide) mv $(INTERNAL_OTA_PACKAGE_TARGET) $(MIST_TARGET_PACKAGE)
+	$(hide) $(MD5) $(MIST_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(MIST_TARGET_PACKAGE).sha256sum
+	$(hide) $(MD5) $(MIST_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(MIST_TARGET_PACKAGE).md5sum
+	$(hide) ./vendor/mist/build/tasks/createjson.sh $(TARGET_DEVICE) $(PRODUCT_OUT) $(MIST_VERSION).zip $(MISTVERSION)
 	@echo -e ${CL_CYN}""${CL_CYN}
 	@echo -e ${CL_CYN}"===========-Package Completed-==========="${CL_RST}
-	@echo -e ${CL_BLD}${CL_YLW}"Zip: "${CL_YLW} $(CHERISH_TARGET_PACKAGE)${CL_RST}
-	@echo -e ${CL_BLD}${CL_YLW}"MD5: "${CL_YLW}" `cat $(CHERISH_TARGET_PACKAGE).md5sum | cut -d ' ' -f 1` "${CL_RST}
-	@echo -e ${CL_BLD}${CL_YLW}"SHA256: "${CL_YLW}" `sha256sum $(CHERISH_TARGET_PACKAGE) | cut -d ' ' -f 1` "${CL_RST}
-	@echo -e ${CL_BLD}${CL_YLW}"Size: "${CL_YLW}" `ls -l $(CHERISH_TARGET_PACKAGE) | cut -d ' ' -f 5` "${CL_RST}
+	@echo -e ${CL_BLD}${CL_YLW}"Zip: "${CL_YLW} $(MIST_TARGET_PACKAGE)${CL_RST}
+	@echo -e ${CL_BLD}${CL_YLW}"MD5: "${CL_YLW}" `cat $(MIST_TARGET_PACKAGE).md5sum | cut -d ' ' -f 1` "${CL_RST}
+	@echo -e ${CL_BLD}${CL_YLW}"SHA256: "${CL_YLW}" `sha256sum $(MIST_TARGET_PACKAGE) | cut -d ' ' -f 1` "${CL_RST}
+	@echo -e ${CL_BLD}${CL_YLW}"Size: "${CL_YLW}" `ls -l $(MIST_TARGET_PACKAGE) | cut -d ' ' -f 5` "${CL_RST}
 	@echo -e ${CL_CYN}"===========-----Thanks :)-----==========="${CL_RST}
 	@echo -e ""
