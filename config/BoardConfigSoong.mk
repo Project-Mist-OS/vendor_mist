@@ -37,6 +37,7 @@ SOONG_CONFIG_mistGlobalVars += \
     gralloc_handle_has_custom_content_md_reserved_size \
     gralloc_handle_has_reserved_size \
     needs_camera_boottime \
+    target_alternative_futex_waiters \
     target_health_charging_control_charging_path \
     target_health_charging_control_charging_enabled \
     target_health_charging_control_charging_disabled \
@@ -81,6 +82,7 @@ SOONG_CONFIG_mistGlobalVars_uses_egl_display_array := $(TARGET_USES_EGL_DISPLAY_
 SOONG_CONFIG_mistNvidiaVars_uses_nvidia_enhancements := $(NV_ANDROID_FRAMEWORK_ENHANCEMENTS)
 SOONG_CONFIG_mistQcomVars_supports_extended_compress_format := $(AUDIO_FEATURE_ENABLED_EXTENDED_COMPRESS_FORMAT)
 SOONG_CONFIG_mistQcomVars_uses_pre_uplink_features_netmgrd := $(TARGET_USES_PRE_UPLINK_FEATURES_NETMGRD)
+SOONG_CONFIG_mistGlobalVars_target_alternative_futex_waiters := $(TARGET_ALTERNATIVE_FUTEX_WAITERS)
 SOONG_CONFIG_mistGlobalVars_uses_legacy_fd_fbdev := $(TARGET_USES_LEGACY_FD_FBDEV)
 SOONG_CONFIG_mistGlobalVars_uses_nothing_camera := $(TARGET_USES_NOTHING_CAMERA)
 SOONG_CONFIG_mistGlobalVars_uses_oplus_camera := $(TARGET_USES_OPLUS_CAMERA)
