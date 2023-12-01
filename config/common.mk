@@ -75,6 +75,9 @@ include vendor/mist/config/branding.mk
 include vendor/mist/config/packages.mk
 include vendor/prebuilts/prebuilts.mk
 
+# ThemeOverlays
+include packages/overlays/Themes/themes.mk
+
 # Include Mist_props
 $(call inherit-product, vendor/mist/config/mist_props.mk)
 
