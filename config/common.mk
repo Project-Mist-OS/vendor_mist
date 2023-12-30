@@ -359,6 +359,9 @@ endif
 # Clocks
 $(call inherit-product, vendor/mist/config/clocks.mk)
 
+# Certification
+$(call inherit-product-if-exists, vendor/certification/config.mk)
+
 # Pixel Framework
 $(call inherit-product-if-exists, vendor/pixel-framework/config.mk)
 
