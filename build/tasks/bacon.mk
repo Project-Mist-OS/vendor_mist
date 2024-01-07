@@ -19,6 +19,10 @@ MIST_TARGET_PACKAGE := $(PRODUCT_OUT)/$(MIST_VERSION).zip
 SHA256 := prebuilts/build-tools/path/$(HOST_PREBUILT_TAG)/sha256sum
 MD5 := prebuilts/build-tools/path/$(HOST_PREBUILT_TAG)/md5sum
 
+CL_PRP="\033[35m"
+CL_RED="\033[31m"
+CL_GRN="\033[32m"
+
 .PHONY: bacon
 bacon: $(INTERNAL_OTA_PACKAGE_TARGET)
 	$(hide) mv $(INTERNAL_OTA_PACKAGE_TARGET) $(MIST_TARGET_PACKAGE)
@@ -26,10 +30,18 @@ bacon: $(INTERNAL_OTA_PACKAGE_TARGET)
 	$(hide) $(MD5) $(MIST_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(MIST_TARGET_PACKAGE).md5sum
 	$(hide) ./vendor/mist/build/tasks/createjson.sh $(TARGET_DEVICE) $(PRODUCT_OUT) $(MIST_VERSION).zip $(MISTVERSION)
 	@echo -e ${CL_CYN}""${CL_CYN}
+
+	@echo -e ${CL_CYN}"     ___  ____     _     _____ _____    "${CL_CYN}
+	@echo -e ${CL_CYN}"    |  \/  (_)   | |   |  _  /  ___|    "${CL_CYN}
+	@echo -e ${CL_CYN}"    | .  . |_ ___| |_  | | | \ `--.     "${CL_CYN}
+	@echo -e ${CL_CYN}"    | |\/| | / __| __| | | | |`--. \    "${CL_CYN}
+	@echo -e ${CL_CYN}"    | |  | | \__ \ |_  \ \_/ /\__/ /    "${CL_CYN}
+	@echo -e ${CL_CYN}"    \_|  |_/_|___/\__|  \___/\____/     "${CL_CYN}
+	@echo -e ${CL_CYN}"                                        "${CL_CYN}
 	@echo -e ${CL_CYN}"===========-Package Completed-==========="${CL_RST}
-	@echo -e ${CL_BLD}${CL_YLW}"Zip: "${CL_YLW} $(MIST_TARGET_PACKAGE)${CL_RST}
-	@echo -e ${CL_BLD}${CL_YLW}"MD5: "${CL_YLW}" `cat $(MIST_TARGET_PACKAGE).md5sum | cut -d ' ' -f 1` "${CL_RST}
-	@echo -e ${CL_BLD}${CL_YLW}"SHA256: "${CL_YLW}" `sha256sum $(MIST_TARGET_PACKAGE) | cut -d ' ' -f 1` "${CL_RST}
-	@echo -e ${CL_BLD}${CL_YLW}"Size: "${CL_YLW}" `ls -l $(MIST_TARGET_PACKAGE) | cut -d ' ' -f 5` "${CL_RST}
+	@echo -e ${CL_BLD}${CL_GRN}"Zip: "${CL_RED} $(MIST_TARGET_PACKAGE)${CL_RST}
+	@echo -e ${CL_BLD}${CL_GRN}"MD5: "${CL_RED}" `cat $(MIST_TARGET_PACKAGE).md5sum | cut -d ' ' -f 1` "${CL_RST}
+	@echo -e ${CL_BLD}${CL_GRN}"SHA256: "${CL_RED}" `sha256sum $(MIST_TARGET_PACKAGE) | cut -d ' ' -f 1` "${CL_RST}
+	@echo -e ${CL_BLD}${CL_GRN}"Size: "${CL_RED}" `ls -l $(MIST_TARGET_PACKAGE) | cut -d ' ' -f 5` "${CL_RST}
 	@echo -e ${CL_CYN}"===========-----Thanks :)-----==========="${CL_RST}
 	@echo -e ""
