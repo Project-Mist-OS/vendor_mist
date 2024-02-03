@@ -108,6 +108,9 @@ SYSTEMUI_OPTIMIZE_JAVA ?= true
 # Disable vendor restrictions
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
+# Audio
+include vendor/mist/audio/audio.mk
+
 # Bootanimation
 include vendor/mist/config/bootanimation.mk
 
