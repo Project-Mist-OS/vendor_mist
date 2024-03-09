@@ -14,7 +14,8 @@ endif
 
 # Extra packages
 PRODUCT_PACKAGES += \
-    GameSpace
+    GameSpace \
+    OmniStyle
 
 # Cloned app exemption
 PRODUCT_COPY_FILES += \
