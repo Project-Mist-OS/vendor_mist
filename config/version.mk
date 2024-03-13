@@ -98,7 +98,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.mist.edition=$(MIST_EDITION)
 
 # Signing
-ifeq (user,$(TARGET_BUILD_VARIANT))
+ifneq (eng,$(TARGET_BUILD_VARIANT))
 ifneq (,$(wildcard vendor/mist/signing/keys/releasekey.pk8))
 PRODUCT_DEFAULT_DEV_CERTIFICATE := vendor/mist/signing/keys/releasekey
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.oem_unlock_supported=1
