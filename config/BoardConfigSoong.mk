@@ -38,6 +38,7 @@ SOONG_CONFIG_mistGlobalVars += \
     disable_bluetooth_le_set_host_feature \
     gralloc_handle_has_custom_content_md_reserved_size \
     gralloc_handle_has_reserved_size \
+    include_miui_camera \
     needs_camera_boottime \
     target_alternative_futex_waiters \
     target_health_charging_control_charging_path \
@@ -86,6 +87,7 @@ SOONG_CONFIG_mistGlobalVars_camera_override_format_from_reserved := $(TARGET_CAM
 SOONG_CONFIG_mistGlobalVars_gralloc_handle_has_custom_content_md_reserved_size := $(TARGET_GRALLOC_HANDLE_HAS_CUSTOM_CONTENT_MD_RESERVED_SIZE)
 SOONG_CONFIG_mistGlobalVars_gralloc_handle_has_reserved_size := $(TARGET_GRALLOC_HANDLE_HAS_RESERVED_SIZE)
 SOONG_CONFIG_mistGlobalVars_gralloc_handle_has_ubwcp_format := $(TARGET_GRALLOC_HANDLE_HAS_UBWCP_FORMAT)
+SOONG_CONFIG_mistGlobalVars_include_miui_camera := $(TARGET_INCLUDES_MIUI_CAMERA)
 SOONG_CONFIG_mistGlobalVars_uses_egl_display_array := $(TARGET_USES_EGL_DISPLAY_ARRAY)
 SOONG_CONFIG_mistNvidiaVars_uses_nvidia_enhancements := $(NV_ANDROID_FRAMEWORK_ENHANCEMENTS)
 SOONG_CONFIG_mistQcomVars_qti_vibrator_use_effect_stream := $(TARGET_QTI_VIBRATOR_USE_EFFECT_STREAM)
