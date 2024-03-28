@@ -75,6 +75,9 @@ include vendor/mist/config/branding.mk
 include vendor/mist/config/packages.mk
 include vendor/prebuilts/prebuilts.mk
 
+# Inherit SystemUI Clocks if they exist
+$(call inherit-product-if-exists, vendor/SystemUIClocks/product.mk)
+
 # ThemeOverlays
 include packages/overlays/Themes/themes.mk
 
