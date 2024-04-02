@@ -1,47 +1,28 @@
 # Pixel 4a (5G)
 
-# Usage: ${firmware_partitions[@]}
-readonly firmware_partitions=(
-  abl
-  aop
-  devcfg
-  hyp
-  keymaster
-  qupfw
-  tz
-  uefisecapp
-  xbl
-  xbl_config
-  featenabler
-  modem
-)
-
 # Usage: ${device_repos[@]}
 device_repos=(
-  # common repos in redfin
+  # common repos in barbet
   device/google/bramble
-  device/google/bramble-sepolicy
 )
 
-# Updated manually
+# Updated semi-manually via pixel/update-any-var.sh
 
-readonly prev_build_id=SQ1A.220205.002 # Feb 2022
-readonly build_id=SP2A.220305.012 # Mar 2022
+readonly build_id="UP1A.231105.001.B2"
 
 # Updated automatically via pixel/update-device-vars.sh
 
-readonly prev_aosp_tag="android-12.0.0_r28"
-readonly aosp_tag="android-12.1.0_r1"
+readonly prev_aosp_tag="android-14.0.0_r13"
+readonly aosp_tag="android-14.0.0_r28"
 
-readonly prev_build_number="8010174"
-readonly build_number="8177914"
+readonly build_number="11260668"
 
-readonly image_url="https://dl.google.com/dl/android/aosp/bramble-sp2a.220305.012-factory-0047127f.zip"
-readonly image_sha256="0047127f8ac9ab93df5e06c6b52d1ef235ff64c2b44db9c32379e163ba3d5015"
+readonly image_url="https://dl.google.com/dl/android/aosp/bramble-up1a.231105.001.b2-factory-46a218d9.zip"
+readonly image_sha256="46a218d9dc2bf1802a584fa4e7e1b4d609a62189bd87a474201fb6d84e1c3e1c"
 
-readonly flash_url="https://flash.android.com/build/8177914?target=bramble-user&signed"
+readonly flash_url="https://flash.android.com/build/11260668?target=bramble-user&signed"
 
-readonly ota_url="https://dl.google.com/dl/android/aosp/bramble-ota-sp2a.220305.012-1258fdf9.zip"
-readonly ota_sha256="1258fdf9118fc4ccdebb9691a503950cecedcb7fc4ed1f070160f6ef81422b74"
+readonly ota_url="https://dl.google.com/dl/android/aosp/bramble-ota-up1a.231105.001.b2-06727ba9.zip"
+readonly ota_sha256="06727ba9ba1d53b7c7ed3ae22eb5fada4af475ea5725a569d05774c753f32f48"
 
-readonly security_patch="2022-03-05"
+readonly security_patch="2023-11-05"

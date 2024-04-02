@@ -1,48 +1,28 @@
 # Pixel 5
 
-# Usage: ${firmware_partitions[@]}
-readonly firmware_partitions=(
-  abl
-  aop
-  devcfg
-  hyp
-  keymaster
-  qupfw
-  tz
-  uefisecapp
-  xbl
-  xbl_config
-  featenabler
-  modem
-)
-
 # Usage: ${device_repos[@]}
 device_repos=(
-  device/google/redbull
-  device/google/redbull-sepolicy
+  # common repos in barbet
   device/google/redfin
-  device/google/redfin-sepolicy
 )
 
-# Updated manually
+# Updated semi-manually via pixel/update-any-var.sh
 
-readonly prev_build_id=SQ1A.220205.002 # Feb 2022
-readonly build_id=SP2A.220305.012 # Mar 2022
+readonly build_id="UP1A.231105.001.B2"
 
 # Updated automatically via pixel/update-device-vars.sh
 
-readonly prev_aosp_tag="android-12.0.0_r28"
-readonly aosp_tag="android-12.1.0_r1"
+readonly prev_aosp_tag="android-14.0.0_r13"
+readonly aosp_tag="android-14.0.0_r28"
 
-readonly prev_build_number="8010174"
-readonly build_number="8177914"
+readonly build_number="11260668"
 
-readonly image_url="https://dl.google.com/dl/android/aosp/redfin-sp2a.220305.012-factory-49873101.zip"
-readonly image_sha256="4987310118f0165117f62354ea4b926b817a08cbea473f90efcd91f7c2803b5b"
+readonly image_url="https://dl.google.com/dl/android/aosp/redfin-up1a.231105.001.b2-factory-4e5a2679.zip"
+readonly image_sha256="4e5a26793d8400f13b72cbd17aeb284e040b3236436f0c6f3119ccc77d4495ad"
 
-readonly flash_url="https://flash.android.com/build/8177914?target=redfin-user&signed"
+readonly flash_url="https://flash.android.com/build/11260668?target=redfin-user&signed"
 
-readonly ota_url="https://dl.google.com/dl/android/aosp/redfin-ota-sp2a.220305.012-5eea053e.zip"
-readonly ota_sha256="5eea053e29131d5f8e414c3eb72ad60a73050abac40a3532de1abb2c924e36c9"
+readonly ota_url="https://dl.google.com/dl/android/aosp/redfin-ota-up1a.231105.001.b2-17322169.zip"
+readonly ota_sha256="17322169afdc648e2e9ff46eee16156d5bdccd8842acb41b870b905cc28fe3b5"
 
-readonly security_patch="2022-03-05"
+readonly security_patch="2023-11-05"

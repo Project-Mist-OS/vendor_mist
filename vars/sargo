@@ -1,45 +1,27 @@
 # Pixel 3a
 
-# Usage: ${firmware_partitions[@]}
-readonly firmware_partitions=(
-  abl
-  aop
-  cmnlib
-  cmnlib64
-  devcfg
-  hyp
-  keymaster
-  qupfw
-  tz
-  xbl
-  xbl_config
-  modem
-)
-
 # Usage: ${device_repos[@]}
 device_repos=(
   # common repos in bonito
 )
 
-# Updated manually
+# Updated semi-manually via pixel/update-any-var.sh
 
-readonly prev_build_id=SQ1A.220205.002 # Feb 2022
-readonly build_id=SP2A.220305.012 # Mar 2022
+readonly build_id="SP2A.220505.008"
 
 # Updated automatically via pixel/update-device-vars.sh
 
-readonly prev_aosp_tag="android-12.0.0_r28"
-readonly aosp_tag="android-12.1.0_r1"
+readonly prev_aosp_tag="android-12.1.0_r6"
+readonly aosp_tag="android-12.1.0_r27"
 
-readonly prev_build_number="8010174"
-readonly build_number="8177914"
+readonly build_number="8782922"
 
-readonly image_url="https://dl.google.com/dl/android/aosp/sargo-sp2a.220305.012-factory-6a43e833.zip"
-readonly image_sha256="6a43e8336e38043a0659d92e2e0f28add66dc82d56a4298f901bd2cd2191c940"
+readonly image_url="https://dl.google.com/dl/android/aosp/sargo-sp2a.220505.008-factory-071e368a.zip"
+readonly image_sha256="071e368a127ce5a3c553f8b717895eaf1e44dec78971dc4c80baa7237d2d37f1"
 
-readonly flash_url="https://flash.android.com/build/8177914?target=sargo-user&signed"
+readonly flash_url="https://flash.android.com/build/8782922?target=sargo-user&signed"
 
-readonly ota_url="https://dl.google.com/dl/android/aosp/sargo-ota-sp2a.220305.012-66210901.zip"
-readonly ota_sha256="662109017074fd71c3f8603375680ebc8fcc0745bcfe92a4094356203cff817b"
+readonly ota_url="https://dl.google.com/dl/android/aosp/sargo-ota-sp2a.220505.008-2037245c.zip"
+readonly ota_sha256="2037245c06c8e0912c098c347be7b49a707d7cacf9a663ad7e68c96ce75ea32b"
 
-readonly security_patch="2022-03-05"
+readonly security_patch="2022-05-05"
