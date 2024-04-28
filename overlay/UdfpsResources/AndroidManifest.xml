@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mist.udfps.resources"
+    package="com.mist.udfps.animations"
     android:versionCode="1"
     android:allowBackup="false"
     android:versionName="1.0">

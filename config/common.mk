@@ -215,6 +215,12 @@ endif
 PRODUCT_PACKAGES += \
     OmniJaws
 
+#UdfpsResources
+ifeq ($(EXTRA_UDFPS_ANIMATIONS),true)
+PRODUCT_PACKAGES += \
+    UdfpsResources
+endif
+
 # # Hide nav Overlays
 PRODUCT_PACKAGES += \
     NavigationBarNoHintOverlay  
