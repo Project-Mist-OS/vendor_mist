@@ -24,13 +24,12 @@ CL_RED="\033[31m"
 CL_GRN="\033[32m"
 
 .PHONY: bacon
-bacon: $(INTERNAL_OTA_PACKAGE_TARGET)
+bacon: $(DEFAULT_GOAL) $(INTERNAL_OTA_PACKAGE_TARGET)
 	$(hide) mv $(INTERNAL_OTA_PACKAGE_TARGET) $(MIST_TARGET_PACKAGE)
 	$(hide) $(MD5) $(MIST_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(MIST_TARGET_PACKAGE).sha256sum
 	$(hide) $(MD5) $(MIST_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(MIST_TARGET_PACKAGE).md5sum
 	$(hide) ./vendor/mist/build/tasks/createjson.sh $(TARGET_DEVICE) $(PRODUCT_OUT) $(MIST_VERSION).zip $(MISTVERSION)
 	@echo -e ${CL_CYN}""${CL_CYN}
-
 	@echo -e ${CL_CYN}"     ___  ____     _     _____ _____    "${CL_CYN}
 	@echo -e ${CL_CYN}"    |  \/  (_)   | |   |  _  /  ___|    "${CL_CYN}
 	@echo -e ${CL_CYN}"    | .  . |_ ___| |_  | | | \ `--.     "${CL_CYN}
