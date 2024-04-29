@@ -56,6 +56,9 @@ SOONG_CONFIG_mistGlobalVars += \
     target_inputdispatcher_skip_event_key \
     target_ld_shim_libs \
     target_surfaceflinger_udfps_lib \
+    target_trust_usb_control_path \
+    target_trust_usb_control_enable \
+    target_trust_usb_control_disable \
     target_uses_prebuilt_dynamic_partitions \
     uses_camera_parameter_lib \
     uses_egl_display_array \
@@ -124,6 +127,9 @@ TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY ?= libcamera_parameters
 TARGET_SDMCORE_HAS_IS_DISPLAY_HW_AVAILABLE_FUNC ?= true
 TARGET_SURFACEFLINGER_UDFPS_LIB ?= surfaceflinger_udfps_lib
 TARGET_QTI_VIBRATOR_EFFECT_LIB ?= libqtivibratoreffect
+TARGET_TRUST_USB_CONTROL_PATH ?= /proc/sys/kernel/deny_new_usb
+TARGET_TRUST_USB_CONTROL_ENABLE ?= 1
+TARGET_TRUST_USB_CONTROL_DISABLE ?= 0
 
 # Soong value variables
 SOONG_CONFIG_mistGlobalVars_additional_gralloc_10_usage_bits := $(TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS)
@@ -133,6 +139,9 @@ SOONG_CONFIG_mistGlobalVars_disable_bluetooth_le_set_host_feature := $(TARGET_DI
 SOONG_CONFIG_mistGlobalVars_target_init_vendor_lib := $(TARGET_INIT_VENDOR_LIB)
 SOONG_CONFIG_mistGlobalVars_target_ld_shim_libs := $(subst $(space),:,$(TARGET_LD_SHIM_LIBS))
 SOONG_CONFIG_mistGlobalVars_target_surfaceflinger_udfps_lib := $(TARGET_SURFACEFLINGER_UDFPS_LIB)
+SOONG_CONFIG_mistGlobalVars_target_trust_usb_control_path := $(TARGET_TRUST_USB_CONTROL_PATH)
+SOONG_CONFIG_mistGlobalVars_target_trust_usb_control_enable := $(TARGET_TRUST_USB_CONTROL_ENABLE)
+SOONG_CONFIG_mistGlobalVars_target_trust_usb_control_disable := $(TARGET_TRUST_USB_CONTROL_DISABLE)
 SOONG_CONFIG_mistGlobalVars_uses_camera_parameter_lib := $(TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY)
 SOONG_CONFIG_mistGlobalVars_target_inputdispatcher_skip_event_key := $(TARGET_INPUTDISPATCHER_SKIP_EVENT_KEY)
 SOONG_CONFIG_mistGlobalVars_target_health_charging_control_charging_path := $(TARGET_HEALTH_CHARGING_CONTROL_CHARGING_PATH)
