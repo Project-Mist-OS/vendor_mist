@@ -14,7 +14,8 @@
 
 # Mist packages
 PRODUCT_PACKAGES += \
-    MistWallpaperStub
+    MistWallpaperStub \
+    Glimpse
 
 # Extra tools in Mist
 PRODUCT_PACKAGES += \
