@@ -201,6 +201,9 @@ CUSTOM_LOCALES += \
 # Bootanimation
 include vendor/mist/config/bootanimation.mk
 
+# Fonts
+include vendor/mist/config/fonts.mk
+
 # Version
 include vendor/mist/config/version.mk
 
