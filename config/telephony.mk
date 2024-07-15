@@ -28,3 +28,9 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # Disable mobile data by default
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.com.android.mobiledata=false
+
+# BCR
+TARGET_INCLUDE_BCR ?= true
+ifeq ($(TARGET_INCLUDE_BCR),true)
+$(call inherit-product, vendor/extras/bcr/bcr.mk)
+endif
