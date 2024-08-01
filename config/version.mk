@@ -42,6 +42,38 @@ else
 MIST_EDITION := VANILLA
 endif
 
+# OFFICIAL DEVICES CHECK
+OFFICIAL_MAINTAINERS := $(shell cat mist-maintainers/mist.maintainers)
+OFFICIAL_DEVICES := $(shell cat mist-maintainers/mist.devices)
+
+ifeq ($(findstring $(MIST_BUILD), $(OFFICIAL_DEVICES)),)
+  # Device not listed as official
+  MIST_BUILD_TYPE := UNOFFICIAL
+else
+  # Check if builder is an official maintainer
+  ifeq ($(findstring $(MIST_MAINTAINER), $(OFFICIAL_MAINTAINERS)),)
+    # Builder not an official maintainer, warn and set unofficial
+    $(warning **********************************************************************)
+    $(warning *   There is already an official maintainer for $(MIST_BUILD)    *)
+    $(warning *              Setting build type to UNOFFICIAL                      *)
+    $(warning **********************************************************************)
+    MIST_BUILD_TYPE := UNOFFICIAL
+  else
+    # Official maintainer building official device
+    MIST_BUILD_TYPE := OFFICIAL
+  endif
+endif
+
+# Enforce official build for official maintainers on official devices
+ifeq ($(MIST_BUILD_TYPE), OFFICIAL)
+  ifeq ($(findstring $(MIST_BUILD), $(OFFICIAL_DEVICES)),)
+    # Shouldn't reach here, error for unexpected situation
+    $(error **********************************************************)
+    $(error *     A violation has been detected, aborting build      *)
+    $(error **********************************************************)
+  endif
+endif
+
 # Set all versions
 BUILD_DATE := $(shell date -u +%Y%m%d)
 BUILD_TIME := $(shell date -u +%H%M)
