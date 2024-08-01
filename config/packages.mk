@@ -15,7 +15,8 @@
 # Mist packages
 PRODUCT_PACKAGES += \
     MistWallpaperStub \
-    Glimpse
+    Glimpse \
+    OmniStyle
 
 # Extra tools in Mist
 PRODUCT_PACKAGES += \
