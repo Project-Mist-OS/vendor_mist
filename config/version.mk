@@ -15,8 +15,8 @@
 # limitations under the License.
 
 # Versioning System
-MIST_CODENAME := NAMCHE
-MIST_NUM_VER := 1.0
+MIST_CODENAME := Fuji
+MIST_NUM_VER := 2.7
 
 TARGET_PRODUCT_SHORT := $(subst mist_,,$(MIST_BUILD_TYPE))
 
