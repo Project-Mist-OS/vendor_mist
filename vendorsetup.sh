@@ -2,7 +2,7 @@
 
 # Override host metadata to make builds more reproducible and avoid leaking info
 export BUILD_USERNAME=yui
-export BUILD_HOSTNAME=everest-buildbot
+export BUILD_HOSTNAME=mist-buildbot
 
 # ABI compatibility checks fail for several reasons:
 #   - The update to Clang 12 causes some changes, but no breakage has been
