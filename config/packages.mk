@@ -1,4 +1,4 @@
-# Copyright (C) 2018-23 The EverestOS Project
+# Copyright (C) 2018-23 The MistOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,11 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Everest packages
+# Mist packages
 PRODUCT_PACKAGES += \
-    EverestWallpaperStub
+    MistWallpaperStub
 
-# Extra tools in Everest
+# Extra tools in Mist
 PRODUCT_PACKAGES += \
     bash \
     curl \
@@ -55,7 +55,7 @@ PRODUCT_PACKAGES += \
     start-ssh
 
 PRODUCT_COPY_FILES += \
-    vendor/everest/prebuilt/common/etc/init/init.openssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/init.openssh.rc
+    vendor/mist/prebuilt/common/etc/init/init.openssh.rc:$(TARGET_COPY_OUT_PRODUCT)/etc/init/init.openssh.rc
 
 # rsync
 PRODUCT_PACKAGES += \
@@ -81,12 +81,12 @@ endif
 endif
 
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
-    vendor/everest/overlay \
-    vendor/everest/overlay/no-rro
+    vendor/mist/overlay \
+    vendor/mist/overlay/no-rro
 
 PRODUCT_PACKAGE_OVERLAYS += \
-    vendor/everest/overlay/common \
-    vendor/everest/overlay/no-rro
+    vendor/mist/overlay/common \
+    vendor/mist/overlay/no-rro
 
 PRODUCT_PACKAGES += \
     DocumentsUIOverlay \

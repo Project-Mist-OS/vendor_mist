@@ -14,9 +14,9 @@
 # limitations under the License.
 
 # -----------------------------------------------------------------
-# EverestOS OTA update package
+# MistOS OTA update package
 
-EVEREST_TARGET_PACKAGE := $(PRODUCT_OUT)/Everest-$(EVEREST_VERSION).zip
+MIST_TARGET_PACKAGE := $(PRODUCT_OUT)/MistOS-$(MIST_VERSION).zip
 
 SHA256 := prebuilts/build-tools/path/$(HOST_PREBUILT_TAG)/sha256sum
 
@@ -26,12 +26,12 @@ CL_GRN="\033[32m"
 
 .PHONY: bacon
 bacon: $(DEFAULT_GOAL) $(INTERNAL_OTA_PACKAGE_TARGET)
-	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(EVEREST_TARGET_PACKAGE)
-	$(hide) $(SHA256) $(EVEREST_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(EVEREST_TARGET_PACKAGE).sha256sum
+	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(MIST_TARGET_PACKAGE)
+	$(hide) $(SHA256) $(MIST_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(MIST_TARGET_PACKAGE).sha256sum
 	echo -e ${CL_BLD}${CL_RED}"===============================-Package complete-==============================="${CL_RED}
-	echo -e ${CL_BLD}${CL_GRN}"Zip: "${CL_RED} $(EVEREST_TARGET_PACKAGE)${CL_RST}
-	echo -e ${CL_BLD}${CL_GRN}"SHA256: "${CL_RED}" `cat $(EVEREST_TARGET_PACKAGE).sha256sum | awk '{print $$1}' `"${CL_RST}
-	echo -e ${CL_BLD}${CL_GRN}"Size:"${CL_RED}" `du -sh $(EVEREST_TARGET_PACKAGE) | awk '{print $$1}' `"${CL_RST}
+	echo -e ${CL_BLD}${CL_GRN}"Zip: "${CL_RED} $(MIST_TARGET_PACKAGE)${CL_RST}
+	echo -e ${CL_BLD}${CL_GRN}"SHA256: "${CL_RED}" `cat $(MIST_TARGET_PACKAGE).sha256sum | awk '{print $$1}' `"${CL_RST}
+	echo -e ${CL_BLD}${CL_GRN}"Size:"${CL_RED}" `du -sh $(MIST_TARGET_PACKAGE) | awk '{print $$1}' `"${CL_RST}
 	echo -e ${CL_BLD}${CL_GRN}"TimeStamp:"${CL_RED}" `cat $(PRODUCT_OUT)/system/build.prop | grep ro.build.date.utc | cut -d'=' -f2 | awk '{print $$1}' `"${CL_RST}
-	echo -e ${CL_BLD}${CL_GRN}"Integer Value:"${CL_RED}" `wc -c $(EVEREST_TARGET_PACKAGE) | awk '{print $$1}' `"${CL_RST}
+	echo -e ${CL_BLD}${CL_GRN}"Integer Value:"${CL_RED}" `wc -c $(MIST_TARGET_PACKAGE) | awk '{print $$1}' `"${CL_RST}
 	echo -e ${CL_BLD}${CL_RED}"================================================================================"${CL_RED}

@@ -29,14 +29,14 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-custom_local_manifest = ".repo/local_manifests/snippets/everest.xml"
+custom_local_manifest = ".repo/local_manifests/snippets/mist.xml"
 custom_default_revision = "ursa"
-custom_dependencies = "everest.dependencies"
-org_manifest = "everest"  # leave empty if org is provided in manifest
-org_display = "ProjectEverest"  # needed for displaying
+custom_dependencies = "mist.dependencies"
+org_manifest = "mist"  # leave empty if org is provided in manifest
+org_display = "ProjectMist"  # needed for displaying
 
 default_manifest = ".repo/manifests/default.xml"
-everest_manifest = ".repo/manifests/snippets/everest.xml"
+mist_manifest = ".repo/manifests/snippets/mist.xml"
 lineage_manifest = ".repo/manifests/snippets/lineage.xml"
 
 github_token = None
@@ -138,7 +138,7 @@ def is_in_manifest(project_path):
 def add_to_manifest(repos, fallback_branch=None):
     lm = load_manifest(custom_local_manifest)
     mlm = load_manifest(default_manifest)
-    everestm = load_manifest(everest_manifest)
+    mistm = load_manifest(mist_manifest)
     lineagem = load_manifest(lineage_manifest)
 
     for repo in repos:
@@ -170,8 +170,8 @@ def add_to_manifest(repos, fallback_branch=None):
             continue
 
         existing_m_project = None
-        if exists_in_tree(everestm, repo_path) != None:
-            existing_m_project = exists_in_tree(everestm, repo_path)
+        if exists_in_tree(mistm, repo_path) != None:
+            existing_m_project = exists_in_tree(mistm, repo_path)
         elif exists_in_tree(lineagem, repo_path) != None:
             existing_m_project = exists_in_tree(lineagem, repo_path)
         elif exists_in_tree(mlm, repo_path) != None:

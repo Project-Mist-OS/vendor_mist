@@ -1,24 +1,24 @@
 # Allow vendor/extra to override any property by setting it first
 $(call inherit-product-if-exists, vendor/extra/product.mk)
 
-PRODUCT_BRAND ?= EverestOS
+PRODUCT_BRAND ?= MistOS
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/everest/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
-    vendor/everest/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/everest/prebuilt/common/bin/50-everest.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-everest.sh
+    vendor/mist/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
+    vendor/mist/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
+    vendor/mist/prebuilt/common/bin/50-mist.sh:$(TARGET_COPY_OUT_SYSTEM)/addon.d/50-mist.sh
 
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
-    system/addon.d/50-everest.sh
+    system/addon.d/50-mist.sh
 
 ifneq ($(strip $(AB_OTA_PARTITIONS) $(AB_OTA_POSTINSTALL_CONFIG)),)
 PRODUCT_COPY_FILES += \
-    vendor/everest/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
-    vendor/everest/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
-    vendor/everest/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
+    vendor/mist/prebuilt/common/bin/backuptool_ab.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.sh \
+    vendor/mist/prebuilt/common/bin/backuptool_ab.functions:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_ab.functions \
+    vendor/mist/prebuilt/common/bin/backuptool_postinstall.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/backuptool_postinstall.sh
 
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/bin/backuptool_ab.sh \
@@ -31,9 +31,9 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 endif
 endif
 
-# Everest-specific init rc file
+# Mist-specific init rc file
 PRODUCT_COPY_FILES += \
-    vendor/everest/prebuilt/common/etc/init/init.everest-system_ext.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.everest-system_ext.rc
+    vendor/mist/prebuilt/common/etc/init/init.mist-system_ext.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.mist-system_ext.rc
 
 # Display
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
@@ -77,12 +77,12 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 # Google Photos Pixel Exclusive XML
 PRODUCT_COPY_FILES += \
-    vendor/everest/prebuilt/common/etc/sysconfig/pixel_2016_exclusive.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_2016_exclusive.xml
+    vendor/mist/prebuilt/common/etc/sysconfig/pixel_2016_exclusive.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/pixel_2016_exclusive.xml
 
 # Lineage Hardware
 PRODUCT_COPY_FILES += \
-    vendor/everest/config/permissions/privapp-permissions-lineagehw.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-lineagehw.xml \
-    vendor/everest/config/permissions/org.lineageos.health.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.health.xml
+    vendor/mist/config/permissions/privapp-permissions-lineagehw.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/privapp-permissions-lineagehw.xml \
+    vendor/mist/config/permissions/org.lineageos.health.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.health.xml
 
 # Overlay
 PRODUCT_PRODUCT_PROPERTIES += \
@@ -107,7 +107,7 @@ SYSTEMUI_OPTIMIZE_JAVA ?= true
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
 # Bootanimation
-include vendor/everest/config/bootanimation.mk
+include vendor/mist/config/bootanimation.mk
 
 # Relax Broken Library Check
 PRODUCT_BROKEN_VERIFY_USES_LIBRARIES := true
@@ -116,7 +116,7 @@ PRODUCT_BROKEN_VERIFY_USES_LIBRARIES := true
 TARGET_CALL_RECORDING_SUPPORTED ?= true
 ifneq ($(TARGET_CALL_RECORDING_SUPPORTED),false)
 PRODUCT_COPY_FILES += \
-    vendor/everest/config/permissions/com.google.android.apps.dialer.call_recording_audio.features.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.android.apps.dialer.call_recording_audio.features.xml
+    vendor/mist/config/permissions/com.google.android.apps.dialer.call_recording_audio.features.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/com.google.android.apps.dialer.call_recording_audio.features.xml
 endif
 
 # Certification
@@ -131,13 +131,13 @@ PRODUCT_PACKAGES += \
 #Themes OVerlay
 include packages/overlays/Themes/themes.mk
 
-# Include Everest Versioning
-include vendor/everest/config/version.mk
+# Include Mist Versioning
+include vendor/mist/config/version.mk
 
-# Include Everest Packages
-include vendor/everest/config/packages.mk
+# Include Mist Packages
+include vendor/mist/config/packages.mk
 
-# Include everest_props
-$(call inherit-product, vendor/everest/config/everest_props.mk)
+# Include Mist_props
+$(call inherit-product, vendor/mist/config/mist_props.mk)
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk

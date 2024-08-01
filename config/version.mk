@@ -1,6 +1,6 @@
 # Copyright (C) 2016-2017 AOSiP
 # Copyright (C) 2020 Fluid
-# Copyright (C) 2021 EverestOS
+# Copyright (C) 2021 MistOS
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,52 +15,52 @@
 # limitations under the License.
 
 # Versioning System
-EVEREST_CODENAME := NAMCHE
-EVEREST_NUM_VER := 1.0
+MIST_CODENAME := NAMCHE
+MIST_NUM_VER := 1.0
 
-TARGET_PRODUCT_SHORT := $(subst everest_,,$(EVEREST_BUILD_TYPE))
+TARGET_PRODUCT_SHORT := $(subst mist_,,$(MIST_BUILD_TYPE))
 
-EVEREST_BUILD_TYPE ?= UNOFFICIAL
+MIST_BUILD_TYPE ?= UNOFFICIAL
 
 # Only include Updater for official  build
-ifeq ($(filter-out OFFICIAL,$(EVEREST_BUILD_TYPE)),)
+ifeq ($(filter-out OFFICIAL,$(MIST_BUILD_TYPE)),)
     PRODUCT_PACKAGES += \
         Updater
 
 PRODUCT_COPY_FILES += \
-    vendor/everest/prebuilt/common/etc/init/init.everest-updater.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.everest-updater.rc
+    vendor/mist/prebuilt/common/etc/init/init.mist-updater.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.mist-updater.rc
 endif
 
 # Sign builds if building an official build
-ifeq ($(filter-out OFFICIAL,$(EVEREST_BUILD_TYPE)),)
+ifeq ($(filter-out OFFICIAL,$(MIST_BUILD_TYPE)),)
     PRODUCT_DEFAULT_DEV_CERTIFICATE := $(KEYS_LOCATION)
 endif
 
 ifeq ($(WITH_GAPPS),true)
-EVEREST_EDITION := GAPPS
+MIST_EDITION := GAPPS
 else
-EVEREST_EDITION := VANILLA
+MIST_EDITION := VANILLA
 endif
 
 # Set all versions
 BUILD_DATE := $(shell date -u +%Y%m%d)
 BUILD_TIME := $(shell date -u +%H%M)
-EVEREST_BUILD_VERSION := $(EVEREST_NUM_VER)-$(EVEREST_CODENAME)
-EVEREST_VERSION := $(EVEREST_BUILD_VERSION)-$(EVEREST_BUILD)-$(EVEREST_BUILD_TYPE)-$(EVEREST_EDITION)-$(BUILD_TIME)-$(BUILD_DATE)
-ROM_FINGERPRINT := everest/$(PLATFORM_VERSION)/$(TARGET_PRODUCT_SHORT)/$(BUILD_TIME)
-EVEREST_DISPLAY_VERSION := $(EVEREST_VERSION)
-RELEASE_TYPE := $(EVEREST_BUILD_TYPE)
+MIST_BUILD_VERSION := $(MIST_NUM_VER)-$(MIST_CODENAME)
+MIST_VERSION := $(MIST_BUILD_VERSION)-$(MIST_BUILD)-$(MIST_BUILD_TYPE)-$(MIST_EDITION)-$(BUILD_TIME)-$(BUILD_DATE)
+ROM_FINGERPRINT := mist/$(PLATFORM_VERSION)/$(TARGET_PRODUCT_SHORT)/$(BUILD_TIME)
+MIST_DISPLAY_VERSION := $(MIST_VERSION)
+RELEASE_TYPE := $(MIST_BUILD_TYPE)
 
-# EverestOS System Version
+# MistOS System Version
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.everest.base.codename=$(EVEREST_CODENAME) \
-    ro.everest.base.version=$(EVEREST_NUM_VER) \
-    ro.everest.build.version=$(EVEREST_BUILD_VERSION) \
-    ro.everest.build.date=$(BUILD_DATE) \
-    ro.everest.buildtype=$(EVEREST_BUILD_TYPE) \
-    ro.everest.display.version=$(EVEREST_DISPLAY_VERSION) \
-    ro.everest.fingerprint=$(ROM_FINGERPRINT) \
-    ro.everest.version=$(EVEREST_VERSION) \
-    ro.modversion=$(EVEREST_VERSION) \
-    ro.everestos.maintainer=$(EVEREST_MAINTAINER) \
-    ro.everest.edition=$(EVEREST_EDITION)
+    ro.mist.base.codename=$(MIST_CODENAME) \
+    ro.mist.base.version=$(MIST_NUM_VER) \
+    ro.mist.build.version=$(MIST_BUILD_VERSION) \
+    ro.mist.build.date=$(BUILD_DATE) \
+    ro.mist.buildtype=$(MIST_BUILD_TYPE) \
+    ro.mist.display.version=$(MIST_DISPLAY_VERSION) \
+    ro.mist.fingerprint=$(ROM_FINGERPRINT) \
+    ro.mist.version=$(MIST_VERSION) \
+    ro.modversion=$(MIST_VERSION) \
+    ro.mistos.maintainer=$(MIST_MAINTAINER) \
+    ro.mist.edition=$(MIST_EDITION)

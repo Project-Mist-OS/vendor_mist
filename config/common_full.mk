@@ -1,5 +1,5 @@
-# Inherit common Everest stuff
-$(call inherit-product, vendor/everest/config/common_mobile.mk)
+# Inherit common Mist stuff
+$(call inherit-product, vendor/mist/config/common_mobile.mk)
 
 PRODUCT_SIZE := full
 

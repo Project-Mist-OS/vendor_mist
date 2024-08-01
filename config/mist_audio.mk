@@ -1,10 +1,10 @@
 #
-# Everest Audio Files
+# Mist Audio Files
 #
 
-ALARM_PATH := vendor/everest/prebuilt/common/media/audio/alarms
-NOTIFICATION_PATH := vendor/everest/prebuilt/common/media/audio/notifications
-RINGTONE_PATH := vendor/everest/prebuilt/common/media/audio/ringtones
+ALARM_PATH := vendor/mist/prebuilt/common/media/audio/alarms
+NOTIFICATION_PATH := vendor/mist/prebuilt/common/media/audio/notifications
+RINGTONE_PATH := vendor/mist/prebuilt/common/media/audio/ringtones
 
 # Alarms
 PRODUCT_COPY_FILES += \

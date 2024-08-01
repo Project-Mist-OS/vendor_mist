@@ -1,16 +1,16 @@
-function __print_everest_functions_help() {
+function __print_mist_functions_help() {
 cat <<EOF
-Additional EverestOS functions:
+Additional MistOS functions:
 - cout:            Changes directory to out.
 - mmp:             Builds all of the modules in the current directory and pushes them to the device.
 - mmap:            Builds all of the modules in the current directory and its dependencies, then pushes the package to the device.
 - mmmp:            Builds all of the modules in the supplied directories and pushes them to the device.
-- everestgerrit:   A Git wrapper that fetches/pushes patch from/to EverestOS Gerrit Review.
-- everestrebase:   Rebase a Gerrit change and push it again.
-- everestremote:   Add git remote for EverestOS Gerrit Review.
+- mistgerrit:   A Git wrapper that fetches/pushes patch from/to MistOS Gerrit Review.
+- mistrebase:   Rebase a Gerrit change and push it again.
+- mistremote:   Add git remote for MistOS Gerrit Review.
 - aospremote:      Add git remote for matching AOSP repository.
 - cloremote:       Add git remote for matching CodeLinaro repository.
-- githubremote:    Add git remote for EverestOS Github.
+- githubremote:    Add git remote for MistOS Github.
 - mka:             Builds using SCHED_BATCH on all processors.
 - mkap:            Builds the module(s) using mka and pushes them to the device.
 - cmka:            Cleans and builds using mka.
@@ -69,7 +69,7 @@ function breakfast()
 {
     target=$1
     local variant=$2
-    source ${ANDROID_BUILD_TOP}/vendor/everest/vars/aosp_target_release
+    source ${ANDROID_BUILD_TOP}/vendor/mist/vars/aosp_target_release
 
     if [ $# -eq 0 ]; then
         # No arguments, so let's have the full menu
@@ -79,12 +79,12 @@ function breakfast()
             # A buildtype was specified, assume a full device name
             lunch $target
         else
-            # This is probably just the Everest model name
+            # This is probably just the Mist model name
             if [ -z "$variant" ]; then
                 variant="userdebug"
             fi
 
-            lunch everest_$target-$aosp_target_release-$variant
+            lunch mist_$target-$aosp_target_release-$variant
         fi
     fi
     return $?
@@ -95,7 +95,7 @@ alias bib=breakfast
 function eat()
 {
     if [ "$OUT" ] ; then
-        ZIPPATH=`ls -tr "$OUT"/everest-*.zip | tail -1`
+        ZIPPATH=`ls -tr "$OUT"/mist-*.zip | tail -1`
         if [ ! -f $ZIPPATH ] ; then
             echo "Nothing to eat"
             return 1
@@ -103,13 +103,13 @@ function eat()
         echo "Waiting for device..."
         adb wait-for-device-recovery
         echo "Found device"
-        if (adb shell getprop ro.everest.device | grep -q "$EVEREST_BUILD"); then
+        if (adb shell getprop ro.mist.device | grep -q "$MIST_BUILD"); then
             echo "Rebooting to sideload for install"
             adb reboot sideload-auto-reboot
             adb wait-for-sideload
             adb sideload $ZIPPATH
         else
-            echo "The connected device does not appear to be $EVEREST_BUILD, run away!"
+            echo "The connected device does not appear to be $MIST_BUILD, run away!"
         fi
         return $?
     else
@@ -233,43 +233,43 @@ function dddclient()
    fi
 }
 
-function everestremote()
+function mistremote()
 {
     if ! git rev-parse --git-dir &> /dev/null
     then
         echo ".git directory not found. Please run this from the root directory of the Android repository you wish to set up."
         return 1
     fi
-    git remote rm everest 2> /dev/null
+    git remote rm mist 2> /dev/null
     local REMOTE=$(git config --get remote.github.projectname)
-    local EVEREST="true"
+    local MIST="true"
     if [ -z "$REMOTE" ]
     then
         REMOTE=$(git config --get remote.aosp.projectname)
-        EVEREST="false"
+        MIST="false"
     fi
     if [ -z "$REMOTE" ]
     then
         REMOTE=$(git config --get remote.clo.projectname)
-        EVEREST="false"
+        MIST="false"
     fi
 
-    if [ $EVEREST = "false" ]
+    if [ $MIST = "false" ]
     then
         local PROJECT=$(echo $REMOTE | sed -e "s#platform/#android/#g; s#/#_#g")
-        local PFX="EverestOS/"
+        local PFX="MistOS/"
     else
         local PROJECT=$REMOTE
     fi
 
-    local EVEREST_USER=$(git config --get review.review.everestos.org.username)
-    if [ -z "$EVEREST_USER" ]
+    local MIST_USER=$(git config --get review.review.mistos.org.username)
+    if [ -z "$MIST_USER" ]
     then
-        git remote add everest ssh://review.everestos.org:29418/$PFX$PROJECT
+        git remote add mist ssh://review.mistos.org:29418/$PFX$PROJECT
     else
-        git remote add everest ssh://$EVEREST_USER@review.everestos.org:29418/$PFX$PROJECT
+        git remote add mist ssh://$MIST_USER@review.mistos.org:29418/$PFX$PROJECT
     fi
-    echo "Remote 'everest' created"
+    echo "Remote 'mist' created"
 }
 
 function aospremote()
@@ -349,7 +349,7 @@ function githubremote()
 
     local PROJECT=$(echo $REMOTE | sed -e "s#platform/#android/#g; s#/#_#g")
 
-    git remote add github http://github.com/ProjectEverest/$PROJECT
+    git remote add github http://github.com/ProjectMist/$PROJECT
     echo "Remote 'github' created"
 }
 
@@ -380,14 +380,14 @@ function installboot()
     adb wait-for-device-recovery
     adb root
     adb wait-for-device-recovery
-    if (adb shell getprop ro.everest.device | grep -q "$EVEREST_BUILD");
+    if (adb shell getprop ro.mist.device | grep -q "$MIST_BUILD");
     then
         adb push $OUT/boot.img /cache/
         adb shell dd if=/cache/boot.img of=$PARTITION
         adb shell rm -rf /cache/boot.img
         echo "Installation complete."
     else
-        echo "The connected device does not appear to be $EVEREST_BUILD, run away!"
+        echo "The connected device does not appear to be $MIST_BUILD, run away!"
     fi
 }
 
@@ -418,14 +418,14 @@ function installrecovery()
     adb wait-for-device-recovery
     adb root
     adb wait-for-device-recovery
-    if (adb shell getprop ro.everest.device | grep -q "$EVEREST_BUILD");
+    if (adb shell getprop ro.mist.device | grep -q "$MIST_BUILD");
     then
         adb push $OUT/recovery.img /cache/
         adb shell dd if=/cache/recovery.img of=$PARTITION
         adb shell rm -rf /cache/recovery.img
         echo "Installation complete."
     else
-        echo "The connected device does not appear to be $EVEREST_BUILD, run away!"
+        echo "The connected device does not appear to be $MIST_BUILD, run away!"
     fi
 }
 
@@ -445,13 +445,13 @@ function makerecipe() {
     if [ "$REPO_REMOTE" = "github" ]
     then
         pwd
-        everestremote
-        git push everest HEAD:refs/heads/'$1'
+        mistremote
+        git push mist HEAD:refs/heads/'$1'
     fi
     '
 }
 
-function everestgerrit() {
+function mistgerrit() {
     if [ "$(basename $SHELL)" = "zsh" ]; then
         # zsh does not define FUNCNAME, derive from funcstack
         local FUNCNAME=$funcstack[1]
@@ -461,7 +461,7 @@ function everestgerrit() {
         $FUNCNAME help
         return 1
     fi
-    local user=`git config --get review.review.everestos.org.username`
+    local user=`git config --get review.review.mistos.org.username`
     local review=`git config --get remote.github.review`
     local project=`git config --get remote.github.projectname`
     local command=$1
@@ -497,7 +497,7 @@ EOF
             case $1 in
                 __cmg_*) echo "For internal use only." ;;
                 changes|for)
-                    if [ "$FUNCNAME" = "everestgerrit" ]; then
+                    if [ "$FUNCNAME" = "mistgerrit" ]; then
                         echo "'$FUNCNAME $1' is deprecated."
                     fi
                     ;;
@@ -590,7 +590,7 @@ EOF
                 ${local_branch}:refs/for/$remote_branch || return 1
             ;;
         changes|for)
-            if [ "$FUNCNAME" = "everestgerrit" ]; then
+            if [ "$FUNCNAME" = "mistgerrit" ]; then
                 echo >&2 "'$FUNCNAME $command' is deprecated."
             fi
             ;;
@@ -689,15 +689,15 @@ EOF
     esac
 }
 
-function everestrebase() {
+function mistrebase() {
     local repo=$1
     local refs=$2
     local pwd="$(pwd)"
     local dir="$(gettop)/$repo"
 
     if [ -z $repo ] || [ -z $refs ]; then
-        echo "EverestOS Gerrit Rebase Usage: "
-        echo "      everestrebase <path to project> <patch IDs on Gerrit>"
+        echo "MistOS Gerrit Rebase Usage: "
+        echo "      mistrebase <path to project> <patch IDs on Gerrit>"
         echo "      The patch IDs appear on the Gerrit commands that are offered."
         echo "      They consist on a series of numbers and slashes, after the text"
         echo "      refs/changes. For example, the ID in the following command is 26/8126/2"
@@ -718,7 +718,7 @@ function everestrebase() {
     echo "Bringing it up to date..."
     repo sync .
     echo "Fetching change..."
-    git fetch "http://review.everestos.org/p/$repo" "refs/changes/$refs" && git cherry-pick FETCH_HEAD
+    git fetch "http://review.mistos.org/p/$repo" "refs/changes/$refs" && git cherry-pick FETCH_HEAD
     if [ "$?" != "0" ]; then
         echo "Error cherry-picking. Not uploading!"
         return
@@ -802,7 +802,7 @@ function dopush()
         echo "Device Found."
     fi
 
-    if (adb shell getprop ro.everest.device | grep -q "$EVEREST_BUILD") || [ "$FORCE_PUSH" = "true" ];
+    if (adb shell getprop ro.mist.device | grep -q "$MIST_BUILD") || [ "$FORCE_PUSH" = "true" ];
     then
     # retrieve IP and PORT info if we're using a TCP connection
     TCPIPPORT=$(adb devices \
@@ -921,7 +921,7 @@ EOF
     rm -f $OUT/.log
     return 0
     else
-        echo "The connected device does not appear to be $EVEREST_BUILD, run away!"
+        echo "The connected device does not appear to be $MIST_BUILD, run away!"
     fi
 }
 
@@ -934,7 +934,7 @@ alias cmkap='dopush cmka'
 
 function repopick() {
     T=$(gettop)
-    python3 $T/vendor/everest/build/tools/repopick.py $@
+    python3 $T/vendor/mist/build/tools/repopick.py $@
 }
 
 function sort-blobs-list() {
@@ -946,7 +946,7 @@ function fixup_common_out_dir() {
     common_out_dir=$(get_build_var OUT_DIR)/target/common
     target_device=$(get_build_var TARGET_DEVICE)
     common_target_out=common-${target_device}
-    if [ ! -z $EVEREST_FIXUP_COMMON_OUT ]; then
+    if [ ! -z $MIST_FIXUP_COMMON_OUT ]; then
         if [ -d ${common_out_dir} ] && [ ! -L ${common_out_dir} ]; then
             mv ${common_out_dir} ${common_out_dir}-${target_device}
             ln -s ${common_target_out} ${common_out_dir}

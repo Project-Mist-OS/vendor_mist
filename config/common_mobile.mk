@@ -1,14 +1,14 @@
-# Inherit common mobile Everest stuff
-$(call inherit-product, vendor/everest/config/common.mk)
+# Inherit common mobile Mist stuff
+$(call inherit-product, vendor/mist/config/common.mk)
 
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
 
-ifneq ($(WITH_EVEREST_CHARGER),false)
+ifneq ($(WITH_MIST_CHARGER),false)
 PRODUCT_PACKAGES += \
-    everest_charger_animation \
-    everest_charger_animation_vendor
+    mist_charger_animation \
+    mist_charger_animation_vendor
 endif
 
 # Media

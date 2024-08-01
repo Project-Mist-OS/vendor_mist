@@ -6,12 +6,12 @@ import (
 	"android/soong/android"
 )
 
-func everestExpandVariables(ctx android.ModuleContext, in string) string {
-	everestVars := ctx.Config().VendorConfig("everestVarsPlugin")
+func mistExpandVariables(ctx android.ModuleContext, in string) string {
+	mistVars := ctx.Config().VendorConfig("mistVarsPlugin")
 
 	out, err := android.Expand(in, func(name string) (string, error) {
-		if everestVars.IsSet(name) {
-			return everestVars.String(name), nil
+		if mistVars.IsSet(name) {
+			return mistVars.String(name), nil
 		}
 		// This variable is not for us, restore what the original
 		// variable string will have looked like for an Expand
