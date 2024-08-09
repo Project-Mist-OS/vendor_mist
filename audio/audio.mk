@@ -15,9 +15,9 @@
 #
 
 PRODUCT_SOONG_NAMESPACES += \
-    vendor/everest/audio
+    vendor/mist/audio
 
-AUDIO_SOURCE_DIR := vendor/everest/audio
+AUDIO_SOURCE_DIR := vendor/mist/audio
 AUDIO_DEST_DIR := $(TARGET_COPY_OUT_PRODUCT)/media/audio
 
 PRODUCT_COPY_FILES += \
