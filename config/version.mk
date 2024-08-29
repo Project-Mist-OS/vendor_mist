@@ -15,8 +15,8 @@
 # limitations under the License.
 
 # Versioning System
-MIST_CODENAME := Fuji
-MIST_NUM_VER := 2.7
+MIST_CODENAME := SawTooth
+MIST_NUM_VER := 2.8
 
 TARGET_PRODUCT_SHORT := $(subst mist_,,$(MIST_BUILD_TYPE))
 
