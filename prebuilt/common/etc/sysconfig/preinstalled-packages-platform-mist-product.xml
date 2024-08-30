@@ -117,7 +117,7 @@
         <do-not-install-in user-type="android.os.usertype.profile.CLONE" />
     </install-in-user-type>
     <!-- Updater -->
-    <install-in-user-type package="org.evolution.updater">
+    <install-in-user-type package="com.mist.updater">
         <install-in user-type="FULL" />
         <install-in user-type="PROFILE" />
         <do-not-install-in user-type="android.os.usertype.profile.CLONE" />
