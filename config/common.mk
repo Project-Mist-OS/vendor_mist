@@ -66,8 +66,10 @@ endif
 WITH_GAPPS ?= true
 ifeq ($(WITH_GAPPS), true)
 $(call inherit-product-if-exists, vendor/gms/products/gms.mk)
+PRODUCT_PACKAGES += OTAGapps
 else
 include vendor/mist/config/vanilla.mk
+PRODUCT_PACKAGES += OTAVanilla
 endif
 
 # Gboard side padding
