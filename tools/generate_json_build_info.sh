@@ -16,7 +16,9 @@ if [ "$1" ]; then
             fi
             file_size=$(stat -c%s $file_path)
             md5=$(md5sum $file_path | awk '{ print $1 }');
-            datetime=$(grep ro\.build\.date\.utc ./out/target/product/$DEVICE/system/build.prop | cut -d= -f2);
+            #datetime=$(grep ro\.build\.date\.utc ./out/target/product/$DEVICE/system/build.prop | cut -d= -f2);
+            datetime=$(($(date +%s%N) / 1000000))
+            echo "Current build time: $current_time_ms ms"
             id=$(cat "$file_path.sha256sum" | cut -d' ' -f1);
             build_type=$(grep ro\.mist\.buildtype ./out/target/product/$DEVICE/system/build.prop | cut -d= -f2);
             base_version=$(grep ro\.mist\.base\.version ./out/target/product/$DEVICE/system/build.prop | cut -d= -f2);
