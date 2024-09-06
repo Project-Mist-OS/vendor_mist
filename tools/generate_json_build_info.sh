@@ -20,7 +20,7 @@ if [ "$1" ]; then
             id=$(cat "$file_path.sha256sum" | cut -d' ' -f1);
             build_type=$(grep ro\.mist\.buildtype ./out/target/product/$DEVICE/system/build.prop | cut -d= -f2);
             base_version=$(grep ro\.mist\.base\.version ./out/target/product/$DEVICE/system/build.prop | cut -d= -f2);
-            link="https://sourceforge.net/projects/project-mistos/files/${DEVICE}/${file_name}/download"
+            link="https://sourceforge.net/projects/project-mistos/files/Android14/${DEVICE}/${file_name}/download"
             echo "{" > $file_path.json
             echo "  \"response\": [" >> $file_path.json
             echo "    {" >> $file_path.json
