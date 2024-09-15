@@ -15,8 +15,8 @@
 # limitations under the License.
 
 # Versioning System
-MIST_CODENAME := Cyrix
-MIST_NUM_VER := 2.9
+MIST_CODENAME := EOL
+MIST_NUM_VER := 2.9.1
 
 TARGET_PRODUCT_SHORT := $(subst mist_,,$(MIST_BUILD_TYPE))
 
