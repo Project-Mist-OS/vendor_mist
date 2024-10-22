@@ -199,6 +199,13 @@
         <!-- Enable smart actions in the clipboard overlay -->
         <item>systemui/clipboard_overlay_show_actions=true</item>
 
+        <!-- USAP Pool -->
+        <item>runtime_native/usap_pool_enabled=true</item>
+        <item>runtime_native/usap_pool_refill_delay_ms=3000</item>
+        <item>runtime_native/usap_pool_size_max=10</item>
+        <item>runtime_native/usap_pool_size_min=1</item>
+        <item>runtime_native/usap_refill_threshold=5</item>
+
         <!-- Globally enable the new photo picker -->
         <item>storage_native_boot/take_over_get_content=true</item>
 
@@ -308,6 +315,8 @@
         <item>device_personalization_services/NotificationAssistant__max_importance_variance=0.5</item>
 
         <!-- Smartspace -->
+        <item>device_personalization_services/Cell__enable_cell=true</item>
+        <item>device_personalization_services/Cell__enable_smartspace_events=true</item>
         <item>device_personalization_services/Echo__smartspace_dedupe_fast_pair_notification=true</item>
         <item>device_personalization_services/Echo__smartspace_doorbell_aiai_loading_screen=false</item>
         <item>device_personalization_services/Echo__smartspace_doorbell_allowlist_packages=com.nest.android, com.google.android.apps.chromecast.app, com.ringapp</item>
@@ -353,10 +362,13 @@
         <item>device_personalization_services/Echo_smartspace__enable_hotel_smartspace_aiai=true</item>
         <item>device_personalization_services/Echo_smartspace__smartspace_enable_daily_forecast=true</item>
         <item>device_personalization_services/Echo_smartspace__smartspace_enable_timely_reminder=true</item>
+        <item>device_personalization_services/EchoSmartspace__check_notification_visibility=true</item>
         <item>device_personalization_services/EchoSmartspace__doorbell_when_for_update_time=true</item>
+        <item>device_personalization_services/EchoSmartspace__enable_add_contextual_feedback_button_on_long_press=false</item>
+        <item>device_personalization_services/EchoSmartspace__enable_add_internal_feedback_button=true</item>
         <item>device_personalization_services/EchoSmartspace__enable_agsa_settings_read=true</item>
         <item>device_personalization_services/EchoSmartspace__enable_cross_feature_rank_dedup_twiddler=true</item>
-        <item>device_personalization_services/EchoSmartspace__enable_dimensional_logging=true</item>
+        <item>device_personalization_services/EchoSmartspace__enable_dimensional_logging=false</item>
         <item>device_personalization_services/EchoSmartspace__enable_encode_subcard_into_smartspace_target_id=true</item>
         <item>device_personalization_services/EchoSmartspace__enable_fitbit_notifications=true</item>
         <item>device_personalization_services/EchoSmartspace__enable_flight_landing_smartspace_aiai=true</item>
@@ -365,11 +377,14 @@
         <item>device_personalization_services/EchoSmartspace__enable_optin_bedtime_adjustment_provider=true</item>
         <item>device_personalization_services/EchoSmartspace__enable_predictor_expiration=true</item>
         <item>device_personalization_services/EchoSmartspace__enable_ring_channels_regex=true</item>
+        <item>device_personalization_services/EchoSmartspace__enable_ring_using_ui_template=true</item>
         <item>device_personalization_services/EchoSmartspace__enable_travel_features_type_merge=true</item>
         <item>device_personalization_services/EchoSmartspace__enable_weather_data_extras=true</item>
         <item>device_personalization_services/EchoSmartspace__ring_channels_regex=4_ding_channel_notification\d+</item>
         <item>device_personalization_services/EchoSmartspace__ring_lockscreen_delay_seconds=0</item>
         <item>device_personalization_services/EchoSmartspace__ring_on_aod_only=true</item>
+        <item>device_personalization_services/EchoSmartspace__runtastic_check_pause_action=true</item>
+        <item>device_personalization_services/EchoSmartspace__runtastic_is_ongoing_default_true=true</item>
         <item>device_personalization_services/EchoSmartspace__smartspace_enable_cross_device_alarm=true</item>
         <item>device_personalization_services/EchoSmartspace__smartspace_enable_daily_forecast=true</item>
         <item>device_personalization_services/EchoSmartspace__smartspace_enable_timely_reminder=true</item>
