@@ -1,2 +1,2 @@
-# Include LineageOS versions
-include $(TOPDIR)vendor/lineage/build/core/main_version.mk
+# Include MistOS versions
+include $(TOPDIR)vendor/mist/build/core/main_version.mk
