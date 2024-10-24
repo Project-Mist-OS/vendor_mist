@@ -96,8 +96,8 @@ PRODUCT_PACKAGES += \
     build-manifest
     
 # MistOS packages
-PRODUCT_PACKAGES += \
-    Updater
+#PRODUCT_PACKAGES += \
+#    Updater
 
 PRODUCT_COPY_FILES += \
     vendor/mist/prebuilt/common/etc/init/init.mist-updater.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.mist-updater.rc
@@ -166,8 +166,8 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
 endif
 
 # Root
-PRODUCT_PACKAGES += \
-    adb_root
+#PRODUCT_PACKAGES += \
+#    adb_root
 ifneq ($(TARGET_BUILD_VARIANT),user)
 ifeq ($(WITH_SU),true)
 PRODUCT_PACKAGES += \
