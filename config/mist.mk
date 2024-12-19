@@ -12,6 +12,10 @@ ifeq ($(WITH_GMS),true)
   endif
 endif
 
+# Extra packages
+PRODUCT_PACKAGES += \
+    GameSpace
+
 # Cloned app exemption
 PRODUCT_COPY_FILES += \
     vendor/lineage/prebuilt/common/etc/sysconfig/preinstalled-packages-platform-mist-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/preinstalled-packages-platform-mist-product.xml
