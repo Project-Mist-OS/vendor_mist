@@ -73,3 +73,7 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
     persist.arm64.memtag.app.com.google.android.bluetooth=off \
     persist.arm64.memtag.app.com.android.nfc=off \
     persist.arm64.memtag.process.system_server=off
+
+BYPASS_CHARGE_SUPPORTED ?= false
+PRODUCT_SYSTEM_PROPERTIES += \
+    persist.sys.battery_bypass_supported=$(BYPASS_CHARGE_SUPPORTED)
