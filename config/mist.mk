@@ -19,6 +19,7 @@ PRODUCT_PACKAGES += \
    AppDataBackup \
    AxSandbox \
    BatteryStatsViewer \
+   FossifyGallery \
    GameSpace \
    Updater \
    OmniJaws \
