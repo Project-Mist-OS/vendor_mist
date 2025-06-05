@@ -141,6 +141,12 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PihooksGmsFp="google/husky_beta/husky:16/BP31.250610.009/13905196:user/release-keys" \
     PihooksGmsModel="Pixel 8 Pro"
 
+PRODUCT_PACKAGES += \
+    CertifiedKeyboxOverlay
+
+# Bypass Charging
+BYPASS_CHARGE_SUPPORTED ?= false
+
 MIST_CPU_SMALL_CORES ?= 0,1,2,3
 MIST_CPU_BIG_CORES ?= 4,5,6,7
 MIST_ALL_CORES ?= 0-7
@@ -150,8 +156,6 @@ MIST_CPU_FG ?= 0-7
 MIST_CPU_LIMIT_BG ?= 0-1
 MIST_CPU_LIMIT_UI ?= 0-2
 MIST_CPU_DISPLAY ?= 0-5
-
-BYPASS_CHARGE_SUPPORTED ?= false
 
 DEX2OAT_CORES ?= 0,1,2,3,4,5
 DEX2OAT_THREADS ?= 5
