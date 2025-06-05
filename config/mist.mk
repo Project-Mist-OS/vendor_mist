@@ -31,6 +31,7 @@ endif
 
 # Extra packages
 PRODUCT_PACKAGES += \
+    CertifiedKeyboxOverlay \
     GameSpace \
     OmniJaws \
     OmniStyle
