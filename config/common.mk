@@ -135,14 +135,12 @@ $(call enforce-product-packages-exist-internal,$(lastword $(_include_stack)),pro
 endif
 
 # Bootanimation
-TARGET_INCLUDE_BOOT_ANIMATIONS ?= true
-ifeq ($(TARGET_INCLUDE_BOOT_ANIMATIONS),true)
 include vendor/lineage/bootanimation/prebuilts/prebuilts.mk
-endif
-TARGET_SCREEN_WIDTH ?= 1080
-TARGET_SCREEN_HEIGHT ?= 1920
-PRODUCT_PACKAGES += \
-    bootanimation.zip
+include vendor/lineage/config/bootanimation.mk
+
+# Bootanim
+PRODUCT_COPY_FILES += \
+    vendor/lineage/prebuilt/common/etc/init/init.bootanim.rc:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/init/init.bootanim.rc
 
 # Lineage packages
 ifeq ($(PRODUCT_IS_ATV),)
