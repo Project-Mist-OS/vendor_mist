@@ -6,6 +6,12 @@ $(call inherit-product, vendor/extras/mist.mk)
 # Allow vendor prebuilt repos to exclude themselves from bp scanning
 -include $(sort $(wildcard vendor/*/*/exclude-bp.mk))
 
+# Pixel additions
+ifeq ($(WITH_GMS),true)
+$(call inherit-product, vendor/google/overlays/ThemeIcons/config.mk)
+$(call inherit-product, vendor/pixel-style/config/common.mk)
+endif
+
 PRODUCT_BRAND ?= MistOS
 
 ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
@@ -148,7 +154,6 @@ PRODUCT_COPY_FILES += \
 
 # Config
 PRODUCT_PACKAGES += \
-    SimpleDeviceConfig \
     SimpleSettingsConfig
 
 # Extra tools in Lineage
@@ -204,8 +209,10 @@ PRODUCT_PACKAGES += \
     rsync
 
 # Storage manager
+ifeq ($(WITH_GMS),false)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.storage_manager.enabled=true
+endif
 
 # These packages are excluded from user builds
 PRODUCT_PACKAGES_DEBUG += \
@@ -241,14 +248,6 @@ ifeq ($(TARGET_BUILD_VARIANT),userdebug)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     debug.sf.enable_transaction_tracing=false
 endif
-
-# Audio files
-$(call inherit-product, vendor/lineage/audio/audio.mk)
-
-# SetupWizard
-PRODUCT_PRODUCT_PROPERTIES += \
-    setupwizard.theme=glif_v4 \
-    setupwizard.feature.day_night_mode_enabled=true
 
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/lineage/overlay/no-rro
 PRODUCT_PACKAGE_OVERLAYS += \
