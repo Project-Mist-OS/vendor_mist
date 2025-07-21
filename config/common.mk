@@ -7,6 +7,9 @@ $(call inherit-product, vendor/google/overlays/ThemeIcons/config.mk)
 
 PRODUCT_BRAND ?= MistOS
 
+# Allow vendor prebuilt repos to exclude themselves from bp scanning
+-include $(sort $(wildcard vendor/*/*/exclude-bp.mk))
+
 ifeq ($(PRODUCT_GMS_CLIENTID_BASE),)
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     ro.com.google.clientidbase=android-google
