@@ -74,6 +74,9 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
     persist.arm64.memtag.app.com.android.nfc=off \
     persist.arm64.memtag.process.system_server=off
 
+# Other ROM feature flags
 BYPASS_CHARGE_SUPPORTED ?= false
+PERF_ANIM_OVERRIDE ?= false
 PRODUCT_SYSTEM_PROPERTIES += \
+    persist.sys.activity_anim_perf_override=$(PERF_ANIM_OVERRIDE)
     persist.sys.battery_bypass_supported=$(BYPASS_CHARGE_SUPPORTED)
