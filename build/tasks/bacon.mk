@@ -23,6 +23,9 @@ SHA256 := prebuilts/build-tools/path/$(HOST_PREBUILT_TAG)/sha256sum
 $(LINEAGE_TARGET_PACKAGE): $(INTERNAL_OTA_PACKAGE_TARGET)
 	$(hide) mv -f $(INTERNAL_OTA_PACKAGE_TARGET) $(LINEAGE_TARGET_PACKAGE)
 	$(hide) $(SHA256) $(LINEAGE_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(LINEAGE_TARGET_PACKAGE).sha256sum
+	@echo "Creating json OTA..." >&2
+	$(hide) ./vendor/lineage/build/tools/createjson.sh $(TARGET_DEVICE) $(PRODUCT_OUT) $(LINEAGE_VERSION).zip $(MIST_VERSION_BASE) $(MIST_CODENAME) $(MIST_PACKAGE_TYPE) $(MIST_RELEASE_TYPE)
+	$(hide) cp -f $(PRODUCT_OUT)/$(TARGET_DEVICE).json vendor/official_devices/$(MIST_PACKAGE_TYPE)/$(TARGET_DEVICE).json
 	$(hide) rm -rf $(call intermediates-dir-for,PACKAGING,target_files)
 	$(hide) ./vendor/lineage/build/tasks/ascii_output.sh
 	@echo "Package Complete: $(LINEAGE_TARGET_PACKAGE)" >&2
