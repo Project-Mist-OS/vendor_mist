@@ -40,6 +40,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     BtHelper
 
+# Updater
+ifeq ($(MIST_BUILD_TYPE),OFFICIAL)
+PRODUCT_PACKAGES += \
+    Updater
+endif
+
 # Enable blur
 TARGET_ENABLE_BLUR ?= true
 ifeq ($(TARGET_ENABLE_BLUR),true)
