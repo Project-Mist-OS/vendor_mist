@@ -100,3 +100,22 @@ PERF_ANIM_OVERRIDE ?= false
 PRODUCT_SYSTEM_PROPERTIES += \
     persist.sys.activity_anim_perf_override=$(PERF_ANIM_OVERRIDE)
     persist.sys.battery_bypass_supported=$(BYPASS_CHARGE_SUPPORTED)
+
+# Quick Switch
+TARGET_DEFAULT_PIXEL_LAUNCHER ?= false
+ifeq ($(WITH_GMS),true)
+ifeq ($(TARGET_DEFAULT_PIXEL_LAUNCHER), true)
+# Pixel Launcher
+PRODUCT_SYSTEM_PROPERTIES += \
+    persist.sys.default_launcher=1 \
+    persist.sys.quickswitch_pixel_shipped=1
+else
+# Launcher3
+PRODUCT_SYSTEM_PROPERTIES += \
+    persist.sys.default_launcher=0 \
+    persist.sys.quickswitch_pixel_shipped=1
+endif
+else
+PRODUCT_SYSTEM_PROPERTIES += \
+    persist.sys.default_launcher=0
+endif
