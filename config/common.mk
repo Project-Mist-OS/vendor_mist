@@ -320,6 +320,8 @@ PRODUCT_EXTRA_RECOVERY_KEYS += \
 
 include vendor/lineage/config/version.mk
 
+include vendor/lineage/audio/audio.mk
+
 -include vendor/lineage-priv/keys/keys.mk
 
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
