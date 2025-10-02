@@ -3,6 +3,11 @@ $(call inherit-product-if-exists, vendor/extra/product.mk)
 $(call inherit-product, vendor/lineage/config/mist.mk)
 $(call inherit-product, vendor/extras/mist.mk)
 
+# VipeFX
+ifeq ($(TARGET_INCLUDE_VIPERFX),true)
+$(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
+endif
+
 # Allow vendor prebuilt repos to exclude themselves from bp scanning
 -include $(sort $(wildcard vendor/*/*/exclude-bp.mk))
 
