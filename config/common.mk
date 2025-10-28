@@ -7,12 +7,6 @@ $(call inherit-product, vendor/google/overlays/ThemeIcons/config.mk)
 
 PRODUCT_BRAND ?= MistOS
 
-# Low ram profile
-TARGET_USE_LOWRAM_PROFILE ?= false
-ifeq ($(TARGET_USE_LOWRAM_PROFILE),true)
-    $(call inherit-product, vendor/lineage/config/defaults_common.mk)
-endif
-
 # Allow vendor prebuilt repos to exclude themselves from bp scanning
 -include $(sort $(wildcard vendor/*/*/exclude-bp.mk))
 
