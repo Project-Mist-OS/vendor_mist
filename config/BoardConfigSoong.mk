@@ -21,8 +21,16 @@ $(foreach v,$(EXPORT_TO_SOONG),$(eval $(call add_soong_config_var,lineageVarsPlu
 
 # Camera
 ifneq ($(TARGET_CAMERA_OVERRIDE_FORMAT_FROM_RESERVED),)
-    $(error TARGET_CAMERA_OVERRIDE_FORMAT_FROM_RESERVED is deprecated, please migrate to soong_config_set,camera,override_format_from_reserved)
-endif
+SOONG_CONFIG_NAMESPACES += lineageVarsPlugin
+
+SOONG_CONFIG_lineageVarsPlugin :=
+
+define addVar
+  SOONG_CONFIG_lineageVarsPlugin += $(1)
+  SOONG_CONFIG_lineageVarsPlugin_$(1) := $($1)
+endef
+
+$(foreach v,$(EXPORT_TO_SOONG),$(eval $(call addVar,$(v))))
 
 # Libui
 ifneq ($(TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS),)
