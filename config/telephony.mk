@@ -28,3 +28,5 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 # Disable mobile data by default
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.com.android.mobiledata=false
+
+$(call inherit-product, vendor/extras/bcr/bcr.mk)
