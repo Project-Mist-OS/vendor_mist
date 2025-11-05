@@ -44,17 +44,17 @@ endif
 
 
 # Mist Packages
-ifeq ($(WITH_GMS),true)
-  ifeq ($(TARGET_USES_MINI_GAPPS), true)
-    MIST_PACKAGE_TYPE ?= MINI
-  else ifeq ($(TARGET_USES_PICO_GAPPS), true)
-    MIST_PACKAGE_TYPE ?= PICO
-  else
-    MIST_PACKAGE_TYPE ?= GAPPS
-  endif
-else
-  MIST_PACKAGE_TYPE ?= VANILLA
-endif
+#ifeq ($(WITH_GMS),true)
+#  ifeq ($(TARGET_USES_MINI_GAPPS), true)
+#    MIST_PACKAGE_TYPE ?= MINI
+#  else ifeq ($(TARGET_USES_PICO_GAPPS), true)
+#    MIST_PACKAGE_TYPE ?= PICO
+#  else
+#    MIST_PACKAGE_TYPE ?= GAPPS
+#  endif
+#else
+#  MIST_PACKAGE_TYPE ?= VANILLA
+#endif
 
 # Internal version
 LINEAGE_VERSION := MistOS-$(MIST_VERSION_BASE)-$(MIST_CODENAME)-$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(MIST_PACKAGE_TYPE)-$(shell date +%Y%m%d)-$(LINEAGE_BUILD)-$(MIST_BUILD_TYPE)
