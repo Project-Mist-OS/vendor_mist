@@ -149,9 +149,6 @@ PRODUCT_PACKAGES += \
 BYPASS_CHARGE_SUPPORTED ?= false
 PERF_ANIM_OVERRIDE ?= false
 
-MIST_CPU_SMALL_CORES ?= 0,1,2,3
-MIST_CPU_BIG_CORES ?= 4,5,6,7
-MIST_ALL_CORES ?= 0-7
 MIST_CPU_BG ?= 0-2
 MIST_CPU_SYS_BG ?= 0-3
 MIST_CPU_FG ?= 0-7
@@ -173,14 +170,11 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 # AxionOS properties
 PRODUCT_SYSTEM_PROPERTIES += \
-    persist.sys.axion_cpu_big=$(MIST_CPU_BIG_CORES) \
-    persist.sys.axion_cpu_small=$(MIST_CPU_SMALL_CORES) \
     persist.sys.axion_cpu_bg=$(MIST_CPU_BG) \
     persist.sys.axion_cpu_limit_bg=$(MIST_CPU_LIMIT_BG) \
     persist.sys.axion_cpu_sys_bg=$(MIST_CPU_SYS_BG) \
     persist.sys.axion_cpu_fg=$(MIST_CPU_FG) \
     persist.sys.axion_cpu_limit_ui=$(MIST_CPU_LIMIT_UI) \
-    persist.sys.axion_cpu_unlimit_ui=$(MIST_ALL_CORES) \
     persist.sys.axion_cpu_display=$(MIST_CPU_DISPLAY) \
     persist.sys.battery_bypass_supported=$(BYPASS_CHARGE_SUPPORTED) \
     persist.sys.activity_anim_perf_override=$(PERF_ANIM_OVERRIDE)
