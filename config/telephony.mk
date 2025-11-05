@@ -33,4 +33,7 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.com.android.mobiledata=false
 
+WITH_BCR ?= false
+ifeq ($(WITH_BCR),true)
 $(call inherit-product, vendor/extras/bcr/bcr.mk)
+endif
