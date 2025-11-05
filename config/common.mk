@@ -140,7 +140,6 @@ PRODUCT_PACKAGES += \
 WITH_GMS := true
 ifeq ($(WITH_GMS),true)
 $(call inherit-product, vendor/google/overlays/ThemeIcons/config.mk)
-$(call inherit-product, vendor/gms/products/gms.mk)
 endif
 
 # Lineage packages
