@@ -4,6 +4,7 @@ $(call inherit-product, vendor/fontbox/config.mk)
 $(call inherit-product, vendor/lineage/config/mist.mk)
 $(call inherit-product-if-exists, vendor/extra/product.mk)
 $(call inherit-product, vendor/google/overlays/ThemeIcons/config.mk)
+include vendor/lineage/audio/audio.mk
 
 PRODUCT_BRAND ?= MistOS
 
