@@ -275,10 +275,10 @@ ifeq ($(WITH_GMS),true)
   else
     $(call inherit-product, vendor/gms/gms_full.mk)
     $(call inherit-product, vendor/pixel-style/config/common.mk)
-    MIST_PACKAGE_TYPE := GApps
+    MIST_PACKAGE_TYPE := GAPPS
   endif
 else
-    MIST_PACKAGE_TYPE := Vanilla
+    MIST_PACKAGE_TYPE := VANILLA
 endif
 
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/lineage/overlay/no-rro
