@@ -43,7 +43,7 @@ if [ -f $existingOTAjson ]; then
 	md5=`md5sum "$2/$3" | cut -d' ' -f1`
 	sha256=`sha256sum "$2/$3" | cut -d' ' -f1`
 	size=`stat -c "%s" "$2/$3"`
-	buildtype=$7
+	buildtype=$6
 	forum=`grep -n "\"forum\"" $existingOTAjson | cut -d ":" -f 4 | sed 's/"//g' | sed 's/,//g' | xargs`
 	if [ ! -z "$forum" ]; then
 		forum="https:"$forum
@@ -88,6 +88,7 @@ else
 	version=$4-$5
 	download="https://sourceforge.net/projects/project-mistos/files/Android16/$1/$3/download"
 	buildprop=$2/system/build.prop
+        buildtype=$6
 	linenr=`grep -n "ro.system.build.date.utc" $buildprop | cut -d':' -f1`
 	timestamp=`sed -n $linenr'p' < $buildprop | cut -d'=' -f2`
 	md5=`md5sum "$2/$3" | cut -d' ' -f1`
@@ -107,7 +108,7 @@ else
 			"sha256": "'$sha256'",
 			"size": '$size',
 			"version": "'$version'",
-			"buildtype": "''",
+			"buildtype": "'$buildtype'",
 			"forum": "''",
 			"recovery": "''",
 			"paypal": "''",

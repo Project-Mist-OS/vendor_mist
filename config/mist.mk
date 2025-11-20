@@ -176,7 +176,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 # UDFPS properties
 PRODUCT_SYSTEM_PROPERTIES += \
-    mist_udfps_custom=$(TARGET_CUSTOM_UDFPS)
+    mist_udfps_custom=$(TARGET_HAS_UDFPS)
 
 # AxionOS properties
 PRODUCT_SYSTEM_PROPERTIES += \
