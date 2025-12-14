@@ -28,6 +28,15 @@ import urllib.request
 
 from xml.etree import ElementTree
 
+def github_request(url):
+    req = urllib.request.Request(url)
+    token = os.getenv("GITHUB_TOKEN")
+    if token:
+        req.add_header("Authorization", f"Bearer {token}")
+    req.add_header("Accept", "application/vnd.github+json")
+    return req
+
+
 dryrun = os.getenv('ROOMSERVICE_DRYRUN') == "true"
 if dryrun:
     print("Dry run roomservice, no change will be made.")
@@ -45,22 +54,36 @@ except:
     device = product
 
 if not depsonly:
-    print("Device %s not found. Attempting to retrieve device repository from LineageOS Github (http://github.com/LineageOS)." % device)
+    print("Device %s not found. Attempting to retrieve device repository from MistOS-Devices Github (http://github.com/MistOS-Devices)." % device)
 
 repositories = []
 
 if not depsonly:
-    githubreq = urllib.request.Request("https://raw.githubusercontent.com/LineageOS/mirror/main/default.xml")
-    try:
-        result = ElementTree.fromstring(urllib.request.urlopen(githubreq, timeout=10).read().decode())
-    except urllib.error.URLError:
-        print("Failed to fetch data from GitHub")
-        sys.exit(1)
-    except ValueError:
-        print("Failed to parse return data from GitHub")
-        sys.exit(1)
-    for res in result.findall('.//project'):
-        repositories.append(res.attrib['name'][10:])
+    queries = [
+        f"device_{device} user:MistOS-Devices",
+        f"android_device_{device} user:MistOS-Devices",
+    ]
+
+    seen = set()
+
+    for q in queries:
+        url = "https://api.github.com/search/repositories?q=" + urllib.parse.quote(q)
+
+        try:
+            githubreq = github_request(url)
+            data = json.loads(urllib.request.urlopen(githubreq, timeout=15).read().decode())
+        except urllib.error.HTTPError as e:
+            print("GitHub HTTP error:", e.code, e.reason)
+            continue
+        except urllib.error.URLError as e:
+            print("GitHub URL error:", e.reason)
+            continue
+
+        for item in data.get("items", []):
+            name = item["name"]
+            if name not in seen:
+                repositories.append(name)
+                seen.add(name)
 
 local_manifests = r'.repo/local_manifests'
 if not os.path.exists(local_manifests): os.makedirs(local_manifests)
@@ -115,7 +138,7 @@ def get_from_manifest(devicename):
             lm = ElementTree.Element("manifest")
 
         for localpath in lm.findall("project"):
-            if re.search("android_device_.*_%s$" % device, localpath.get("name")):
+            if re.search(r"(android_)?device_.*_%s$" % device, localpath.get("name")):
                 return localpath.get("path")
 
     return None
@@ -172,26 +195,46 @@ def add_to_manifest(repositories):
         repo_revision = repository['branch']
         print('Checking if %s is fetched from %s' % (repo_target, repo_name))
         if is_in_manifest(repo_target):
-            print('LineageOS/%s already fetched to %s' % (repo_name, repo_target))
+            print('MistOS-Devices/%s already fetched to %s' % (repo_name, repo_target))
             continue
 
-        project = ElementTree.Element("project", attrib = {
+        repo_remote = repository.get("remote")
+        repo_name_raw = repo_name
+
+        # Determine project name
+        if "/" in repo_name_raw:
+            # Fully qualified repo (Org/Repo)
+            project_name = repo_name_raw
+        else:
+            # Short repo name → assume MistOS-Devices
+            project_name = f"MistOS-Devices/{repo_name_raw}"
+
+        # Determine remote
+        project_remote = repo_remote if repo_remote else "github"
+
+        project_attrib = {
             "path": repo_target,
-            "remote": "github",
-            "name": "LineageOS/%s" % repo_name,
-            "revision": repo_revision })
-        if repo_remote := repository.get("remote", None):
-            # aosp- remotes are only used for kernel prebuilts, thus they
-            # don't let you customize clone-depth/revision.
-            if repo_remote.startswith("aosp-"):
-                project.attrib["name"] = repo_name
-                project.attrib["remote"] = repo_remote
-                project.attrib["clone-depth"] = "1"
-                del project.attrib["revision"]
-        if project.attrib.get("revision", None) == get_default_revision():
-            del project.attrib["revision"]
-        print("Adding dependency: %s -> %s" % (project.attrib["name"], project.attrib["path"]))
+            "remote": project_remote,
+            "name": project_name,
+        }
+
+        if repo_revision:
+            project_attrib["revision"] = repo_revision
+
+        project = ElementTree.Element("project", attrib=project_attrib)
+
+        # aosp remotes special case
+        if repo_remote and repo_remote.startswith("aosp-"):
+            project.attrib["clone-depth"] = "1"
+            project.attrib.pop("revision", None)
+
+        # Drop default revision
+        if project.attrib.get("revision") == get_default_revision():
+            project.attrib.pop("revision", None)
+
+        print("Adding dependency:", project.attrib["name"], "->", project.attrib["path"])
         lm.append(project)
+
 
     indent(lm, 0)
     raw_xml = ElementTree.tostring(lm).decode()
@@ -251,7 +294,7 @@ def get_default_or_fallback_revision(repo_name):
 
     try:
         stdout = subprocess.run(
-            ["git", "ls-remote", "-h", "https://:@github.com/LineageOS/" + repo_name],
+            ["git", "ls-remote", "-h", "https://:@github.com/MistOS-Devices/" + repo_name],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
         ).stdout.decode()
@@ -287,10 +330,13 @@ if depsonly:
 
 else:
     for repo_name in repositories:
-        if re.match(r"^android_device_[^_]*_" + device + "$", repo_name):
+        if re.match(r"^(android_)?device_[^_]+_" + device + "$", repo_name):
             print("Found repository: %s" % repo_name)
             
-            manufacturer = repo_name.replace("android_device_", "").replace("_" + device, "")
+            manufacturer = repo_name
+            manufacturer = manufacturer.replace("android_device_", "")
+            manufacturer = manufacturer.replace("device_", "")
+            manufacturer = manufacturer.replace("_" + device, "")
             repo_path = "device/%s/%s" % (manufacturer, device)
             revision = get_default_or_fallback_revision(repo_name)
             if revision == "":
