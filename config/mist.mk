@@ -5,6 +5,7 @@ PRODUCT_PACKAGES += \
     LMOFreeform \
     LMOFreeformSidebar \
     LMOSystemUIClock \
+    AviumLockscreenEdit \
     OmniJaws \
     OmniStyle
 
