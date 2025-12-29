@@ -357,4 +357,34 @@ else:
             print("Done")
             sys.exit()
 
+    # Check the official devices JSON
+    url = "https://raw.githubusercontent.com/MistOS-Devices/official_devices/refs/heads/16/buildDevices.json"
+    try:
+        req = urllib.request.Request(url)
+        data = json.loads(urllib.request.urlopen(req, timeout=15).read().decode())
+        for dev in data.get("devices", []):
+            if dev.get("codename") == device:
+                repo_full = dev["repo"]
+                repo_name = repo_full.split('/')[-1]
+                print("Found repository in official devices: %s" % repo_name)
+                
+                repo_path = repo_name.replace("android_", "").replace("_", "/")
+                revision = get_default_or_fallback_revision(repo_name)
+                if revision == "":
+                    print("No suitable branch found for %s" % repo_name)
+                    break
+
+                device_repository = {'repository':repo_name,'target_path':repo_path,'branch':revision}
+                add_to_manifest([device_repository])
+
+                print("Syncing repository to retrieve project.")
+                os.system('repo sync --force-sync %s' % repo_path)
+                print("Repository synced!")
+
+                fetch_dependencies(repo_path)
+                print("Done")
+                sys.exit()
+    except Exception as e:
+        print("Error fetching official devices JSON:", e)
+
 print("Repository for %s not found in the LineageOS Github repository list. If this is in error, you may need to manually add it to your local_manifests/roomservice.xml." % device)
