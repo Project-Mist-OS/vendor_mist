@@ -289,35 +289,38 @@ def fetch_dependencies(repo_path):
 
 def get_default_or_fallback_revision(repo_name):
     default_revision = get_default_revision()
-    print("Default revision: %s" % default_revision)
+    print("Default revision:", default_revision)
     print("Checking branch info")
 
     try:
-        stdout = subprocess.run(
-            ["git", "ls-remote", "-h", "https://:@github.com/MistOS-Devices/" + repo_name],
+        result = subprocess.run(
+            ["git", "ls-remote", "-h", f"https://github.com/MistOS-Devices/{repo_name}"],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
-        ).stdout.decode()
+            text=True,
+        )
+        stdout = result.stdout.strip()
         branches = [x.split("refs/heads/")[-1] for x in stdout.splitlines()]
-    except:
-        return ""
+    except Exception as e:
+        print("git ls-remote failed:", e)
+        branches = []
 
+    print("Branches found:", branches)
+
+    # 1️⃣ Prefer default revision if present
     if default_revision in branches:
         return default_revision
 
-    if os.getenv('ROOMSERVICE_BRANCHES'):
-        fallbacks = list(filter(bool, os.getenv('ROOMSERVICE_BRANCHES').split(' ')))
-        for fallback in fallbacks:
-            if fallback in branches:
-                print("Using fallback branch: %s" % fallback)
-                return fallback
+    # 2️⃣ TRUST fallback if user explicitly provided it
+    fallbacks = os.getenv("ROOMSERVICE_BRANCHES")
+    if fallbacks:
+        for fallback in fallbacks.split():
+            print("Using fallback branch:", fallback)
+            return fallback
 
-    print("Default revision %s not found in %s. Bailing." % (default_revision, repo_name))
-    print("Branches found:")
-    for branch in branches:
-        print(branch)
-    print("Use the ROOMSERVICE_BRANCHES environment variable to specify a list of fallback branches.")
+    print(f"Default revision {default_revision} not found in {repo_name}. Bailing.")
     return ""
+
 
 if depsonly:
     repo_path = get_from_manifest(device)
