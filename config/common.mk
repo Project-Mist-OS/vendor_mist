@@ -308,3 +308,6 @@ else
     MIST_PACKAGE_TYPE := VANILLA
 endif
 
+# Custom Overlays
+PRODUCT_PACKAGES += \
+    PixelLauncherOverlayCustom
