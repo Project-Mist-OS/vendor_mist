@@ -180,8 +180,9 @@ PRODUCT_PRODUCT_PROPERTIES += \
     persist.sys.display_refresh_rates_list=$(TARGET_SUPPORTED_REFRESH_RATES)
 
 # UDFPS properties
+TARGET_CUSTOM_UDFPS ?= false
 PRODUCT_SYSTEM_PROPERTIES += \
-    mist_udfps_custom=$(TARGET_HAS_UDFPS)
+    persist.sys.udfps.custom=$(TARGET_HAS_UDFPS)
 
 BYPASS_CHARGE_SUPPORTED ?= false
 HBM_SUPPORTED ?= false
