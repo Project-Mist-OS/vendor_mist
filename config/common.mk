@@ -310,10 +310,10 @@ include vendor/lineage/config/version.mk
 WITH_GMS ?= false
 ifeq ($(WITH_GMS),true)
     $(call inherit-product, vendor/gms/products/gms.mk)
-    MIST_PACKAGE_TYPE := GAPPS
+    MIST_PACKAGE_TYPE ?= GAPPS
 else
     # VANILLA BUILD
-    MIST_PACKAGE_TYPE := VANILLA
+    MIST_PACKAGE_TYPE ?= VANILLA
 
 # Custom Overlays
 PRODUCT_PACKAGES += \
