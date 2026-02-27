@@ -309,7 +309,6 @@ include vendor/lineage/config/version.mk
 # GMS
 WITH_GMS ?= false
 ifeq ($(WITH_GMS),true)
-    # GAPPS BUILD
     $(call inherit-product, vendor/gms/products/gms.mk)
     MIST_PACKAGE_TYPE := GAPPS
 else
@@ -326,4 +325,5 @@ PRODUCT_PACKAGES += \
 else
 PRODUCT_PACKAGES += \
     SettingsOverlay
+endif
 endif
