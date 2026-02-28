@@ -2,10 +2,10 @@ PRODUCT_VERSION_MAJOR = 16
 PRODUCT_VERSION_MINOR = 0
 
 # Increase Mist Version with each major release.
-MIST_VERSION_DISPLAY := 4.5-QPR2
+MIST_VERSION_DISPLAY := 4.5-Velour
 MIST_FLAVOR := Baklava
 MIST_VERSION_BASE := 4.5
-MIST_CODENAME := QPR2
+MIST_CODENAME := Velour
 MIST_BUILD_TYPE ?= Unofficial
 
 MIST_BUILD_DATE := $(shell date -u +%Y%m%d)
