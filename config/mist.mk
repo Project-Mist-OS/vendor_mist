@@ -26,12 +26,12 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # Enable blur
 TARGET_ENABLE_BLUR ?= true
 ifeq ($(TARGET_ENABLE_BLUR),true)
-PRODUCT_SYSTEM_PROPERTIES += \
+PRODUCT_PRODUCT_PROPERTIES += \
     ro.custom.blur.enable=true \
     persist.sysui.disableBlur=false \
     ro.surface_flinger.supports_background_blur=1
 else
-PRODUCT_SYSTEM_PROPERTIES += \
+PRODUCT_PRODUCT_PROPERTIES += \
     ro.custom.blur.enable=false \
     persist.sysui.disableBlur=true \
     ro.surface_flinger.supports_background_blur=0
@@ -179,7 +179,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
 
 # UDFPS properties
 TARGET_CUSTOM_UDFPS ?= false
-PRODUCT_SYSTEM_PROPERTIES += \
+PRODUCT_SYSTEM_EXT_PROPERTIES += \
     persist.sys.udfps.custom=$(TARGET_HAS_UDFPS)
 
 BYPASS_CHARGE_SUPPORTED ?= false
@@ -211,17 +211,17 @@ TARGET_DEFAULT_PIXEL_LAUNCHER ?= false
 ifeq ($(WITH_GMS),true)
 ifeq ($(TARGET_DEFAULT_PIXEL_LAUNCHER), true)
 # Pixel Launcher
-PRODUCT_SYSTEM_PROPERTIES += \
+PRODUCT_PRODUCT_PROPERTIES += \
     persist.sys.default_launcher=1 \
     persist.sys.quickswitch_pixel_shipped=1
 else
 # Launcher3
-PRODUCT_SYSTEM_PROPERTIES += \
+PRODUCT_PRODUCT_PROPERTIES += \
     persist.sys.default_launcher=0 \
     persist.sys.quickswitch_pixel_shipped=1
 endif
 else
-PRODUCT_SYSTEM_PROPERTIES += \
+PRODUCT_PRODUCT_PROPERTIES += \
     persist.sys.default_launcher=0
 endif
 
