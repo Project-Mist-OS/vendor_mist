@@ -5,6 +5,7 @@ $(call inherit-product-if-exists, vendor/extras/config.mk)
 $(call inherit-product-if-exists, vendor/extra/product.mk)
 $(call inherit-product-if-exists, vendor/fontbox/config.mk)
 $(call inherit-product-if-exists, vendor/certification/config.mk)
+$(call inherit-product, vendor/google/overlays/ThemeIcons/config.mk)
 
 ifeq ($(WITH_BCR),true)
 $(call inherit-product, vendor/bcr/bcr.mk)
@@ -226,9 +227,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     rsync
 
+ifeq ($(WITH_GMS),false)
 # Storage manager
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.storage_manager.enabled=true
+endif
 
 # These packages are excluded from user builds
 PRODUCT_PACKAGES_DEBUG += \
@@ -306,14 +309,14 @@ include vendor/lineage/config/version.mk
 -include $(WORKSPACE)/build_env/image-auto-bits.mk
 -include vendor/lineage/config/partner_gms.mk
 
-# GMS
-WITH_GMS ?= false
-ifeq ($(WITH_GMS),true)
-    $(call inherit-product, vendor/gms/products/gms.mk)
-    MIST_PACKAGE_TYPE ?= GAPPS
-else
-    # VANILLA BUILD
-    MIST_PACKAGE_TYPE ?= VANILLA
+## GMS
+#WITH_GMS ?= false
+#ifeq ($(WITH_GMS),true)
+#    $(call inherit-product, vendor/gms/products/gms.mk)
+#    MIST_PACKAGE_TYPE ?= GAPPS
+#else
+#    # VANILLA BUILD
+#    MIST_PACKAGE_TYPE ?= VANILLA
 
 # Custom Overlays
 PRODUCT_PACKAGES += \
@@ -326,4 +329,4 @@ else
 PRODUCT_PACKAGES += \
     SettingsOverlay
 endif
-endif
+#endif
