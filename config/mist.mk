@@ -47,6 +47,12 @@ PRODUCT_PACKAGES += \
     ColumbusService
 endif
 
+# Updater
+ifeq ($(MIST_BUILD_TYPE),OFFICIAL)
+PRODUCT_PACKAGES += \
+    Updater
+endif
+
 # Use a generic profile based boot image by default
 PRODUCT_USE_PROFILE_FOR_BOOT_IMAGE := true
 PRODUCT_COPY_FILES += \
