@@ -140,6 +140,7 @@ endif
 
 # Extra packages
 PRODUCT_PACKAGES += \
+    AxThemeStore \
     BatteryStatsViewer \
     GameSpace \
     LMOFreeform \
