@@ -213,7 +213,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PihooksGmsModel="Pixel 10 Pro"
 
 # Quick Switch
-TARGET_DEFAULT_PIXEL_LAUNCHER ?= false
+TARGET_DEFAULT_PIXEL_LAUNCHER ?= true
 ifeq ($(WITH_GMS),true)
 ifeq ($(TARGET_DEFAULT_PIXEL_LAUNCHER), true)
 # Pixel Launcher

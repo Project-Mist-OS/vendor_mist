@@ -46,16 +46,13 @@ endif
 WITH_GMS ?= false
 ifeq ($(WITH_GMS),true)
   ifeq ($(TARGET_USES_MINI_GAPPS),true)
-    $(call inherit-product, vendor/gms/gms_mini.mk)
-    $(call inherit-product, vendor/pixel-style/config/common.mk)
+    $(call inherit-product, vendor/gms/common/gms_mini.mk)
     MIST_PACKAGE_TYPE := MINI
   else ifeq ($(TARGET_USES_PICO_GAPPS),true)
-    $(call inherit-product, vendor/gms/gms_pico.mk)
-    $(call inherit-product, vendor/pixel-style/config/common.mk)
+    $(call inherit-product, vendor/gms/common/gms_pico.mk)
     MIST_PACKAGE_TYPE := PICO
   else
-    $(call inherit-product, vendor/gms/gms_full.mk)
-    $(call inherit-product, vendor/pixel-style/config/common.mk)
+    $(call inherit-product, vendor/gms/products/gms.mk)
     MIST_PACKAGE_TYPE := GAPPS
   endif
 else
