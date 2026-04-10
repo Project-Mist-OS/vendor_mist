@@ -2,10 +2,10 @@ PRODUCT_VERSION_MAJOR = 16
 PRODUCT_VERSION_MINOR = 0
 
 # Increase Mist Version with each major release.
-MIST_VERSION_DISPLAY := 4.6-Lucent
+MIST_VERSION_DISPLAY := 4.6.1-Lucent-HotFix
 MIST_FLAVOR := Baklava
-MIST_VERSION_BASE := 4.6
-MIST_CODENAME := Lucent
+MIST_VERSION_BASE := 4.6.1
+MIST_CODENAME := Lucent-HotFix
 MIST_BUILD_TYPE ?= Unofficial
 
 MIST_BUILD_DATE := $(shell date -u +%Y%m%d)
