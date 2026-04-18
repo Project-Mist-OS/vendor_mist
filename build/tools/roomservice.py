@@ -413,5 +413,41 @@ else:
             fetch_dependencies(repo_path)
             print("Done")
             sys.exit()
+# Fallback: Check official devices JSON
+url = "https://raw.githubusercontent.com/MistOS-Devices/official_devices/refs/heads/16/buildDevices.json"
 
+try:
+    req = urllib.request.Request(url)
+    data = json.loads(urllib.request.urlopen(req, timeout=15).read().decode())
+
+    for dev in data.get("devices", []):
+        if dev.get("codename") == device:
+            repo_full = dev.get("repo")
+            repo_name = repo_full.split('/')[-1]
+
+            print(f"Found repository in official devices: {repo_name}")
+
+            repo_path = repo_name.replace("android_", "").replace("_", "/")
+
+            revision = get_default_or_fallback_revision(repo_name)
+            if not revision:
+                print(f"No suitable branch found for {repo_name}")
+                break
+
+            device_repository = {
+                'repository': repo_name,
+                'target_path': repo_path,
+                'branch': revision
+            }
+
+            add_to_manifest([device_repository])
+            os.system(f'repo sync --force-sync {repo_path}')
+
+            fetch_dependencies(repo_path)
+
+            print("Done")
+            sys.exit()
+
+except Exception as e:
+    print("Error fetching official devices JSON:", e)
 print(f"Repository for {device} not found.")
