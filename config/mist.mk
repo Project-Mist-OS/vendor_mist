@@ -138,9 +138,12 @@ ifeq ($(TARGET_OPTIMIZED_DEXOPT),true)
 
 endif
 
+$(call inherit-product-if-exists, axion_sdk/ax_tflite/common.mk)
+
 # Extra packages
 PRODUCT_PACKAGES += \
     AxQuickLook \
+    AxWallpaperEffects \
     AxSandbox \
     AxThemeStore \
     BatteryStatsViewer \
