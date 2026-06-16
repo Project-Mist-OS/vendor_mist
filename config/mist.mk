@@ -150,6 +150,7 @@ PRODUCT_PACKAGES += \
     AxWallpaperEffects \
     AxSandbox \
     AxThemeStore \
+    Backgrounds \
     BatteryStatsViewer \
     GameSpace \
     LMOFreeform \
