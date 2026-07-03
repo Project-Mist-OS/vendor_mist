@@ -43,10 +43,12 @@ endif
 ifeq ($(TARGET_BUILD_VARIANT),eng)
 # Disable ADB authentication
 PRODUCT_SYSTEM_EXT_PROPERTIES += ro.adb.secure=0
+PRODUCT_PRODUCT_PROPERTIES += persist.sys.mist_debug_enabled=1
 else
 ifdef WITH_ADB_INSECURE
 # Forcebly disable ADB authentication
 PRODUCT_SYSTEM_EXT_PROPERTIES += ro.adb.secure=0
+PRODUCT_PRODUCT_PROPERTIES += persist.sys.mist_debug_enabled=1
 else
 # Enable ADB authentication
 PRODUCT_SYSTEM_EXT_PROPERTIES += ro.adb.secure=1
