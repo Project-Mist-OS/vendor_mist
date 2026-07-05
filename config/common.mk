@@ -35,6 +35,11 @@ endif
 endif
 
 ifeq ($(TARGET_BUILD_VARIANT),eng)
+
+# Exclude repos from bp scanning
+PRODUCT_SOURCE_ROOT_DIRS += -kernel/platform
+PRODUCT_SOURCE_ROOT_DIRS += -prebuilts/misc/protobuf_vendorcompat
+
 # Disable ADB authentication
 PRODUCT_SYSTEM_EXT_PROPERTIES += ro.adb.secure=0
 else
