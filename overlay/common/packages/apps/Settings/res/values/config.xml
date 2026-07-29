@@ -39,4 +39,7 @@
 
     <!-- Whether to show the "glanceable hub" settings on mobile. -->
     <bool name="config_show_glanceable_hub_toggle_setting_mobile">true</bool>
+
+    <!-- Whether to display Cloned Apps page in Settings (Settings > Apps > Cloned Apps).-->
+    <bool name="config_cloned_apps_page_enabled">true</bool>
 </resources>
