@@ -1,3 +1,9 @@
+# Mosey
+TARGET_INCLUDE_MOSEY ?= false
+ifeq ($(TARGET_INCLUDE_MOSEY),true)
+$(call inherit-product, vendor/gms-mosey/mosey/mosey-vendor.mk)
+endif
+
 # Enable Material Design 3 Expressive
 PRODUCT_PRODUCT_PROPERTIES += is_expressive_design_enabled=true
 
