@@ -2,6 +2,11 @@
 PRODUCT_PACKAGES += \
    BatteryStatsViewer
 
+# LMO packages
+PRODUCT_PACKAGES += \
+    LMOFreeform \
+    LMOFreeformSidebar
+
 # Mosey
 TARGET_INCLUDE_MOSEY ?= false
 TARGET_USES_MOSEY_NOPAUTH ?= false
