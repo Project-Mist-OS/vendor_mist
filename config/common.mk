@@ -266,8 +266,10 @@ PRODUCT_PACKAGES += \
     rsync
 
 # Storage manager
+ifeq ($(WITH_GMS),false)
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.storage_manager.enabled=true
+endif
 
 # Default wifi country code
 PRODUCT_PRODUCT_PROPERTIES += \
