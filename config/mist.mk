@@ -1,7 +1,8 @@
 # Additional packages
 PRODUCT_PACKAGES += \
    BatteryStatsViewer \
-   GameSpace
+   GameSpace \
+   Updater
 
 # LMO packages
 PRODUCT_PACKAGES += \
