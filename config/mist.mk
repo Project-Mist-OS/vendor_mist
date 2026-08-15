@@ -4,6 +4,7 @@ PRODUCT_PACKAGES += \
    BatteryStatsViewer \
    GameSpace \
    Updater \
+   OmniJaws \
    OmniStyle
 
 # LMO packages
