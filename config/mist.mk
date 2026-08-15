@@ -1,5 +1,6 @@
 # Additional packages
 PRODUCT_PACKAGES += \
+   AxSandbox \
    BatteryStatsViewer \
    GameSpace \
    Updater
