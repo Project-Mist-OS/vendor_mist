@@ -3,7 +3,8 @@ PRODUCT_PACKAGES += \
    AxSandbox \
    BatteryStatsViewer \
    GameSpace \
-   Updater
+   Updater \
+   OmniStyle
 
 # LMO packages
 PRODUCT_PACKAGES += \
