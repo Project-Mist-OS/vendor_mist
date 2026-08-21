@@ -132,3 +132,6 @@ endif
 
 # Other ROM feature flags
 PERF_ANIM_OVERRIDE ?= false
+
+# Axion SDK
+$(call inherit-product-if-exists, axion_sdk/ax_tflite/common.mk)
