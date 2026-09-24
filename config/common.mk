@@ -18,6 +18,7 @@ PRODUCT_SOURCE_ROOT_DIRS += -prebuilts/misc/protobuf_vendorcompat
 # Pixel additions
 ifeq ($(WITH_GMS),true)
     DONT_DEXPREOPT_PREBUILTS := true
+    RELAX_USES_LIBRARY_CHECK=true
 endif
 
 PRODUCT_BRAND ?= MistOS
